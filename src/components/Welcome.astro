@@ -2,6 +2,7 @@
 import { PUBLIC_RSVP_LINK, PUBLIC_HOTEL_URL } from "astro:env/client";
 import astroLogo from "@/assets/astro.svg";
 import background from "@/assets/background.svg";
+import Counter from "@/components/counter/index.tsx";
 ---
 
 <div id="container">
@@ -28,6 +29,7 @@ import background from "@/assets/background.svg";
 					>here to book a hotel room</a
 				>
 			</h2>
+			<Counter client:load />
 			<section id="links">
 				<a class="button" href="https://docs.astro.build">Read our docs</a>
 				<a href="https://astro.build/chat"
