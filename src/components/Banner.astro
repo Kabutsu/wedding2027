@@ -13,6 +13,7 @@
     min-height: 120vh;
     position: relative;
     overflow: clip;
+    clip-path: url(#wave-clip-mobile);
   }
 
   #banner {
@@ -23,7 +24,6 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    clip-path: url(#wave-clip-mobile);
 
     /* Scroll-driven animation for smooth parallax */
     animation: parallax-scroll linear;
@@ -41,7 +41,7 @@
   }
 
   @media (min-width: 768px) {
-    #banner {
+    #banner-container {
       clip-path: url(#wave-clip);
     }
   }
