@@ -16,6 +16,10 @@ export default defineConfig({
 
   integrations: [preact({ compat: true })],
 
+  devToolbar: {
+    enabled: false,
+  },
+
   fonts: [{
     provider: fontProviders.google(),
     name: 'Caveat',
