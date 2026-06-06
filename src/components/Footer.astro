@@ -5,28 +5,34 @@ import { PUBLIC_RSVP_LINK } from "astro:env/client";
 import footerImg from "@/assets/images/disney-1.jpg";
 ---
 
-<footer class="relative h-[50svh] w-full overflow-visible">
+<footer class="relative w-full overflow-visible">
   <div class="relative w-full h-8">
     <Image
       src={footerImg}
       alt="Footer image"
-      class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 object-cover object-top rounded-full border-dusty-blue border-4"
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 object-cover object-top rounded-full border-dusty-blue border-4 z-10"
     />
   </div>
-  <div
-    id="footer-content"
-    class="w-full h-full p-4 pt-24 bg-wedding-dark flex flex-col items-center justify-start gap-2.5"
-  >
-    <h2
-      class="text-center text-white text-4xl font-(family-name:--font-cormorant) font-bold"
+  <div id="footer-content-container" class="w-full h-[50svh]">
+    <div
+      id="footer-content"
+      class="w-full h-full p-4 pt-24 bg-wedding-dark flex flex-col items-center justify-start gap-2.5"
     >
-      Sam & Carolina
-    </h2>
-    <a href={PUBLIC_RSVP_LINK} target="_blank">RSVP</a>
+      <h2
+        class="text-center text-white text-4xl font-(family-name:--font-cormorant) font-bold"
+      >
+        Sam & Carolina
+      </h2>
+      <a href={PUBLIC_RSVP_LINK} target="_blank">RSVP</a>
+    </div>
   </div>
 </footer>
 
 <style>
+  #footer-content-container {
+    clip-path: url(#wave-clip-footer-mobile);
+  }
+
   a {
     display: block;
     text-align: center;
@@ -41,4 +47,23 @@ import footerImg from "@/assets/images/disney-1.jpg";
     color: var(--color-dusty-blue);
     font-size: 1.25rem;
   }
+
+  @media (min-width: 768px) {
+    #footer-content-container {
+      clip-path: url(#wave-clip-footer);
+    }
+  }
 </style>
+
+<svg width="0" height="0">
+  <defs>
+    <clipPath id="wave-clip-footer" clipPathUnits="objectBoundingBox">
+      <path
+        d="M 1,1 L 1,0.05 C 0.75,0.05 0.75,0 0.5,0 C 0.25,0 0.25,0.05 0,0.05 L 0,1 Z"
+      ></path>
+    </clipPath>
+    <clipPath id="wave-clip-footer-mobile" clipPathUnits="objectBoundingBox">
+      <path d="M 1,1 L 1,0.02 Q 0.5,0 0,0.02 L 0,1 Z"></path>
+    </clipPath>
+  </defs>
+</svg>
