@@ -1,0 +1,41 @@
+<div id="banner"></div>
+
+<style>
+  @keyframes parallax {
+    from {
+      background-position: center -150px;
+    }
+    to {
+      background-position: center 400px;
+    }
+  }
+
+  #banner {
+    display: flex;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 120vh;
+    background-image: url("../assets/images/proposoal-1.jpg");
+    background-size: cover;
+    background-position: center -150px;
+    background-repeat: no-repeat;
+    animation: parallax linear;
+    animation-timeline: scroll();
+  }
+
+  /* Respect user motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    #banner {
+      animation: none !important;
+      background-position: center;
+    }
+  }
+
+  /* Fallback for browsers without scroll-driven animation support */
+  @supports not (animation-timeline: scroll()) {
+    #banner {
+      animation: none;
+      background-position: center;
+    }
+  }
+</style>

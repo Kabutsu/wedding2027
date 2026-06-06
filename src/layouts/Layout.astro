@@ -1,3 +1,9 @@
+---
+import background from "@/assets/background.svg";
+
+import Head from "@/components/Head.astro";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -7,9 +13,15 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Sam &amp; Carolina's Wedding</title>
+		<Head />
 	</head>
 	<body>
-		<slot />
+		<div id="container">
+			<img id="background" src={background.src} alt="" fetchpriority="high" />
+			<main>
+				<slot />
+			</main>
+		</div>
 	</body>
 </html>
 
@@ -19,5 +31,46 @@
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	html::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	html::-webkit-scrollbar-track {
+		background: #f4ebdd;
+	}
+
+	html::-webkit-scrollbar-thumb {
+		background: #3f121b;
+		transition: background-color 0.3s ease;
+	}
+
+	html::-webkit-scrollbar-thumb:hover {
+		background-color: #3f121b;
+	}
+
+	#background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		filter: blur(100px);
+	}
+
+	#container {
+		font-family:
+			Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+			sans-serif;
+		height: 100%;
+		background-color: #f4ebdd33;
 	}
 </style>
