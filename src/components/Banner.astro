@@ -25,46 +25,43 @@ const fullImageUrl = bannerImg.src;
   }}
 ></style>
 
-<div id="banner-container" class="min-h-[90svh] sm:min-h-[150vh]">
-  <div id="banner" class="h-[90svh] sm:h-[150vh]">
-    <div id="banner-full"></div>
+<div
+  id="banner-container"
+  class="min-h-[90svh] w-full max-w-screen overflow-clip sm:min-h-[150vh]"
+>
+  <div
+    id="banner"
+    class="relative h-[90svh] w-full bg-[#f5f1ed] will-change-transform sm:h-[150vh]"
+  >
+    <div
+      id="banner-full"
+      class="absolute inset-0 bg-cover bg-no-repeat opacity-0"
+    >
+    </div>
   </div>
 </div>
 
 <style>
   #banner-container {
-    width: 100%;
-    max-width: 100vw;
     position: relative;
-    overflow: clip;
     clip-path: url(#wave-clip-mobile);
   }
 
   #banner {
-    position: relative;
-    width: 100%;
-    background-color: #f5f1ed;
-
     /* Scroll-driven animation for smooth parallax */
-    animation: parallax-scroll linear;
+    animation: parallax-scroll-mobile linear;
     animation-timeline: scroll();
     animation-range: entry 0% exit 100%;
-
-    /* Optimize rendering performance */
-    will-change: transform;
   }
 
   /* Placeholder layer - blurred and behind */
   #banner::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-image: var(--placeholderUrl);
     background-size: cover;
-    background-position: center -150px;
+    background-position: center top;
     background-repeat: no-repeat;
     filter: blur(20px);
     z-index: 1;
@@ -72,19 +69,11 @@ const fullImageUrl = bannerImg.src;
 
   /* Child element for full-res image - sharp and on top */
   #banner-full {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-image: var(--fullImageUrl);
-    background-size: cover;
-    background-position: center -150px;
-    background-repeat: no-repeat;
-    opacity: 0;
+    background-position: center top;
+    z-index: 2;
     animation: fade-in ease-in-out 0.5s forwards;
     animation-delay: 0.15s;
-    z-index: 2;
   }
 
   @keyframes fade-in {
@@ -96,18 +85,39 @@ const fullImageUrl = bannerImg.src;
     }
   }
 
-  @keyframes parallax-scroll {
+  @keyframes parallax-scroll-mobile {
     from {
       transform: translateY(0);
     }
     to {
-      transform: translateY(65vh); /* Subtle upward movement */
+      transform: translateY(15svh);
+    }
+  }
+
+  @keyframes parallax-scroll-desktop {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(65vh);
     }
   }
 
   @media (min-width: 768px) {
     #banner-container {
       clip-path: url(#wave-clip);
+    }
+
+    #banner {
+      animation-name: parallax-scroll-desktop;
+    }
+
+    #banner::before {
+      background-position: center -150px;
+    }
+
+    #banner-full {
+      background-position: center -150px;
     }
   }
 </style>
