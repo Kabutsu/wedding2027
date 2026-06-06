@@ -16,7 +16,13 @@ import ParallaxBanner from "./parallax";
     background-position: top top;
     background-repeat: no-repeat;
     will-change: transform;
-    clip-path: url(#wave-clip);
+    clip-path: url(#wave-clip-mobile);
+  }
+
+  @media (min-width: 768px) {
+    #banner {
+      clip-path: url(#wave-clip);
+    }
   }
 </style>
 
@@ -26,6 +32,9 @@ import ParallaxBanner from "./parallax";
       <path
         d="M 0,0 L 0,0.95 C 0.25,0.95 0.25,1 0.5,1 C 0.75,1 0.75,0.95 1,0.95 L 1,0 Z"
       ></path>
+    </clipPath>
+    <clipPath id="wave-clip-mobile" clipPathUnits="objectBoundingBox">
+      <path d="M 0,0 L 0,0.98 Q 0.5,1 1,0.98 L 1,0 Z"></path>
     </clipPath>
   </defs>
 </svg>

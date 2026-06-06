@@ -13,7 +13,7 @@ function ParallaxBanner() {
     gsap.fromTo(
       banner,
       {
-        backgroundPosition: 'center 0px', // Start position
+        backgroundPosition: 'center -100px', // Start position
       },
       {
         backgroundPosition: `center ${window.innerHeight * 0.75}px`, // End position
