@@ -2,15 +2,14 @@
 // No JavaScript needed for CSS-only parallax
 ---
 
-<div id="banner-container" class="h-[90svh] sm:h-[120svh]">
-  <div id="banner"></div>
+<div id="banner-container" class="min-h-[90svh] sm:min-h-[120vh]">
+  <div id="banner" class="h-[90svh] sm:h-[120vh]"></div>
 </div>
 
 <style>
   #banner-container {
     width: 100%;
     max-width: 100vw;
-    min-height: 120vh;
     position: relative;
     overflow: clip;
     clip-path: url(#wave-clip-mobile);
