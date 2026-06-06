@@ -1,34 +1,39 @@
 import { useEffect } from 'preact/hooks';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const Y_OFFSET = 150; // Adjust this to control the initial position of the background image (e.g., 50px means it starts 50px below the top of the viewport)
+gsap.registerPlugin(ScrollTrigger);
 
 function ParallaxBanner() {
   useEffect(() => {
-    function updateParallax() {
-      const banner = document.getElementById('banner');
-      if (!banner) return;
-      
-      const scrolled = window.scrollY - Y_OFFSET;
-      const rate = 0.75; // Adjust this: lower = slower scroll (0.5 = half speed)
-      
-      // Move the background image position, not the element itself
-      const yPos = scrolled * rate;
-      banner.style.backgroundPosition = `center ${yPos}px`;
-    }
+    const banner = document.getElementById('banner');
+    if (!banner) return;
 
-    // Initial position
-    updateParallax();
-
-    // Update on scroll
-    window.addEventListener('scroll', updateParallax, { passive: true });
+    // GSAP parallax with ScrollTrigger - smooth and performant
+    gsap.fromTo(
+      banner,
+      {
+        backgroundPosition: 'center 0px', // Start position
+      },
+      {
+        backgroundPosition: `center ${window.innerHeight * 0.75}px`, // End position
+        ease: 'none',
+        scrollTrigger: {
+          trigger: banner,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0,
+        },
+      }
+    );
 
     // Cleanup
     return () => {
-      window.removeEventListener('scroll', updateParallax);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
-  return null; // This component doesn't render anything
+  return null;
 }
 
 export default ParallaxBanner;
