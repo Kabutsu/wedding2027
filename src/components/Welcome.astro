@@ -1,17 +1,23 @@
 ---
 import { PUBLIC_RSVP_LINK, PUBLIC_HOTEL_URL } from "astro:env/client";
 
+import "@/styles/global.css";
+
 import Counter from "@/components/counter/index.tsx";
 ---
 
 <section id="hero">
-	<h1>
-		Sam &amp; Carolina are getting married<br />on January 23rd 2027!
+	<h1
+		class="font-(family-name:--font-cormorant) text-5xl text-pretty sm:text-6xl mt-1 text-center text-[#b23e3e] leading-normal sm:leading-tight font-bold drop-shadow-md drop-shadow-[#3f121b33]"
+	>
+		Sam &amp; Carolina are getting married<span class="hidden sm:inline"
+			><br />on January 23rd 2027</span
+		>!
 	</h1>
 	<h2>
 		Click <a href={PUBLIC_RSVP_LINK} target="_blank">here to RSVP</a>
 	</h2>
-	<h2>
+	<h2 class="font-(family-name:--font-caveat) text-2xl text-gray-700">
 		Click <a href={PUBLIC_HOTEL_URL} target="_blank"
 			>here to book a hotel room</a
 		>
@@ -39,15 +45,6 @@ import Counter from "@/components/counter/index.tsx";
 		flex-direction: column;
 		justify-content: center;
 		padding: 16px;
-	}
-
-	h1 {
-		font-size: 4rem;
-		margin-top: 0.25em;
-		font-family: var(--font-cormorant);
-		text-align: center;
-		color: #b23e3e;
-		filter: drop-shadow(5px 5px 5px #3f121b33);
 	}
 
 	#links {
