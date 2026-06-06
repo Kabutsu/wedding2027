@@ -1,22 +1,43 @@
 ---
-import ParallaxBanner from "./parallax";
+// No JavaScript needed for CSS-only parallax
 ---
 
-<ParallaxBanner client:load />
-<div id="banner"></div>
+<div id="banner-container">
+  <div id="banner"></div>
+</div>
 
 <style>
-  #banner {
-    display: flex;
+  #banner-container {
     width: 100%;
     max-width: 100vw;
     min-height: 120vh;
+    position: relative;
+    overflow: clip;
+  }
+
+  #banner {
+    position: relative;
+    width: 100%;
+    height: 120vh;
     background-image: url("../assets/images/proposoal-1.jpg");
     background-size: cover;
-    background-position: top top;
+    background-position: center top;
     background-repeat: no-repeat;
-    will-change: transform;
     clip-path: url(#wave-clip-mobile);
+
+    /* Scroll-driven animation for smooth parallax */
+    animation: parallax-scroll linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
+  }
+
+  @keyframes parallax-scroll {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(15vh); /* Subtle upward movement */
+    }
   }
 
   @media (min-width: 768px) {
