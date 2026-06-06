@@ -1,9 +1,34 @@
 ---
 // No JavaScript needed for CSS-only parallax
+import { getImage } from "astro:assets";
+import bannerImg from "../assets/images/proposoal-1.jpg";
+
+// Only process the placeholder through getImage - keep full-res as original URL
+const placeholderImage = await getImage({
+  src: bannerImg,
+  width: 40,
+  quality: 40,
+});
+
+// Use the original image URL directly for full-res
+const fullImageUrl = bannerImg.src;
 ---
 
-<div id="banner-container" class="min-h-[90svh] sm:min-h-[120vh]">
-  <div id="banner" class="h-[90svh] sm:h-[120vh]"></div>
+<!-- Preload the full-res image with high priority -->
+<link rel="preload" fetchpriority="high" as="image" href={fullImageUrl} />
+
+<!-- Pass image URLs to CSS via custom properties -->
+<style
+  define:vars={{
+    fullImageUrl: `url(${fullImageUrl})`,
+    placeholderUrl: `url(${placeholderImage.src})`,
+  }}
+></style>
+
+<div id="banner-container" class="min-h-[90svh] sm:min-h-[150vh]">
+  <div id="banner" class="h-[90svh] sm:h-[150vh]">
+    <div id="banner-full"></div>
+  </div>
 </div>
 
 <style>
@@ -18,15 +43,57 @@
   #banner {
     position: relative;
     width: 100%;
-    background-image: url("../assets/images/proposoal-1.jpg");
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    background-color: #f5f1ed;
 
     /* Scroll-driven animation for smooth parallax */
     animation: parallax-scroll linear;
     animation-timeline: scroll();
     animation-range: entry 0% exit 100%;
+
+    /* Optimize rendering performance */
+    will-change: transform;
+  }
+
+  /* Placeholder layer - blurred and behind */
+  #banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--placeholderUrl);
+    background-size: cover;
+    background-position: center -150px;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    z-index: 1;
+  }
+
+  /* Child element for full-res image - sharp and on top */
+  #banner-full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--fullImageUrl);
+    background-size: cover;
+    background-position: center -150px;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: fade-in ease-in-out 0.5s forwards;
+    animation-delay: 0.15s;
+    z-index: 2;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes parallax-scroll {
@@ -34,7 +101,7 @@
       transform: translateY(0);
     }
     to {
-      transform: translateY(15vh); /* Subtle upward movement */
+      transform: translateY(65vh); /* Subtle upward movement */
     }
   }
 
