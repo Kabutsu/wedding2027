@@ -1,27 +1,123 @@
 ---
-import ParallaxBanner from "./parallax";
+// No JavaScript needed for CSS-only parallax
+import { getImage } from "astro:assets";
+import bannerImg from "../assets/images/proposoal-1.jpg";
+
+// Only process the placeholder through getImage - keep full-res as original URL
+const placeholderImage = await getImage({
+  src: bannerImg,
+  width: 40,
+  quality: 40,
+});
+
+// Use the original image URL directly for full-res
+const fullImageUrl = bannerImg.src;
 ---
 
-<ParallaxBanner client:load />
-<div id="banner"></div>
+<!-- Preload the full-res image with high priority -->
+<link rel="preload" fetchpriority="high" as="image" href={fullImageUrl} />
+
+<!-- Pass image URLs to CSS via custom properties -->
+<style
+  define:vars={{
+    fullImageUrl: `url(${fullImageUrl})`,
+    placeholderUrl: `url(${placeholderImage.src})`,
+  }}
+></style>
+
+<div
+  id="banner-container"
+  class="min-h-[90svh] w-full max-w-screen overflow-clip sm:min-h-[150vh]"
+>
+  <div
+    id="banner"
+    class="relative h-[90svh] w-full bg-[#f5f1ed] will-change-transform sm:h-[150vh]"
+  >
+    <div
+      id="banner-full"
+      class="absolute inset-0 bg-cover bg-no-repeat opacity-0"
+    >
+    </div>
+  </div>
+</div>
 
 <style>
-  #banner {
-    display: flex;
-    width: 100%;
-    max-width: 100vw;
-    min-height: 120vh;
-    background-image: url("../assets/images/proposoal-1.jpg");
-    background-size: cover;
-    background-position: top top;
-    background-repeat: no-repeat;
-    will-change: transform;
+  #banner-container {
+    position: relative;
     clip-path: url(#wave-clip-mobile);
   }
 
+  #banner {
+    /* Scroll-driven animation for smooth parallax */
+    animation: parallax-scroll-mobile linear;
+    animation-timeline: scroll();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Placeholder layer - blurred and behind */
+  #banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--placeholderUrl);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    z-index: 1;
+  }
+
+  /* Child element for full-res image - sharp and on top */
+  #banner-full {
+    background-image: var(--fullImageUrl);
+    background-position: center top;
+    z-index: 2;
+    animation: fade-in ease-in-out 0.5s forwards;
+    animation-delay: 0.15s;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes parallax-scroll-mobile {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(15svh);
+    }
+  }
+
+  @keyframes parallax-scroll-desktop {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(65vh);
+    }
+  }
+
   @media (min-width: 768px) {
-    #banner {
+    #banner-container {
       clip-path: url(#wave-clip);
+    }
+
+    #banner {
+      animation-name: parallax-scroll-desktop;
+    }
+
+    #banner::before {
+      background-position: center -150px;
+    }
+
+    #banner-full {
+      background-position: center -150px;
     }
   }
 </style>
