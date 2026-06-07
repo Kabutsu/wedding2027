@@ -1,25 +1,31 @@
 ---
-import { PUBLIC_RSVP_LINK, PUBLIC_HOTEL_URL } from "astro:env/client";
+import { PUBLIC_RSVP_LINK } from "astro:env/client";
 
 import "@/styles/global.css";
 ---
 
 <section id="hero">
 	<h1
-		class="font-(family-name:--font-cormorant) text-5xl text-pretty sm:text-6xl mt-1 text-center text-wedding-burgundy leading-normal sm:leading-tight font-bold drop-shadow-wedding"
+		class="font-(family-name:--font-caveat) text-4xl sm:text-6xl mt-1 mb-5 text-center text-pretty text-wedding-burgundy leading-tight font-bold"
 	>
 		Sam &amp; Carolina are getting married<span class="hidden sm:inline"
 			><br />on January 23rd 2027</span
 		>!
 	</h1>
 	<h2>
-		Click <a href={PUBLIC_RSVP_LINK} target="_blank">here to RSVP</a>
+		We look forward to having you join us for our wedding celebration in the
+		beautiful Kingscote Barn, nestled in the heart of the Cotswolds countryside.
 	</h2>
-	<h2 class="font-(family-name:--font-caveat) text-2xl text-gray-700">
-		Click <a href={PUBLIC_HOTEL_URL} target="_blank"
-			>here to book a hotel room</a
-		>
+	<h2>
+		A day focused on what matters most to us: family, friends, good food, and
+		great music. We can't wait to celebrate with you!
 	</h2>
+	<button
+		class="mt-6 px-10 py-2 cursor-pointer bg-wedding-burgundy text-white font-(family-name:--font-cormorant) rounded-full text-lg font-semibold hover:bg-wedding-burgundy/90 transition-colors duration-300"
+		onclick={`window.open("${PUBLIC_RSVP_LINK}", "_blank")`}
+	>
+		RSVP
+	</button>
 </section>
 
 <style>
@@ -28,6 +34,24 @@ import "@/styles/global.css";
 		align-items: start;
 		flex-direction: column;
 		justify-content: center;
-		padding: 16px;
+		align-items: center;
+		padding: 32px 16px;
+	}
+
+	#hero h2 {
+		font-size: 1.25rem;
+		font-family: var(--font-cormorant);
+		line-height: 1.5;
+		margin-top: 1rem;
+		text-align: center;
+		font-weight: 600;
+		color: var(--color-wedding-burgundy);
+	}
+
+	@media screen and (min-width: 640px) {
+		#hero h2 {
+			font-size: 1.5rem;
+			padding: 0 20%;
+		}
 	}
 </style>
