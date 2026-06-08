@@ -34,11 +34,13 @@ export default function OverviewItemAnimation({ title, details }: Props) {
           ease: 'sine.inOut',
           overwrite: true,
           onComplete: () => {
-            gsap.to(containerRef.current, {
-              rotation: 0,
-              duration: 2,
-              ease: 'elastic.out(1, 0.2)',
-            });
+            if (Math.abs(target) > 1) {
+              gsap.to(containerRef.current, {
+                rotation: 0,
+                duration: 2,
+                ease: 'elastic.out(1, 0.2)',
+              });
+            }
           },
         });
       },
