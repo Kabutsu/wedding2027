@@ -53,7 +53,7 @@ export default function OverviewItemAnimation({ title, details }: Props) {
   return (
     <div
       id="overview-item"
-      class="w-40 h-48 font-(family-name:--font-cormorant) uppercase bg-wedding-burgundy flex flex-col items-center justify-center gap-4 px-6 py-4 rounded-lg text-ivory-light"
+      class="w-52 sm:w-40 h-48 font-(family-name:--font-cormorant) uppercase bg-wedding-burgundy flex flex-col items-center justify-center gap-4 px-6 py-4 rounded-lg text-ivory-light"
       ref={containerRef}
     >
       <h3 class="text-lg">{title}</h3>
