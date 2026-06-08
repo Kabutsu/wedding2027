@@ -17,36 +17,36 @@ export default function OverviewItemAnimation({ title, details }: Props) {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.set(containerRef.current, { transformOrigin: 'center center' });
+      gsap.set(containerRef.current, { transformOrigin: 'top center' });
     }, containerRef);
 
-    // ScrollTrigger.create({
-    //   trigger: containerRef.current,
-    //   start: 'top bottom',
-    //   end: 'bottom top',
-    //   onUpdate: (self) => console.log("velocity:", self.getVelocity()),
-    // });
-
-    gsap.to(containerRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        // scrub: true,
-        markers: true,
-        onUpdate: (self) => {
+    gsap.fromTo(
+      containerRef.current,
+      { rotation: 0 },
+      {
+        rotation: 25,
+        duration: 0.2,
+        ease: 'power2.out',
+        onComplete: () => {
           gsap.to(containerRef.current, {
-            physics2D: {
-              velocity: self.getVelocity(),
-              angle: 0,
-              gravity: 0,
-              friction: 0.1,
-            },
-            ease: 'none',
+            rotation: -18,
+            duration: 0.35,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: 5,
+            repeatDelay: 0,
+            overwrite: true,
           });
         },
-      },
-    });
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          // toggleActions: 'play none none reverse',
+          markers: true,
+        },
+      }
+    )
 
     return () => {
       ctx.revert();
