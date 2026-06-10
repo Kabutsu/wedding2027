@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'preact/hooks';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Physics2DPlugin } from 'gsap/Physics2DPlugin';
 
-gsap.registerPlugin(ScrollTrigger, Physics2DPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   title: string;
