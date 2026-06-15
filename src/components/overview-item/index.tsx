@@ -26,16 +26,20 @@ export default function OverviewItemAnimation({ title, details }: Props) {
       onUpdate: (self) => {
         const velocity = self.getVelocity();
         const target = gsap.utils.clamp(-5, 5, velocity / 80);
+        const duration = // random between 0.09 and 1.15
+          0.09 + Math.random() * 0.06;
 
         gsap.to(containerRef.current, {
           rotation: target,
-          duration: 0.1,
+          duration,
           ease: 'sine.inOut',
           overwrite: true,
           onComplete: () => {
+            const duration = // random between 1.8 and 2.2 seconds
+              1.8 + Math.random() * 0.4;
             gsap.to(containerRef.current, {
               rotation: 0,
-              duration: 2,
+              duration,
               ease: 'elastic.out(1, 0.2)',
             });
           },
@@ -52,7 +56,7 @@ export default function OverviewItemAnimation({ title, details }: Props) {
   return (
     <div
       id="overview-item"
-      class="w-52 sm:w-40 h-48 font-(family-name:--font-cormorant) uppercase bg-wedding-burgundy flex flex-col items-center justify-center gap-4 px-6 py-4 rounded-lg text-ivory-light"
+      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-[url('/heart.svg')] bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-2 pb-10 text-ivory-light"
       ref={containerRef}
     >
       <h3 class="text-lg">{title}</h3>
