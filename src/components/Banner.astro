@@ -31,7 +31,7 @@ const fullImageUrl = bannerImg.src;
 >
   <div
     id="banner"
-    class="relative h-[80svh] w-full bg-[#f5f1ed] will-change-transform sm:h-[150vh]"
+    class="relative h-[80svh] w-full bg-ivory will-change-transform sm:h-[150vh]"
   >
     <div
       id="banner-full"
@@ -74,6 +74,7 @@ const fullImageUrl = bannerImg.src;
     z-index: 2;
     animation: fade-in ease-in-out 0.5s forwards;
     animation-delay: 0.15s;
+    filter: grayscale(100%);
   }
 
   @keyframes fade-in {
@@ -99,7 +100,7 @@ const fullImageUrl = bannerImg.src;
       transform: translateY(0);
     }
     to {
-      transform: translateY(65vh);
+      transform: translateY(200vh);
     }
   }
 
@@ -113,11 +114,11 @@ const fullImageUrl = bannerImg.src;
     }
 
     #banner::before {
-      background-position: center -150px;
+      background-position: center top;
     }
 
     #banner-full {
-      background-position: center -150px;
+      background-position: center top;
     }
   }
 </style>

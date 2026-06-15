@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { PUBLIC_RSVP_LINK } from "astro:env/client";
 
-import footerImg from "@/assets/images/disney-1.jpg";
+import footerImg from "@/assets/images/wedding-logo.png";
 ---
 
 <footer class="relative w-full overflow-visible">
@@ -10,7 +10,7 @@ import footerImg from "@/assets/images/disney-1.jpg";
     <Image
       src={footerImg}
       alt="Footer image"
-      class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 object-cover object-top rounded-full border-dusty-blue border-4 z-10"
+      class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4 w-32 h-32 object-cover object-top rounded-full z-10"
     />
   </div>
   <div id="footer-content-container" class="w-full h-[50svh]">
@@ -44,8 +44,8 @@ import footerImg from "@/assets/images/disney-1.jpg";
   }
 
   #footer-content-container a:hover {
-    color: var(--color-dusty-blue);
-    font-size: 1.25rem;
+    color: #f5f1ed;
+    font-size: 1.2rem;
   }
 
   @media (min-width: 768px) {

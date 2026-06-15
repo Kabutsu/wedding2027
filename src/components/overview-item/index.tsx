@@ -56,7 +56,7 @@ export default function OverviewItemAnimation({ title, details }: Props) {
   return (
     <div
       id="overview-item"
-      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-[url('/heart.svg')] bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-2 pb-10 text-ivory-light"
+      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-[url('src/assets/images/heart.svg')] bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-2 pb-10 text-ivory-light"
       ref={containerRef}
     >
       <h3 class="text-lg">{title}</h3>
