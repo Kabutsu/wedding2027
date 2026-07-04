@@ -1,0 +1,19 @@
+---
+import Bottle from "./order/bottle";
+---
+
+<div
+  id="order-container"
+  class="relative w-full flex flex-col items-center justify-start overflow-x-hidden"
+>
+  <h1
+    class="text-6xl font-(family-name:--font-boston) text-crimson text-center text-pretty mt-8"
+  >
+    Order of the Day
+  </h1>
+  <div
+    class="w-1/2 p-12 pt-24 sm:pt-40 flex flex-col items-center-safe justify-start"
+  >
+    <Bottle client:load />
+  </div>
+</div>
