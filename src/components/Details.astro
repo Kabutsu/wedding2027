@@ -7,6 +7,7 @@ import logoImg from "@/assets/images/wedding-logo.png";
 
 import barnImg from "@/assets/images/kingscote.jpg";
 import lodgingImg from "@/assets/images/accom.jpg";
+import attireImg from "@/assets/images/party.jpg";
 
 import DetailsCard from "@/components/details-card/index.astro";
 ---
@@ -23,13 +24,13 @@ import DetailsCard from "@/components/details-card/index.astro";
   <div id="details-content-container" class="relative w-full">
     <div
       id="details-content"
-      class="p-4 pt-32 pb-24 bg-crimson flex flex-col items-center justify-start gap-2.5"
+      class="p-4 pt-32 pb-24 bg-crimson w-[900vw] sm:w-[300vw] translate-x-[-400svw] sm:translate-x-[-33%] flex flex-col items-center justify-start gap-2.5"
     >
       <h1 class="text-6xl font-(family-name:--font-boston) text-ivory">
         Details
       </h1>
       <p
-        class="text-center text-ivory px-8 sm:px-0 sm:w-120 text-pretty text-lg"
+        class="text-center text-ivory px-8 sm:px-0 w-screen sm:w-120 text-pretty text-lg"
       >
         We hope you're as excited as we are for our wedding! Below we've
         collated all the important details about the big day, to help you plan
@@ -40,16 +41,24 @@ import DetailsCard from "@/components/details-card/index.astro";
         title="The Venue"
         description="Kingscote Barn, Tetbury, Gloucestershire"
         buttonText="Learn More"
-        buttonLink="https://kingscotebarn.co.uk/"
+        buttonLink="https://kingscotebarn.co.uk/guest-guide/"
         img={barnImg}
       />
 
       <DetailsCard
         title="Where to Stay"
-        description="Lodging recommendations in the Tetbury area"
+        description="Lodging recommendations nearby to the barn"
         buttonText="See Suggestions"
         buttonLink={PUBLIC_HOTEL_URL}
         img={lodgingImg}
+      />
+
+      <DetailsCard
+        title="What to Wear"
+        description="Check out some style inspiration for the big day"
+        buttonText="Let's Go"
+        buttonLink={PUBLIC_HOTEL_URL}
+        img={attireImg}
       />
     </div>
   </div>
@@ -62,7 +71,6 @@ import DetailsCard from "@/components/details-card/index.astro";
 
   #details-content {
     border-radius: 100%;
-    width: 300vw;
-    transform: translateX(-33%);
+    /* transform: translateX(-33%); */
   }
 </style>
