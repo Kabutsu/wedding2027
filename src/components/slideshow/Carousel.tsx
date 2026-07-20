@@ -56,11 +56,11 @@ export default function Carousel({ images }: CarouselProps) {
 
   return (
     <div ref={containerRef} class="embla overflow-hidden h-full">
-      <div class="embla__container flex h-full">
+      <div class="embla__container flex h-full gap-2">
         {images.map((image, index) => (
           <div
             key={index}
-            class="embla__slide shrink-0 h-full max-h-[90vh] aspect-square sm:aspect-5/4 cursor-pointer"
+            class="embla__slide shrink-0 h-full max-w-[80vw] max-h-[90vh] aspect-square sm:aspect-5/4 cursor-pointer first:ml-2"
             onClick={() => handleImageClick(index)}
             role="button"
             tabindex={0}
