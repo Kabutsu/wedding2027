@@ -31,15 +31,30 @@ const optimizedImages = await Promise.all(
 );
 ---
 
-<section
-  id="slideshow"
-  class="flex flex-row h-full max-w-full pt-4 overflow-x-auto overflow-y-hidden"
->
+<section id="slideshow" class="h-full max-w-full pt-4 -mb-16">
   <Carousel client:only="preact" images={optimizedImages} />
 </section>
 
 <style>
   #slideshow {
-    scroll-snap-type: x mandatory;
+    /* Embla carousel handles snapping and scrolling */
+  }
+
+  :global(.embla) {
+    overflow: hidden;
+  }
+
+  :global(.embla__container) {
+    display: flex;
+  }
+
+  /* Hide scrollbar while allowing drag */
+  :global(.embla) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  :global(.embla::-webkit-scrollbar) {
+    display: none;
   }
 </style>
