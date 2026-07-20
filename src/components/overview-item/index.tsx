@@ -33,14 +33,15 @@ export default function OverviewItemAnimation({ title, details }: Props) {
             // On mobile, we can just fade in the item without the pendulum effect
             gsap.fromTo(
               containerRef.current,
-              { opacity: 0, y: 50 },
+              { opacity: 0, y: 25 },
               {
                 opacity: 1,
                 y: 0,
-                duration: 0.35,
+                duration: 0.6,
+                ease: 'sine.inOut',
                 scrollTrigger: {
                   trigger: containerRef.current,
-                  start: 'top 70%',
+                  start: 'top 80%',
                   once: true,
                 },
               }
