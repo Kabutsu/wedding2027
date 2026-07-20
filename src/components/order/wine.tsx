@@ -53,7 +53,7 @@ export default function Wine({ containerRef }: WineProps) {
   }, [containerRef]);
 
   return (
-    <div ref={svgContainerRef} class="absolute top-30 sm:top-52 bottom-12 left-2 w-full pointer-events-none">
+    <div ref={svgContainerRef} class="absolute top-31 sm:top-52 bottom-12 left-0 sm:left-2 w-full pointer-events-none">
       <svg
         viewBox="0 0 63 1066"
         class="w-full h-full"

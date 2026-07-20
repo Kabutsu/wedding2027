@@ -1,9 +1,11 @@
 ---
-import { Image } from "astro:assets";
+import {
+  PUBLIC_RSVP_LINK,
+  PUBLIC_HOTEL_URL,
+  PUBLIC_PINTEREST_LINK,
+} from "astro:env/client";
 
-import { PUBLIC_HOTEL_URL, PUBLIC_PINTEREST_LINK } from "astro:env/client";
-
-import logoImg from "@/assets/images/wedding-logo.png";
+import stampImg from "@/assets/images/stamp.png";
 
 import barnImg from "@/assets/images/kingscote.jpg";
 import lodgingImg from "@/assets/images/accom.jpg";
@@ -14,17 +16,19 @@ import DetailsCard from "@/components/details-card/index.astro";
 
 <div id="details-section" class="relative w-full overflow-visible">
   <div class="relative w-full h-8">
-    <Image
-      src={logoImg}
-      alt="Sam & Carolina's Wedding"
-      class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 object-cover object-top rounded-full z-10"
-    />
+    <button
+      class="absolute z-10 -top-4 left-1/2 -translate-x-1/2 px-8 pt-16 pb-6 sm:px-10 sm:pt-18 sm:pb-6 aspect-square cursor-pointer bg-center bg-contain bg-no-repeat bg-origin-border text-ivory-light font-(family-name:--font-cormorant) text-[1.35rem] sm:text-3xl font-semibold drop-shadow-md hover:drop-shadow-xl active:translate-y-0.5 transition-all duration-300"
+      style={{ backgroundImage: `url(${stampImg.src})` }}
+      onclick={`window.open("${PUBLIC_RSVP_LINK}", "_blank")`}
+    >
+      RSVP
+    </button>
   </div>
 
   <div id="details-content-container" class="relative w-full">
     <div
       id="details-content"
-      class="p-4 pt-32 pb-24 bg-crimson w-[900vw] sm:w-[300vw] translate-x-[-400svw] sm:translate-x-[-33%] flex flex-col items-center justify-start gap-2.5"
+      class="p-4 pt-28 sm:pt-36 pb-24 bg-crimson w-[900vw] sm:w-[300vw] translate-x-[-400svw] sm:translate-x-[-33.45%] flex flex-col items-center justify-start gap-2.5"
     >
       <h1 class="text-6xl font-(family-name:--font-boston) text-ivory">
         Details

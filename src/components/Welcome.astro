@@ -1,7 +1,4 @@
 ---
-import { PUBLIC_RSVP_LINK } from "astro:env/client";
-import stampImg from "../assets/images/stamp.png";
-
 import "@/styles/global.css";
 ---
 
@@ -21,13 +18,6 @@ import "@/styles/global.css";
 		It will be a day focused on what matters most to us: family, friends, good
 		food, and great music. We can't wait to celebrate with you!
 	</h2>
-	<button
-		class="mt-10 px-8 pt-14 pb-6 aspect-square cursor-pointer bg-center bg-contain bg-no-repeat bg-origin-border text-white font-(family-name:--font-cormorant) rounded-full text-lg font-semibold hover:scale-[101%] hover:-translate-y-0.5 drop-shadow-none hover:drop-shadow-lg transition-all duration-300"
-		style={{ backgroundImage: `url(${stampImg.src})` }}
-		onclick={`window.open("${PUBLIC_RSVP_LINK}", "_blank")`}
-	>
-		RSVP
-	</button>
 </section>
 
 <style>

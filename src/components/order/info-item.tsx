@@ -38,7 +38,7 @@ const InfoItem = ({ time, title }: OrderItem) => {
   }, []);
 
   return (
-    <div ref={containerRef} class="font-(family-name:--font-dream) text-crimson mb-4 sm:mb-12 flex flex-col items-end justify-center gap-1 w-[42.5%] mr-auto ml-0 text-right even:ml-auto even:mr-0 even:text-left even:items-start even:pl-1 sm:even:pl-0">
+    <div ref={containerRef} class="font-(family-name:--font-dream) text-crimson mb-4 sm:mb-12 flex flex-col items-end justify-center gap-1 w-[42.5%] mr-auto ml-0 text-right even:ml-auto even:mr-0 even:text-left even:items-start">
       <span class="text-xl sm:text-3xl">{time}</span>
       <span class="text-xl sm:text-3xl">{title}</span>
     </div>

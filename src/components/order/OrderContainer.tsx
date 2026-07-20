@@ -24,7 +24,7 @@ export default function OrderContainer() {
       ref={containerRef}
       class="relative w-full min-h-[90vh] sm:min-h-[125vh] flex flex-col items-center justify-stretch overflow-x-hidden"
     >
-      <h1 class="text-6xl font-(family-name:--font-boston) text-crimson text-center text-pretty mt-8">
+      <h1 class="px-4 text-6xl font-(family-name:--font-boston) text-crimson text-center text-pretty mt-8">
         Order of the Day
       </h1>
       <div class="w-full sm:w-1/2 h-full flex-1 pb-12 pt-24 sm:pt-40 sm:px-12 flex flex-col items-center-safe justify-start relative">

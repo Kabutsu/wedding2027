@@ -22,8 +22,32 @@ export default function OverviewItemAnimation({ title, details }: Props) {
       let mm = gsap.matchMedia();
 
       mm.add(
-        { isDesktop: "(min-width: 640px)" },
-        () => {
+        {
+          isMobile: "(max-width: 639px)",
+          isDesktop: "(min-width: 640px)"
+        },
+        (context) => {
+          const { isMobile } = context.conditions as { isMobile: boolean; isDesktop: boolean };
+
+          if (isMobile) {
+            // On mobile, we can just fade in the item without the pendulum effect
+            gsap.fromTo(
+              containerRef.current,
+              { opacity: 0, y: 50 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.35,
+                scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: 'top 70%',
+                  once: true,
+                },
+              }
+            );
+            return;
+          }
+
           // Only create pendulum animation on desktop
           ScrollTrigger.create({
             trigger: containerRef.current,
