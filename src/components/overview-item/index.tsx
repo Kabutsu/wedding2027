@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'preact/hooks';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import heartImg from '../../assets/images/heart-2.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +67,8 @@ export default function OverviewItemAnimation({ title, details }: Props) {
   return (
     <div
       id="overview-item"
-      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-[url('src/assets/images/heart-2.png')] bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-6 pb-10 text-ivory-light"
+      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-6 pb-10 text-ivory-light"
+      style={{ backgroundImage: `url(${heartImg.src})` }}
       ref={containerRef}
     >
       <h3 class="text-lg">{title}</h3>

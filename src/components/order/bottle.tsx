@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'preact/hooks';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import bottleImg from '../../assets/images/bottle.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +34,7 @@ export default function BottleAnimation() {
     <img
       id="bottle"
       class="w-20 sm:w-32 h-auto ml-[20%] sm:ml-[15%] -mb-48"
-      src="/src/assets/images/bottle.png"
+      src={bottleImg.src}
       alt="Bottle"
       ref={containerRef}
     />
