@@ -1,26 +1,29 @@
-import { useRef, useEffect } from 'preact/hooks';
-import type { ImageMetadata } from 'astro';
+interface OptimizedImage {
+  src: string;
+  srcSet: {
+    attribute: string;
+  };
+  attributes: Record<string, any>;
+  loading: "eager" | "lazy";
+}
 
 interface CarouselProps {
-  images: ImageMetadata[];
+  images: OptimizedImage[];
 }
 
 export default function Carousel({ images }: CarouselProps) {
-  return images.map((image, index) => (
+  return images.map((image) => (
     <div
-      key={index}
       id="slideshow-item"
-      data-carousel-item
-      class="shrink-0 h-full aspect-square sm:aspect-5/4"
-      style={{
-        width: 'clamp(50vw, 60vw, 100vw)',
-      }}
+      class="shrink-0 h-full max-h-[90vh] aspect-square sm:aspect-5/4 snap-start snap-always"
     >
       <img
         src={image.src}
-        alt={`Photo ${index + 1}`}
+        srcset={image.srcSet.attribute}
+        alt={image.attributes.alt}
+        loading={image.loading}
         class="w-full h-full object-cover"
-        style={{ objectPosition: 'center center', display: 'block' }}
+        style={{ objectPosition: "center center", display: "block" }}
       />
     </div>
   ));

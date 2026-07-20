@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
+import Carousel from "@/components/slideshow/Carousel";
 
 // Lazy load images on-demand instead of eager loading all into initial bundle
 const imageModules = import.meta.glob<{ default: ImageMetadata }>(
@@ -11,41 +12,34 @@ const imageModules = import.meta.glob<{ default: ImageMetadata }>(
 const images = await Promise.all(
   Object.values(imageModules).map(async (module) => (await module()).default),
 );
+
+// Optimize images at build time
+const optimizedImages = await Promise.all(
+  images.map(async (image, index) =>
+    getImage({
+      src: image,
+      alt: `Photo ${index + 1}`,
+      format: "webp",
+      quality: "high",
+      widths: [600, 1200, 1920],
+      sizes: "(max-width: 640px) 600px, (max-width: 1280px) 1200px, 1920px",
+    }).then((optimized) => ({
+      ...optimized,
+      loading: index === 0 ? "eager" : ("lazy" as const),
+    })),
+  ),
+);
 ---
 
 <section
   id="slideshow"
   class="flex flex-row h-full max-w-full pt-4 overflow-x-auto overflow-y-hidden"
 >
-  {
-    images.map((image, index) => (
-      <div
-        id="slideshow-item"
-        class="shrink-0 h-full max-h-[90vh] aspect-square sm:aspect-5/4"
-      >
-        <Image
-          src={image}
-          alt={`Photo ${index + 1}`}
-          class="w-full h-full object-cover"
-          style={{ objectPosition: "center center", display: "block" }}
-          priority={index === 0}
-          format="webp"
-          quality="high"
-          widths={[600, 1200, 1920]}
-          sizes="(max-width: 640px) 600px, (max-width: 1280px) 1200px, 1920px"
-        />
-      </div>
-    ))
-  }
+  <Carousel client:only="preact" images={optimizedImages} />
 </section>
 
 <style>
   #slideshow {
     scroll-snap-type: x mandatory;
-  }
-
-  #slideshow-item {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 </style>

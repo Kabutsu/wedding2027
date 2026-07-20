@@ -26,3 +26,7 @@ pnpm-debug.log*
 
 .vercel
 .env*.local
+
+# llm specific files
+docs/*
+references/*
