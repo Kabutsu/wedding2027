@@ -16,18 +16,31 @@ const InfoItem = ({ time, title }: OrderItem) => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        containerRef.current,
-        { opacity: 0, y: 50 },
+      let mm = gsap.matchMedia();
+
+      mm.add(
         {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 50%',
-            once: true,
-          },
+          isMobile: "(max-width: 639px)",
+          isDesktop: "(min-width: 640px)"
+        },
+        (context) => {
+          const { isMobile } = context.conditions as { isMobile: boolean; isDesktop: boolean };
+
+          gsap.fromTo(
+            containerRef.current,
+            { opacity: 0, y: isMobile ? 25 : 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? 0.6 : 0.5,
+              ease: isMobile ? 'sine.inOut' : 'power2.out',
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 50%',
+                once: true,
+              },
+            }
+          );
         }
       );
     }, containerRef);

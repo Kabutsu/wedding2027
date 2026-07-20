@@ -1,0 +1,60 @@
+---
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
+import Carousel from "@/components/slideshow/Carousel";
+
+// Lazy load images on-demand instead of eager loading all into initial bundle
+const imageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/photoshoot/*.jpg",
+);
+
+// Resolve all lazy-loaded image promises
+const images = await Promise.all(
+  Object.values(imageModules).map(async (module) => (await module()).default),
+);
+
+// Optimize images at build time
+const optimizedImages = await Promise.all(
+  images.map(async (image, index) =>
+    getImage({
+      src: image,
+      alt: `Photo ${index + 1}`,
+      format: "webp",
+      quality: "high",
+      widths: [600, 1200, 1920],
+      sizes: "(max-width: 640px) 600px, (max-width: 1280px) 1200px, 1920px",
+    }).then((optimized) => ({
+      ...optimized,
+      loading: index === 0 ? "eager" : ("lazy" as const),
+    })),
+  ),
+);
+---
+
+<section id="slideshow" class="h-full max-w-full pt-4 -mb-16">
+  <Carousel client:only="preact" images={optimizedImages} />
+</section>
+
+<style>
+  #slideshow {
+    /* Embla carousel handles snapping and scrolling */
+  }
+
+  :global(.embla) {
+    overflow: hidden;
+  }
+
+  :global(.embla__container) {
+    display: flex;
+  }
+
+  /* Hide scrollbar while allowing drag */
+  :global(.embla) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  :global(.embla::-webkit-scrollbar) {
+    display: none;
+  }
+</style>
