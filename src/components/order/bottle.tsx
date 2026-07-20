@@ -32,7 +32,7 @@ export default function BottleAnimation() {
   return (
     <img
       id="bottle"
-      class="w-20 sm:w-32 h-auto ml-[50%] sm:ml-[15%]"
+      class="w-20 sm:w-32 h-auto ml-[20%] sm:ml-[15%] -mb-48"
       src="/src/assets/images/bottle.png"
       alt="Bottle"
       ref={containerRef}

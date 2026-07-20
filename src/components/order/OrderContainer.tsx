@@ -1,7 +1,19 @@
 import { useRef } from 'preact/hooks';
+
+import { useOrderScroll } from './useOrderScroll';
+
 import Bottle from './bottle';
 import Wine from './wine';
-import { useOrderScroll } from './useOrderScroll';
+import InfoItem, { type OrderItem } from './info-item';
+
+const orderItems: OrderItem[] = [
+  { time: '2:00 PM', title: 'Ceremony' },
+  { time: '2:30 PM', title: 'Drinks reception' },
+  { time: '5:00 PM', title: 'Dinner' },
+  { time: '7:00 PM', title: 'Cake cutting' },
+  { time: '7:30 PM', title: 'Band starts' },
+  { time: '12:30 AM', title: 'Carriages' },
+];
 
 export default function OrderContainer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,9 +27,12 @@ export default function OrderContainer() {
       <h1 class="text-6xl font-(family-name:--font-boston) text-crimson text-center text-pretty mt-8">
         Order of the Day
       </h1>
-      <div class="w-1/2 h-full flex-1 p-12 pt-24 sm:pt-40 flex flex-col items-center-safe justify-start relative">
+      <div class="w-full sm:w-1/2 h-full flex-1 pb-12 pt-24 sm:pt-40 sm:px-12 flex flex-col items-center-safe justify-start relative">
         <Bottle />
         <Wine containerRef={containerRef} />
+        {orderItems.map((item, index) => (
+          <InfoItem key={index} time={item.time} title={item.title} />
+        ))}
       </div>
     </div>
   );
