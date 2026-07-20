@@ -17,19 +17,32 @@ export default function Wine({ containerRef }: WineProps) {
     if (!maskRef.current || !containerRef?.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate mask height from 0 to full height as user scrolls through the order section
-      gsap.fromTo(
-        maskRef.current,
-        { attr: { height: 0 } },
+      let mm = gsap.matchMedia();
+
+      mm.add(
         {
-          attr: { height: '100%' },
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom 40%',
-            scrub: 0.65,
-            markers: true,
-          },
+          isMobile: "(max-width: 639px)",
+          isDesktop: "(min-width: 640px)"
+        },
+        (context) => {
+          const { isMobile } = context.conditions as { isMobile: boolean; isDesktop: boolean };
+
+          const scrollConfig = isMobile
+            ? { start: 'top 25%', end: 'bottom 40%' }
+            : { start: 'top top', end: 'bottom 40%' };
+
+          gsap.fromTo(
+            maskRef.current,
+            { attr: { height: 0 } },
+            {
+              attr: { height: '100%' },
+              scrollTrigger: {
+                trigger: containerRef.current,
+                ...scrollConfig,
+                scrub: 0.65,
+              },
+            }
+          );
         }
       );
     }, svgContainerRef);

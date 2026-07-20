@@ -11,9 +11,6 @@ export function useOrderScroll(containerRef: any) {
   useEffect(() => {
     if (!containerRef?.current) return;
 
-    // Initialize normalizeScroll for consistent mobile behavior
-    // ScrollTrigger.normalizeScroll(true);
-
     const container = containerRef.current;
 
     const ctx = gsap.context(() => {
@@ -32,9 +29,6 @@ export function useOrderScroll(containerRef: any) {
             onUpdate: (self) => {
               setScrollProgress(self.progress);
             },
-          },
-          onUpdate: function() {
-            // Update progress as animation plays
           },
         }
       );

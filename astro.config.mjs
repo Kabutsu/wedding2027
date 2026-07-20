@@ -12,6 +12,7 @@ export default defineConfig({
     schema: {
       PUBLIC_RSVP_LINK: envField.string({ access: 'public', context: 'client' }),
       PUBLIC_HOTEL_URL: envField.string({ access: 'public', context: 'client' }),
+      PUBLIC_PINTEREST_URL: envField.string({ access: 'public', context: 'client' }),
     }
   },
 
