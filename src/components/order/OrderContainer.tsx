@@ -22,12 +22,12 @@ export default function OrderContainer() {
   return (
     <div
       ref={containerRef}
-      class="relative w-full min-h-[90vh] sm:min-h-[125vh] flex flex-col items-center justify-stretch overflow-x-hidden"
+      class="relative w-full min-h-[90vh] sm:min-h-[125vh] flex flex-col items-center justify-stretch pt-4 sm:pt-12 overflow-x-hidden"
     >
       <h1 class="px-4 text-6xl font-(family-name:--font-boston) text-crimson text-center text-pretty mt-8">
         Order of the Day
       </h1>
-      <div class="w-full sm:w-1/2 h-full flex-1 pb-12 pt-24 sm:pt-40 sm:px-12 flex flex-col items-center-safe justify-start relative">
+      <div class="w-full sm:w-1/2 h-full flex-1 pb-12 pt-56 sm:pt-96 sm:px-12 flex flex-col items-center-safe justify-start relative">
         <Bottle />
         <Wine containerRef={containerRef} />
         {orderItems.map((item, index) => (
