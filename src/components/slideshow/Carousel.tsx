@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "preact/hooks";
 import EmblaCarousel from "embla-carousel";
+// import AutoScroll from 'embla-carousel-auto-scroll'
+// import Autoplay from 'embla-carousel-autoplay'
 
 interface OptimizedImage {
   src: string;
@@ -21,11 +23,30 @@ export default function Carousel({ images }: CarouselProps) {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod/i.test(
+    //   navigator.userAgent
+    // );
+
     emblaRef.current = EmblaCarousel(containerRef.current, {
       align: "center",
       loop: true,
       skipSnaps: false,
-    });
+    },
+      // [
+      //   Autoplay({
+      //     delay: 3000,
+      //     stopOnInteraction: false,
+      //   }),
+      //   AutoScroll({
+      //     speed: isMobileDevice ? 1 : 2,
+      //     playOnInit: true,
+      //     stopOnInteraction: false,
+      //     stopOnFocusIn: false,
+      //     stopOnMouseEnter: false,
+      //     startDelay: 2000,
+      //   })
+      // ]
+    );
 
     emblaRef.current.on("select", () => {
       // Handle scroll snap changes if needed
@@ -36,24 +57,6 @@ export default function Carousel({ images }: CarouselProps) {
     };
   }, []);
 
-  const handleImageClick = (index: number) => {
-    const embla = emblaRef.current;
-    if (!embla) return;
-
-    const slides = embla.slideNodes();
-    if (!slides[index]) return;
-
-    const slide = slides[index];
-    const container = embla.containerNode();
-    const slideWidth = slide.getBoundingClientRect().width;
-    const containerWidth = container.getBoundingClientRect().width;
-    const slideOffsetLeft = slide.offsetLeft;
-
-    // Scroll so the slide is centered in the container
-    const scrollPosition = slideOffsetLeft - (containerWidth - slideWidth) / 2;
-    container.scrollTo({ left: scrollPosition, behavior: "smooth" });
-  };
-
   return (
     <div ref={containerRef} class="embla overflow-hidden h-full">
       <div class="embla__container flex h-full gap-2">
@@ -61,8 +64,6 @@ export default function Carousel({ images }: CarouselProps) {
           <div
             key={index}
             class="embla__slide shrink-0 h-full max-w-[80vw] max-h-[90vh] aspect-square sm:aspect-5/4 cursor-pointer first:ml-2"
-            onClick={() => handleImageClick(index)}
-            role="button"
             tabindex={0}
           >
             <img
