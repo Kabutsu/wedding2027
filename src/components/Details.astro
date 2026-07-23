@@ -47,6 +47,7 @@ import DetailsCard from "@/components/details-card/index.astro";
         buttonText="Learn More"
         buttonLink="https://kingscotebarn.co.uk/guest-guide/"
         img={barnImg}
+        newPage={true}
       />
 
       <DetailsCard
@@ -55,14 +56,16 @@ import DetailsCard from "@/components/details-card/index.astro";
         buttonText="See Suggestions"
         buttonLink={PUBLIC_HOTEL_URL}
         img={lodgingImg}
+        newPage={true}
       />
 
       <DetailsCard
         title="What to Wear"
         description="Check out some style inspiration for the big day"
         buttonText="Let's Go"
-        buttonLink={PUBLIC_PINTEREST_LINK}
+        buttonLink="/dress-code"
         img={attireImg}
+        newPage={false}
       />
     </div>
   </div>
