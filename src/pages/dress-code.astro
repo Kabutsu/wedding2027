@@ -1,29 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
 <Layout>
-  <svg width="0" height="0">
-    <defs>
-      <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
-        <path d="M 0,0 L 0,0.85 Q 0.5,1 1,0.85 L 1,0 Z"></path>
-      </clipPath>
-    </defs>
-  </svg>
-
-  <section id="header" class="relative w-full">
-    <div
-      id="header-content"
-      class="w-full h-full py-8 sm:py-16 flex flex-col items-center justify-start gap-2.5 bg-crimson"
-    >
-      <h1
-        class="text-4xl sm:text-6xl font-(family-name:--font-boston) text-ivory"
-      >
-        Dress Code
-      </h1>
-    </div>
-  </section>
+  <PageHeader title="Dress Code" />
 
   <section
     id="content"
@@ -66,14 +48,9 @@ import Footer from "@/components/Footer.astro";
 </Layout>
 
 <style>
-  #header {
-    clip-path: url(#wave-clip);
-    overflow: hidden;
-  }
-
   #content p {
     text-wrap: pretty;
     font-weight: 600;
-    font-size: large;
+    font-size: larger;
   }
 </style>

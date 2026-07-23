@@ -1,9 +1,5 @@
 ---
-import {
-  PUBLIC_RSVP_LINK,
-  PUBLIC_HOTEL_URL,
-  PUBLIC_PINTEREST_LINK,
-} from "astro:env/client";
+import { PUBLIC_RSVP_LINK } from "astro:env/client";
 
 import stampImg from "@/assets/images/stamp.png";
 
@@ -54,9 +50,9 @@ import DetailsCard from "@/components/details-card/index.astro";
         title="Where to Stay"
         description="Lodging recommendations nearby to the barn"
         buttonText="See Suggestions"
-        buttonLink={PUBLIC_HOTEL_URL}
+        buttonLink="/accommodation"
         img={lodgingImg}
-        newPage={true}
+        newPage={false}
       />
 
       <DetailsCard
