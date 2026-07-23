@@ -1,0 +1,610 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import Footer from "@/components/Footer.astro";
+
+const hotelsAndInns = [
+  {
+    name: "Hunters Hall Inn, Kingscote",
+    postcode: "GL8 8XZ",
+    phone: "01453 860393",
+    website: "www.greenekinginns.co.uk/hotels/gloucestershire/hunters-hall-inn",
+    distance: 3,
+  },
+  {
+    name: "Calcot Manor Hotel",
+    postcode: "GL8 8YJ",
+    phone: "01666 890391",
+    website: "www.calcot.co",
+    distance: 5,
+  },
+  {
+    name: "The Close Hotel, Tetbury",
+    postcode: "GL8 8AQ",
+    phone: "01666 502272",
+    website: "www.cotswold-inns-hotels.co.uk/the-close-hotel",
+    distance: 10,
+  },
+  {
+    name: "The Snooty Fox Hotel, Tetbury",
+    postcode: "GL8 8DD",
+    phone: "01666 330580",
+    website: "https://snooty-fox.co.uk/",
+    distance: 10,
+  },
+  {
+    name: "The Ormond, Tetbury",
+    postcode: "GL8 8AA",
+    phone: "01666 505690",
+    website: "www.theormondattetbury.co.uk",
+    distance: 10,
+  },
+  {
+    name: "The Priory Inn, Tetbury",
+    postcode: "GL8 8JJ",
+    phone: "01666 502251",
+    website: "www.theprioryinn.co.uk",
+    distance: 10,
+  },
+  {
+    name: "The Royal Oak, Tetbury",
+    postcode: "GL8 8EY",
+    phone: "01666 500021",
+    website: "www.theroyaloaktetbury.co.uk",
+    distance: 10,
+  },
+  {
+    name: "The Egypt Mill, Nailsworth",
+    postcode: "GL6 0AE",
+    phone: "01453 833449",
+    website: "www.egyptmill.com",
+    distance: 10,
+  },
+  {
+    name: "The Wild Garlic Rooms, Nailsworth",
+    postcode: "GL6 0DB",
+    phone: "01453 832615",
+    website: "www.wild-garlic.co.uk",
+    distance: 10,
+  },
+  {
+    name: "The Bell Inn, Selsley",
+    postcode: "GL5 5JY",
+    phone: "01453 753801",
+    website: "www.thebellinnselsley.com",
+    distance: 10,
+  },
+  {
+    name: "The Hare & Hounds Hotel, Tetbury",
+    postcode: "GL8 8QL",
+    phone: "01666 881 000",
+    website: "www.cotswold-inns-hotels.co.uk/hare-and-hounds-hotel/",
+    distance: 10,
+  },
+  {
+    name: "Oak House No. 1 Hotel, Tetbury",
+    postcode: "GL8 8EU",
+    phone: "01666 505741",
+    website: "https://oak-house-no1-hotel.igloucestershire.com/en/",
+    distance: 15,
+  },
+  {
+    name: "The Black Horse Inn, North Nibley",
+    postcode: "GL11 6DT",
+    phone: "01453 700588",
+    website: "www.theblackhorseinn.uk",
+    distance: 15,
+  },
+  {
+    name: "The Amberley Inn, Amberley",
+    postcode: "GL5 5AF",
+    phone: "01453 872565",
+    website: "www.theamberleyinn.co.uk",
+    distance: 15,
+  },
+  {
+    name: "The Burleigh Court Hotel, Minchinhampton",
+    postcode: "GL5 2PF",
+    phone: "01453 883804",
+    website: "www.burleighcourtcotswolds.co.uk",
+    distance: 15,
+  },
+  {
+    name: "The Bear at Rodborough, Minchinhampton",
+    postcode: "GL5 5DE",
+    phone: "01453 878522",
+    website: "www.cotswold-inns-hotels.co.uk/the-bear-of-rodborough",
+    distance: 15,
+  },
+  {
+    name: "The Ragged Cot Inn, Minchinhampton",
+    postcode: "GL6 8PE",
+    phone: "01453 884643",
+    website: "www.theraggedcot-minchinhampton.com",
+    distance: 15,
+  },
+  {
+    name: "The Old Lodge, Minchinhampton",
+    postcode: "GL6 9AQ",
+    phone: "01453 832047",
+    website: "www.food-club.com",
+    distance: 15,
+  },
+  {
+    name: "Bodkin House Hotel, Badminton",
+    postcode: "GL9 1AF",
+    phone: "01454 238310",
+    website: "www.thebodkin.co.uk",
+    distance: 15,
+  },
+  {
+    name: "De Vere Tortworth Court, Wotton Under Edge",
+    postcode: "GL12 8HH",
+    phone: "01454 263000",
+    website: "www.devere.co.uk/tortworth-court",
+    distance: 20,
+  },
+  {
+    name: "Whatley Manor Hotel, Easton Grey",
+    postcode: "SN16 0RB",
+    phone: "01666 822888",
+    website: "www.whatleymanor.com",
+    distance: 20,
+  },
+  {
+    name: "Stonehouse Court Hotel, Stonehouse",
+    postcode: "GL10 3RA",
+    phone: "01453 794950",
+    website: "www.stonehousecourt.co.uk",
+    distance: 20,
+  },
+  {
+    name: "Travelodge, Stonehouse",
+    postcode: "GL10 3SQ",
+    phone: "0871 984 6054",
+    website: "www.travelodge.co.uk",
+    distance: 20,
+  },
+  {
+    name: "Premier Inn, Stroud",
+    postcode: "GL5 4AF",
+    phone: "0871 527 9052",
+    website: "www.premierinn.com",
+    distance: 20,
+  },
+  {
+    name: "The Rectory Hotel, Crudwell",
+    postcode: "SN16 9EP",
+    phone: "01666 577194",
+    website: "www.therectoryhotel.com",
+    distance: 20,
+  },
+  {
+    name: "The Painswick",
+    postcode: "GL6 6YB",
+    phone: "01452 813688",
+    website: "www.thepainswick.co.uk",
+    distance: 20,
+  },
+];
+
+const caravanCamping = [
+  {
+    name: "Apple Tree Park, Caravan & Camping Site",
+    postcode: "GL10 3AL",
+    phone: "01452 742362",
+    website: "www.appletreepark.co.uk",
+    distance: 20,
+  },
+  {
+    name: "Hogsdown Farm Caravan Park",
+    postcode: "GL11 6DD",
+    phone: "01453 810224",
+    website: "www.hogsdownfarm.co.uk",
+    distance: 20,
+  },
+];
+
+const cottagesApartments = [
+  {
+    name: "South Lodge",
+    postcode: "GL11 5BY",
+    phone: "01453 861161",
+    website: "Book Here - South Lodge",
+    distance: 5,
+  },
+  {
+    name: "The Parlour, Tetbury",
+    postcode: "GL11 5BZ",
+    phone: "01453 886334",
+    website: "www.airbnb.co.uk - The Parlour",
+    distance: 5,
+  },
+  {
+    name: "The Cowshed, Tetbury",
+    postcode: "GL11 5BZ",
+    phone: "01453 886334",
+    website: "www.airbnb.co.uk - The Cowshed",
+    distance: 5,
+  },
+  {
+    name: "Tickmorend Farm",
+    postcode: "GL6 0PE",
+    phone: "07792 549747",
+    website: "www.manorcottages.co.uk",
+    distance: 5,
+  },
+  {
+    name: "Wills Cottage, Horsley",
+    postcode: "GL6 OQA",
+    phone: "01451 514000",
+    website: "Book Here - Wills Cottage",
+    distance: 5,
+  },
+  {
+    name: "Huntscourt Huts",
+    postcode: "GL11 6DZ",
+    phone: "01453 544632",
+    website: "www.huntscourthuts.co.uk",
+    distance: 5,
+  },
+  {
+    name: "Relaxing Cotswold Farmhouse (Airbnb)",
+    postcode: "GL11 5BZ",
+    phone: "Book via Airbnb",
+    website: "Relaxing Cotswold Farmhouse – Airbnb",
+    distance: 8,
+  },
+  {
+    name: "Railway Apartments, Nailsworth",
+    postcode: "GL6 0AN",
+    phone: "07498 22020",
+    website: "www.railwayapartments.co.uk",
+    distance: 8,
+  },
+  {
+    name: "Orchard Cottage, Uley",
+    postcode: "GL11 5AW",
+    phone: "07933 120585",
+    website: "www.twyningash.co.uk/orchard-cottage",
+    distance: 8,
+  },
+  {
+    name: "Doughton Cottages, Tetbury",
+    postcode: "GL8 8TG",
+    phone: "01666 503180",
+    website: "www.doughtoncottages.co.uk",
+    distance: 10,
+  },
+  {
+    name: "Maunditts Park Farm Cottages",
+    postcode: "SN15 5BH",
+    phone: "07788 644480",
+    website: "www.maundittsparkfarmcottages.co.uk",
+    distance: 25,
+  },
+  {
+    name: "Central Wotton-under-Edge (Airbnb)",
+    postcode: "-",
+    phone: "07881 950878",
+    website: "www.airbnb.co.uk - Central Wotton-under-Edge",
+    distance: 11,
+  },
+];
+
+const bedBreakfast = [
+  {
+    name: "Forthay",
+    postcode: "GL11 6EA",
+    phone: "01453 549016",
+    website: "www.forthaybedandbreakfast.co.uk",
+    distance: 5,
+  },
+  {
+    name: "The Grey Cottage, Leonard Stanley",
+    postcode: "GL10 3LU",
+    phone: "01453 822515",
+    website: "www.grey-cottage.co.uk",
+    distance: 10,
+  },
+  {
+    name: "Paynes Barn, Saddlewood, Leighterton",
+    postcode: "GL8 8UQ",
+    phone: "01666 890395",
+    website: "www.paynesbarn.co.uk",
+    distance: 10,
+  },
+  {
+    name: "Coombers Mead Cottage",
+    postcode: "GL8 8JL",
+    phone: "07887906834",
+    website: "Book Here - Luxury Tetbury Cottage - Combers Mead",
+    distance: 12,
+  },
+];
+---
+
+<Layout>
+  <PageHeader title="Accommodation" />
+
+  <section
+    id="content"
+    class="flex flex-col items-center justify-start gap-12 p-6 sm:gap-16 sm:p-12 sm:px-82 w-full"
+  >
+    <!-- Intro paragraph -->
+    <div
+      class="flex flex-col items-start justify-start gap-4 max-w-5xl font-(family-name:--font-cormorant) text-wedding-dark"
+    >
+      <p class="intro-para">
+        We've compiled a list of wonderful accommodation options nearby, ranging
+        from boutique hotels and charming inns to cosy cottages and bed &
+        breakfasts. Whether you'd like to be close to the barn or prefer a
+        scenic drive, you'll find something that suits you.
+      </p>
+    </div>
+
+    <!-- Hotels & Inns Table -->
+    <div class="w-full max-w-5xl">
+      <h2 class="table-heading">Hotels & Inns</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Accommodation</th>
+              <th class="hidden sm:table-cell">Location</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Distance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              hotelsAndInns.map((item, index) => (
+                <tr class={index % 2 === 0 ? "even-row" : ""}>
+                  <td class="name-cell">{item.name}</td>
+                  <td class="hidden sm:table-cell">{item.postcode}</td>
+                  <td class="phone-cell">{item.phone}</td>
+                  <td class="link-cell">
+                    <a
+                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit
+                    </a>
+                  </td>
+                  <td class="distance-cell">{item.distance} mins</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Cottages, Apartments & Longer Lets Table -->
+    <div class="w-full max-w-5xl">
+      <h2 class="table-heading">Cottages, Apartments & Longer Lets</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Accommodation</th>
+              <th class="hidden sm:table-cell">Location</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Distance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              cottagesApartments.map((item, index) => (
+                <tr class={index % 2 === 0 ? "even-row" : ""}>
+                  <td class="name-cell">{item.name}</td>
+                  <td class="hidden sm:table-cell">{item.postcode}</td>
+                  <td class="phone-cell">{item.phone}</td>
+                  <td class="link-cell">
+                    <a
+                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit
+                    </a>
+                  </td>
+                  <td class="distance-cell">{item.distance} mins</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Caravan & Camping Table -->
+    <div class="w-full max-w-5xl">
+      <h2 class="table-heading">Caravan & Camping</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Accommodation</th>
+              <th class="hidden sm:table-cell">Location</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Distance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              caravanCamping.map((item, index) => (
+                <tr class={index % 2 === 0 ? "even-row" : ""}>
+                  <td class="name-cell">{item.name}</td>
+                  <td class="hidden sm:table-cell">{item.postcode}</td>
+                  <td class="phone-cell">{item.phone}</td>
+                  <td class="link-cell">
+                    <a
+                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit
+                    </a>
+                  </td>
+                  <td class="distance-cell">{item.distance} mins</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bed & Breakfast Table -->
+    <div class="w-full max-w-5xl">
+      <h2 class="table-heading">Bed & Breakfast</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Accommodation</th>
+              <th class="hidden sm:table-cell">Location</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Distance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              bedBreakfast.map((item, index) => (
+                <tr class={index % 2 === 0 ? "even-row" : ""}>
+                  <td class="name-cell">{item.name}</td>
+                  <td class="hidden sm:table-cell">{item.postcode}</td>
+                  <td class="phone-cell">{item.phone}</td>
+                  <td class="link-cell">
+                    <a
+                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit
+                    </a>
+                  </td>
+                  <td class="distance-cell">{item.distance} mins</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  #content {
+    max-width: 100%;
+  }
+
+  .intro-para {
+    font-weight: 600;
+    font-size: larger;
+    text-wrap: pretty;
+  }
+
+  .table-heading {
+    font-family: var(--font-boston);
+    font-size: 2rem;
+    color: var(--color-crimson);
+    margin-bottom: 1rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    box-shadow: var(--drop-shadow-wedding);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+
+  .data-table thead {
+    background-color: var(--color-crimson);
+    color: var(--color-ivory);
+  }
+
+  .data-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 1.25rem;
+    font-family: var(--font-boston);
+  }
+
+  .data-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+  }
+
+  .data-table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
+  .data-table tbody tr:hover {
+    background-color: #faf8f5;
+  }
+
+  .data-table tbody tr.even-row {
+    background-color: #fdfbf8;
+  }
+
+  .data-table tbody tr.even-row:hover {
+    background-color: #faf8f5;
+  }
+
+  .name-cell {
+    font-weight: 600;
+    color: var(--color-wedding-dark);
+  }
+
+  .phone-cell {
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+
+  .link-cell a {
+    color: var(--color-wedding-burgundy);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .link-cell a:hover {
+    color: var(--color-crimson);
+    text-decoration: underline;
+  }
+
+  .distance-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .data-table th,
+    .data-table td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .table-heading {
+      font-size: 1.35rem;
+    }
+  }
+</style>

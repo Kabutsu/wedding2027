@@ -1,0 +1,381 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import Footer from "@/components/Footer.astro";
+
+const taxis = [
+  { name: "Cam and Dursley Taxis", phone: "07475 313151 / 07525 142295" },
+  { name: "Associated Taxis", phone: "01453 702222 / 0800 262048" },
+  { name: "AM – PM Taxis", phone: "07748 211951 / 01453 388012" },
+  { name: "Nailsworth Taxis", phone: "07802 432798" },
+  { name: "Apollo Taxis (4, 5 & 6 seaters)", phone: "01453 823344 / 767111" },
+  { name: "Taxi 247 CIREN", phone: "07735 602648" },
+  { name: "Bob's Taxis", phone: "07715 630320" },
+  { name: "A&A Taxis, Stroud", phone: "01453 767777" },
+  {
+    name: "Omega Private Hire (4, 6 & 8 seaters)",
+    phone: "01453 834688 / 07775 660297",
+  },
+  { name: "Groves Taxis (8, 6 & 4 seaters)", phone: "07968 247891" },
+  { name: "Galaxy Private Hire (4 & 6 seaters)", phone: "07796 545261" },
+  {
+    name: "Wonky's Wheels (Stroud 4, 6, 8 seaters)",
+    phone: "01453 767878 / 07986 562691",
+  },
+  { name: "Jenkins Taxis (4-8 seaters)", phone: "01453 542346" },
+  { name: "Lady Cars", phone: "07969 963351" },
+  { name: "Baileys Cars", phone: "07500 416416" },
+  { name: "Al's Taxis (4, 6 & 8 seaters)", phone: "01453 519354" },
+  { name: "Tetbury Private Hire (Wedding Day Service)", phone: "07858 450098" },
+  { name: "Gee-Bee Travel (7 seater)", phone: "01453 521544 / 07759 595717" },
+];
+---
+
+<Layout>
+  <PageHeader title="Transport" />
+
+  <section
+    id="content"
+    class="flex flex-col items-center justify-start gap-12 p-6 sm:gap-16 sm:p-12 sm:px-82 w-full"
+  >
+    <!-- Intro paragraph -->
+    <div
+      class="flex flex-col items-start justify-start gap-4 max-w-5xl font-(family-name:--font-cormorant) text-wedding-dark"
+    >
+      <p class="intro-para">
+        Getting here is easy—we've mapped out all the details to help you plan
+        your journey. Whether you're driving from the motorway, hopping in a
+        taxi, or taking the train, we've included everything you need. We do ask
+        that you pre-book your taxi though, as availability can be limited on
+        the day.
+      </p>
+    </div>
+
+    <!-- Important Note -->
+    <!-- <div class="important-note max-w-5xl w-full">
+      <p class="note-heading">📌 Important: Pre-Book Your Taxi</p>
+      <p class="note-text">
+        Please arrange your taxi in advance. Taxis are in high demand on the evening and you will not be able to find one at the last minute. There is a payphone in the Waiting Room adjacent to the barn, and mobile service is limited—please turn on WiFi calling and connect to the free "KB Guest" network (no password required).
+      </p>
+    </div> -->
+
+    <!-- Taxis Table -->
+    <div class="w-full max-w-5xl">
+      <h2 class="section-heading">Local Taxis</h2>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Taxi Service</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              taxis.map((taxi, index) => (
+                <tr class={index % 2 === 0 ? "even-row" : ""}>
+                  <td class="name-cell">{taxi.name}</td>
+                  <td class="phone-cell">{taxi.phone}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Driving Directions -->
+    <div class="w-full max-w-5xl">
+      <h2 class="section-heading">Driving Directions</h2>
+      <div class="directions-section">
+        <div class="direction-box shadow-lg hover:shadow-lg">
+          <h3>From Junction 13, M5 (approx. 8 miles)</h3>
+          <p>
+            Exit M5 at J13 and take the A419 towards Stroud. At the next
+            roundabout (by Shell station & Little Chef) take 3rd exit signed
+            Eastington. In Eastington at roundabout exit 1st left signed
+            Frocester. Drive straight through Frocester, up a steep & twisty
+            hill and at the top go straight across the crossroads (signed
+            Nympsfield). Keep on this road – past turns to Nympsfield - see left
+            turn signed Horsley/Recycling Centre (do not turn left here) and a
+            few yards past the turn, you will see the entrance to The Kingscote
+            Barn on your left.
+          </p>
+        </div>
+
+        <div class="direction-box shadow-lg hover:shadow-lg">
+          <h3>From Junction 18, M4 (approx. 14 miles)</h3>
+          <p>
+            Exit north on A46 towards Stroud. Drive for approximately 11 miles
+            and you will come to traffic lights where you turn left signed
+            Kingscote. Past Hunters Hall Pub on left (do not turn right signed
+            Kingscote Village) take the next right turn signed Nympsfield (again
+            do not turn right off this road to Kingscote). At the end of this
+            road turn right at T junction and the entrance to Kingscote Barn is
+            just along on your right.
+          </p>
+        </div>
+
+        <div class="direction-box shadow-lg hover:shadow-lg">
+          <h3>From Tetbury (approx. 15 minutes)</h3>
+          <p>
+            Take A4135 from Tetbury signed Beverston / Dursley. Through
+            Beverston Village (regular speed traps through Beverston) and on to
+            traffic lights at A46. Straight across A46 signed Kingscote – past
+            Hunters Hall on left (do not turn right here to Kingscote Village)
+            –take the next right turn signed Nympsfield (again do not turn right
+            off this road to Kingscote). At the end of this road turn right at T
+            junction and the entrance to Kingscote Barn is just along on your
+            right.
+          </p>
+        </div>
+
+        <div class="parking-note">
+          <p>
+            <strong>Parking:</strong> There is plenty of parking available at the
+            venue, so please don't worry about finding a spot. Just follow the signs
+            on arrival.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Train Information -->
+    <div class="w-full max-w-5xl">
+      <h2 class="section-heading">Nearest Train Stations</h2>
+      <div class="train-section">
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Cam & Dursley Station</h3>
+          <p class="train-details text-pretty">
+            Box Road, near Cam, Gloucestershire, GL11 5DJ
+          </p>
+        </div>
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Stonehouse Station</h3>
+          <p class="train-details text-pretty">
+            Burdett Road, Stonehouse, Gloucestershire, GL10 2JW
+          </p>
+        </div>
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Stroud Station</h3>
+          <p class="train-details">
+            Station Road, Stroud, Gloucestershire, GL5 3AP
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What 3 Words -->
+    <div class="what-three-words max-w-5xl w-full">
+      <p><strong>What 3 Words:</strong> gallaries.headache.stint</p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  #content {
+    max-width: 100%;
+  }
+
+  .intro-para {
+    font-weight: 600;
+    font-size: larger;
+    text-wrap: pretty;
+  }
+
+  .section-heading {
+    font-family: var(--font-boston);
+    font-size: 2rem;
+    color: var(--color-crimson);
+    margin-bottom: 1.5rem;
+  }
+
+  .important-note {
+    background-color: #fff5f0;
+    border-left: 4px solid var(--color-crimson);
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+  }
+
+  .note-heading {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-crimson);
+    margin-bottom: 0.5rem;
+  }
+
+  .note-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-wedding-dark);
+    text-wrap: pretty;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    box-shadow: var(--drop-shadow-wedding);
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+
+  .data-table thead {
+    background-color: var(--color-crimson);
+    color: var(--color-ivory);
+  }
+
+  .data-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 1.25rem;
+    font-family: var(--font-boston);
+  }
+
+  .data-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+  }
+
+  .data-table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
+  .data-table tbody tr:hover {
+    background-color: #faf8f5;
+  }
+
+  .data-table tbody tr.even-row {
+    background-color: #fdfbf8;
+  }
+
+  .data-table tbody tr.even-row:hover {
+    background-color: #faf8f5;
+  }
+
+  .name-cell {
+    font-weight: 600;
+    color: var(--color-wedding-dark);
+  }
+
+  .phone-cell {
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+
+  .directions-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .direction-box {
+    background-color: var(--color-ivory);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .direction-box:hover {
+    box-shadow: var(--drop-shadow-wedding);
+  }
+
+  .direction-box h3 {
+    font-family: var(--font-boston);
+    font-size: 1.25rem;
+    color: var(--color-dusty-blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .direction-box p {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: var(--color-wedding-dark);
+    text-wrap: pretty;
+  }
+
+  .parking-note {
+    background-color: rgba(122, 146, 168, 0.6);
+    border-left: 4px solid var(--color-dark-blue);
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    margin-top: 1rem;
+  }
+
+  .parking-note p {
+    margin: 0;
+    color: var(--color-ivory-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .train-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .train-option {
+    background-color: var(--color-ivory);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .train-option h3 {
+    font-family: var(--font-boston);
+    font-size: 1.25rem;
+    color: var(--color-dusty-blue);
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+
+  .train-details {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+  }
+
+  .what-three-words {
+    background-color: rgba(122, 146, 168, 0.1);
+    border: 1px solid var(--color-dark-blue);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .what-three-words p {
+    margin: 0;
+    font-family: monospace;
+    font-size: 1rem;
+    color: var(--color-wedding-dark);
+  }
+
+  @media (max-width: 768px) {
+    .data-table th,
+    .data-table td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .section-heading {
+      font-size: 1.35rem;
+    }
+
+    .train-section {
+      grid-template-columns: 1fr;
+    }
+
+    .direction-box,
+    .train-option {
+      padding: 1rem;
+    }
+  }
+</style>
