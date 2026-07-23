@@ -28,33 +28,55 @@ import Footer from "@/components/Footer.astro";
       </p>
     </div>
 
-    <a
-      id="pinterest-embed"
-      data-pin-do="embedBoard"
-      href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
-      data-pin-scale-width="120"
-      data-pin-scale-height="600"
-      data-pin-board-width="600"
-    >
-    </a>
+    <div id="pinterest-container" style="width: 100%; max-width: 600px; margin: 0 auto;">
+      <a
+        id="pinterest-embed"
+        data-pin-do="embedBoard"
+        href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
+      >
+      </a>
+    </div>
 
     <script is:inline type="text/javascript">
-      function loadPinterestEmbed() {
+      function initPinterestEmbed() {
+        // If Pinterest script is already loaded, reprocess the embeds
         if (window.PinUtils && window.PinUtils.build) {
           window.PinUtils.build();
-        } else {
-          const script = document.createElement('script');
-          script.src = 'https://assets.pinterest.com/js/pinit.js';
-          script.async = true;
-          document.body.appendChild(script);
+          return;
         }
+
+        // Load the Pinterest embed script
+        const script = document.createElement('script');
+        script.src = 'https://assets.pinterest.com/js/pinit.js';
+        script.async = true;
+        script.onload = function() {
+          // Ensure the embed is processed after script loads
+          if (window.PinUtils && window.PinUtils.build) {
+            setTimeout(() => {
+              window.PinUtils.build();
+            }, 100);
+          }
+        };
+        script.onerror = function() {
+          console.warn('Failed to load Pinterest embed script');
+        };
+        document.body.appendChild(script);
       }
 
+      // Wait for DOM to be ready
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadPinterestEmbed);
+        document.addEventListener('DOMContentLoaded', initPinterestEmbed);
       } else {
-        loadPinterestEmbed();
+        // Small delay to ensure layout is complete
+        setTimeout(initPinterestEmbed, 100);
       }
+
+      // Also try to reinitialize on load
+      window.addEventListener('load', function() {
+        if (window.PinUtils && window.PinUtils.build) {
+          window.PinUtils.build();
+        }
+      });
     </script>
   </section>
 
