@@ -29,6 +29,7 @@ import Footer from "@/components/Footer.astro";
     </div>
 
     <a
+      id="pinterest-embed"
       data-pin-do="embedBoard"
       href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
       data-pin-scale-width="120"
@@ -36,12 +37,25 @@ import Footer from "@/components/Footer.astro";
       data-pin-board-width="600"
     >
     </a>
-    <script
-      is:inline
-      async
-      defer
-      type="text/javascript"
-      src="https://assets.pinterest.com/js/pinit.js"></script>
+
+    <script is:inline type="text/javascript">
+      function loadPinterestEmbed() {
+        if (window.PinUtils && window.PinUtils.build) {
+          window.PinUtils.build();
+        } else {
+          const script = document.createElement('script');
+          script.src = 'https://assets.pinterest.com/js/pinit.js';
+          script.async = true;
+          document.body.appendChild(script);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadPinterestEmbed);
+      } else {
+        loadPinterestEmbed();
+      }
+    </script>
   </section>
 
   <Footer />
