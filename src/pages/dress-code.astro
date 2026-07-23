@@ -28,16 +28,27 @@ import Footer from "@/components/Footer.astro";
       </p>
     </div>
 
-    <div id="pinterest-container" style="width: 100%; max-width: 800px; margin: 0 auto;">
+    <div
+      id="pinterest-container"
+      style="width: 100%; max-width: 800px; margin: 0 auto;"
+    >
       <a
         id="pinterest-embed"
         data-pin-do="embedBoard"
         href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
+        data-pin-scale-width="400"
+        data-pin-scale-height="600"
       >
       </a>
       <!-- Fallback for iOS/mobile devices where embed doesn't work -->
-      <div id="pinterest-fallback" style="display: none; text-align: center; padding: 2rem; background: #f5f1ed; border-radius: 8px; margin-top: 1rem;">
-        <p style="margin: 0 0 1rem 0; font-weight: 600;">View our inspiration board on Pinterest</p>
+      <div
+        id="pinterest-fallback"
+        style="display: none; text-align: center; padding: 2rem; background: #f5f1ed; border-radius: 8px; margin-top: 1rem;"
+        class="shadow-md"
+      >
+        <p style="margin: 0 0 1rem 0; font-weight: 600;">
+          View our inspiration board on Pinterest
+        </p>
         <a
           href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
           target="_blank"
@@ -58,7 +69,7 @@ import Footer from "@/components/Footer.astro";
             window.location.reload();
           }
         } catch (e) {
-          console.log('Storage access denied or unavailable');
+          console.log("Storage access denied or unavailable");
         }
       }
 
@@ -68,15 +79,15 @@ import Footer from "@/components/Footer.astro";
         if (window.PinUtils && window.PinUtils.build) {
           if (isIOS) {
             // On iOS, show fallback by default (ITP blocks the embed)
-            const embed = document.getElementById('pinterest-embed');
-            const fallback = document.getElementById('pinterest-fallback');
+            const embed = document.getElementById("pinterest-embed");
+            const fallback = document.getElementById("pinterest-fallback");
             if (embed && fallback) {
-              embed.style.display = 'none';
-              fallback.style.display = 'block';
+              embed.style.display = "none";
+              fallback.style.display = "block";
               // Update fallback button to try requesting storage access
-              const btn = fallback.querySelector('a');
+              const btn = fallback.querySelector("a");
               if (btn && document.requestStorageAccess) {
-                btn.textContent = 'Enable & View Board →';
+                btn.textContent = "Enable & View Board →";
                 btn.onclick = (e) => {
                   e.preventDefault();
                   requestStorageAccessAndRetry();
@@ -90,20 +101,20 @@ import Footer from "@/components/Footer.astro";
         }
 
         // Load Pinterest embed script
-        const script = document.createElement('script');
-        script.src = 'https://assets.pinterest.com/js/pinit.js';
+        const script = document.createElement("script");
+        script.src = "https://assets.pinterest.com/js/pinit.js";
         script.async = true;
-        script.onload = function() {
+        script.onload = function () {
           if (isIOS) {
             // Still show fallback on iOS due to ITP
-            const embed = document.getElementById('pinterest-embed');
-            const fallback = document.getElementById('pinterest-fallback');
+            const embed = document.getElementById("pinterest-embed");
+            const fallback = document.getElementById("pinterest-fallback");
             if (embed && fallback) {
-              embed.style.display = 'none';
-              fallback.style.display = 'block';
-              const btn = fallback.querySelector('a');
+              embed.style.display = "none";
+              fallback.style.display = "block";
+              const btn = fallback.querySelector("a");
               if (btn && document.requestStorageAccess) {
-                btn.textContent = 'Enable & View Board →';
+                btn.textContent = "Enable & View Board →";
                 btn.onclick = (e) => {
                   e.preventDefault();
                   requestStorageAccessAndRetry();
@@ -116,24 +127,24 @@ import Footer from "@/components/Footer.astro";
             }, 100);
           }
         };
-        script.onerror = function() {
-          const embed = document.getElementById('pinterest-embed');
-          const fallback = document.getElementById('pinterest-fallback');
+        script.onerror = function () {
+          const embed = document.getElementById("pinterest-embed");
+          const fallback = document.getElementById("pinterest-fallback");
           if (embed && fallback) {
-            embed.style.display = 'none';
-            fallback.style.display = 'block';
+            embed.style.display = "none";
+            fallback.style.display = "block";
           }
         };
         document.body.appendChild(script);
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initPinterestEmbed);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initPinterestEmbed);
       } else {
         setTimeout(initPinterestEmbed, 100);
       }
 
-      window.addEventListener('load', function() {
+      window.addEventListener("load", function () {
         const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
         if (!isIOS && window.PinUtils && window.PinUtils.build) {
           window.PinUtils.build();
