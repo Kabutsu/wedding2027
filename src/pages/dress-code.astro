@@ -28,6 +28,13 @@ import Footer from "@/components/Footer.astro";
       </p>
     </div>
 
+    <script is:inline type="text/javascript">
+      // Detect iOS immediately and set a class before anything renders
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        document.documentElement.classList.add("is-ios");
+      }
+    </script>
+
     <div
       id="pinterest-container"
       style="width: 100%; max-width: 800px; margin: 0 auto;"
@@ -161,5 +168,13 @@ import Footer from "@/components/Footer.astro";
     text-wrap: pretty;
     font-weight: 600;
     font-size: larger;
+  }
+
+  html.is-ios #pinterest-embed {
+    display: none !important;
+  }
+
+  html.is-ios #pinterest-fallback {
+    display: block !important;
   }
 </style>
