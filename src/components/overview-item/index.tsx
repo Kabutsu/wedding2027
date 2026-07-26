@@ -8,9 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 type Props = {
   title: string;
   details: string;
+  fontSize?: string;
 }
 
-export default function OverviewItemAnimation({ title, details }: Props) {
+export default function OverviewItemAnimation({ title, details, fontSize }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -97,7 +98,7 @@ export default function OverviewItemAnimation({ title, details }: Props) {
       ref={containerRef}
     >
       <h3 class="text-lg">{title}</h3>
-      <p class="text-xl font-bold whitespace-nowrap">{details}</p>
+      <p class="text-xl font-bold whitespace-nowrap" style={{ fontSize }}>{details}</p>
     </div>
   );
 }

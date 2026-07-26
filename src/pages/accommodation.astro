@@ -6,322 +6,213 @@ import Footer from "@/components/Footer.astro";
 const hotelsAndInns = [
   {
     name: "Hunters Hall Inn, Kingscote",
-    postcode: "GL8 8XZ",
     phone: "01453 860393",
     website: "www.greenekinginns.co.uk/hotels/gloucestershire/hunters-hall-inn",
+    cost: "£69",
     distance: 3,
   },
   {
-    name: "Calcot Manor Hotel",
-    postcode: "GL8 8YJ",
-    phone: "01666 890391",
-    website: "www.calcot.co",
-    distance: 5,
-  },
-  {
     name: "The Close Hotel, Tetbury",
-    postcode: "GL8 8AQ",
     phone: "01666 502272",
     website: "www.cotswold-inns-hotels.co.uk/the-close-hotel",
+    cost: "£140",
     distance: 10,
   },
   {
     name: "The Snooty Fox Hotel, Tetbury",
-    postcode: "GL8 8DD",
     phone: "01666 330580",
     website: "https://snooty-fox.co.uk/",
+    cost: "£159",
     distance: 10,
   },
   {
     name: "The Ormond, Tetbury",
-    postcode: "GL8 8AA",
     phone: "01666 505690",
     website: "www.theormondattetbury.co.uk",
+    cost: "£75",
     distance: 10,
   },
   {
     name: "The Priory Inn, Tetbury",
-    postcode: "GL8 8JJ",
     phone: "01666 502251",
     website: "www.theprioryinn.co.uk",
+    cost: "£147",
     distance: 10,
   },
   {
     name: "The Royal Oak, Tetbury",
-    postcode: "GL8 8EY",
     phone: "01666 500021",
     website: "www.theroyaloaktetbury.co.uk",
+    cost: "£115",
     distance: 10,
   },
   {
     name: "The Egypt Mill, Nailsworth",
-    postcode: "GL6 0AE",
     phone: "01453 833449",
     website: "www.egyptmill.com",
+    cost: "£92",
     distance: 10,
   },
   {
     name: "The Wild Garlic Rooms, Nailsworth",
-    postcode: "GL6 0DB",
     phone: "01453 832615",
     website: "www.wild-garlic.co.uk",
+    cost: "£110",
     distance: 10,
   },
   {
     name: "The Bell Inn, Selsley",
-    postcode: "GL5 5JY",
     phone: "01453 753801",
     website: "www.thebellinnselsley.com",
+    cost: "£103",
     distance: 10,
   },
   {
     name: "The Hare & Hounds Hotel, Tetbury",
-    postcode: "GL8 8QL",
     phone: "01666 881 000",
     website: "www.cotswold-inns-hotels.co.uk/hare-and-hounds-hotel/",
+    cost: "£129",
     distance: 10,
   },
   {
     name: "Oak House No. 1 Hotel, Tetbury",
-    postcode: "GL8 8EU",
     phone: "01666 505741",
     website: "https://oak-house-no1-hotel.igloucestershire.com/en/",
+    cost: "£225",
     distance: 15,
   },
   {
     name: "The Black Horse Inn, North Nibley",
-    postcode: "GL11 6DT",
     phone: "01453 700588",
     website: "www.theblackhorseinn.uk",
+    cost: "£95",
     distance: 15,
   },
   {
     name: "The Amberley Inn, Amberley",
-    postcode: "GL5 5AF",
     phone: "01453 872565",
     website: "www.theamberleyinn.co.uk",
+    cost: "£127",
     distance: 15,
   },
   {
     name: "The Burleigh Court Hotel, Minchinhampton",
-    postcode: "GL5 2PF",
     phone: "01453 883804",
     website: "www.burleighcourtcotswolds.co.uk",
-    distance: 15,
-  },
-  {
-    name: "The Bear at Rodborough, Minchinhampton",
-    postcode: "GL5 5DE",
-    phone: "01453 878522",
-    website: "www.cotswold-inns-hotels.co.uk/the-bear-of-rodborough",
+    cost: "£167",
     distance: 15,
   },
   {
     name: "The Ragged Cot Inn, Minchinhampton",
-    postcode: "GL6 8PE",
     phone: "01453 884643",
     website: "www.theraggedcot-minchinhampton.com",
-    distance: 15,
-  },
-  {
-    name: "The Old Lodge, Minchinhampton",
-    postcode: "GL6 9AQ",
-    phone: "01453 832047",
-    website: "www.food-club.com",
-    distance: 15,
-  },
-  {
-    name: "Bodkin House Hotel, Badminton",
-    postcode: "GL9 1AF",
-    phone: "01454 238310",
-    website: "www.thebodkin.co.uk",
+    cost: "£110",
     distance: 15,
   },
   {
     name: "De Vere Tortworth Court, Wotton Under Edge",
-    postcode: "GL12 8HH",
     phone: "01454 263000",
     website: "www.devere.co.uk/tortworth-court",
-    distance: 20,
-  },
-  {
-    name: "Whatley Manor Hotel, Easton Grey",
-    postcode: "SN16 0RB",
-    phone: "01666 822888",
-    website: "www.whatleymanor.com",
+    cost: "£89",
     distance: 20,
   },
   {
     name: "Stonehouse Court Hotel, Stonehouse",
-    postcode: "GL10 3RA",
     phone: "01453 794950",
     website: "www.stonehousecourt.co.uk",
+    cost: "£109",
     distance: 20,
   },
   {
     name: "Travelodge, Stonehouse",
-    postcode: "GL10 3SQ",
     phone: "0871 984 6054",
-    website: "www.travelodge.co.uk",
+    website: "https://www.travelodge.co.uk/hotels/99/Stonehouse-hotel",
+    cost: "£60",
     distance: 20,
   },
   {
     name: "Premier Inn, Stroud",
-    postcode: "GL5 4AF",
     phone: "0871 527 9052",
-    website: "www.premierinn.com",
-    distance: 20,
-  },
-  {
-    name: "The Rectory Hotel, Crudwell",
-    postcode: "SN16 9EP",
-    phone: "01666 577194",
-    website: "www.therectoryhotel.com",
+    website:
+      "www.premierinn.com/gb/en/hotels/england/gloucestershire/stroud/stroud.html",
+    cost: "£68",
     distance: 20,
   },
   {
     name: "The Painswick",
-    postcode: "GL6 6YB",
     phone: "01452 813688",
     website: "www.thepainswick.co.uk",
-    distance: 20,
-  },
-];
-
-const caravanCamping = [
-  {
-    name: "Apple Tree Park, Caravan & Camping Site",
-    postcode: "GL10 3AL",
-    phone: "01452 742362",
-    website: "www.appletreepark.co.uk",
-    distance: 20,
-  },
-  {
-    name: "Hogsdown Farm Caravan Park",
-    postcode: "GL11 6DD",
-    phone: "01453 810224",
-    website: "www.hogsdownfarm.co.uk",
+    cost: "£197",
     distance: 20,
   },
 ];
 
 const cottagesApartments = [
   {
-    name: "South Lodge",
-    postcode: "GL11 5BY",
-    phone: "01453 861161",
-    website: "Book Here - South Lodge",
-    distance: 5,
-  },
-  {
-    name: "The Parlour, Tetbury",
-    postcode: "GL11 5BZ",
-    phone: "01453 886334",
-    website: "www.airbnb.co.uk - The Parlour",
-    distance: 5,
-  },
-  {
-    name: "The Cowshed, Tetbury",
-    postcode: "GL11 5BZ",
-    phone: "01453 886334",
-    website: "www.airbnb.co.uk - The Cowshed",
-    distance: 5,
-  },
-  {
     name: "Tickmorend Farm",
-    postcode: "GL6 0PE",
     phone: "07792 549747",
     website: "www.manorcottages.co.uk",
-    distance: 5,
-  },
-  {
-    name: "Wills Cottage, Horsley",
-    postcode: "GL6 OQA",
-    phone: "01451 514000",
-    website: "Book Here - Wills Cottage",
+    cost: "£318",
     distance: 5,
   },
   {
     name: "Huntscourt Huts",
-    postcode: "GL11 6DZ",
     phone: "01453 544632",
     website: "www.huntscourthuts.co.uk",
+    cost: "£150",
     distance: 5,
   },
   {
-    name: "Relaxing Cotswold Farmhouse (Airbnb)",
-    postcode: "GL11 5BZ",
-    phone: "Book via Airbnb",
-    website: "Relaxing Cotswold Farmhouse – Airbnb",
-    distance: 8,
-  },
-  {
     name: "Railway Apartments, Nailsworth",
-    postcode: "GL6 0AN",
     phone: "07498 22020",
     website: "www.railwayapartments.co.uk",
+    cost: "£150",
     distance: 8,
   },
   {
     name: "Orchard Cottage, Uley",
-    postcode: "GL11 5AW",
     phone: "07933 120585",
     website: "www.twyningash.co.uk/orchard-cottage",
+    cost: "Contact for pricing",
     distance: 8,
   },
   {
     name: "Doughton Cottages, Tetbury",
-    postcode: "GL8 8TG",
     phone: "01666 503180",
     website: "www.doughtoncottages.co.uk",
+    cost: "£238",
     distance: 10,
-  },
-  {
-    name: "Maunditts Park Farm Cottages",
-    postcode: "SN15 5BH",
-    phone: "07788 644480",
-    website: "www.maundittsparkfarmcottages.co.uk",
-    distance: 25,
-  },
-  {
-    name: "Central Wotton-under-Edge (Airbnb)",
-    postcode: "-",
-    phone: "07881 950878",
-    website: "www.airbnb.co.uk - Central Wotton-under-Edge",
-    distance: 11,
   },
 ];
 
 const bedBreakfast = [
   {
     name: "Forthay",
-    postcode: "GL11 6EA",
     phone: "01453 549016",
     website: "www.forthaybedandbreakfast.co.uk",
+    cost: "£105",
     distance: 5,
   },
   {
     name: "The Grey Cottage, Leonard Stanley",
-    postcode: "GL10 3LU",
     phone: "01453 822515",
     website: "www.grey-cottage.co.uk",
+    cost: "£130",
     distance: 10,
   },
   {
     name: "Paynes Barn, Saddlewood, Leighterton",
-    postcode: "GL8 8UQ",
     phone: "01666 890395",
     website: "www.paynesbarn.co.uk",
+    cost: "£80",
     distance: 10,
   },
-  {
-    name: "Coombers Mead Cottage",
-    postcode: "GL8 8JL",
-    phone: "07887906834",
-    website: "Book Here - Luxury Tetbury Cottage - Combers Mead",
-    distance: 12,
-  },
 ];
+
+function parseCost(costStr: string): number {
+  if (costStr === "Contact for pricing") return Infinity;
+  return parseInt(costStr.replace("£", ""));
+}
 ---
 
 <Layout>
@@ -347,35 +238,49 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Hotels & Inns</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="hotels-inns">
           <thead>
             <tr>
               <th>Accommodation</th>
-              <th class="hidden sm:table-cell">Location</th>
               <th>Phone</th>
-              <th>Website</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              hotelsAndInns.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
-                  <td class="name-cell">{item.name}</td>
-                  <td class="hidden sm:table-cell">{item.postcode}</td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="link-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit
-                    </a>
-                  </td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              hotelsAndInns.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -386,74 +291,49 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Cottages, Apartments & Longer Lets</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="cottages-apartments">
           <thead>
             <tr>
               <th>Accommodation</th>
-              <th class="hidden sm:table-cell">Location</th>
               <th>Phone</th>
-              <th>Website</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              cottagesApartments.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
-                  <td class="name-cell">{item.name}</td>
-                  <td class="hidden sm:table-cell">{item.postcode}</td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="link-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit
-                    </a>
-                  </td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Caravan & Camping Table -->
-    <div class="w-full max-w-5xl">
-      <h2 class="table-heading">Caravan & Camping</h2>
-      <div class="table-wrapper">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Accommodation</th>
-              <th class="hidden sm:table-cell">Location</th>
-              <th>Phone</th>
-              <th>Website</th>
-              <th>Distance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              caravanCamping.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
-                  <td class="name-cell">{item.name}</td>
-                  <td class="hidden sm:table-cell">{item.postcode}</td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="link-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit
-                    </a>
-                  </td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              cottagesApartments.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -464,35 +344,49 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Bed & Breakfast</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="bed-breakfast">
           <thead>
             <tr>
               <th>Accommodation</th>
-              <th class="hidden sm:table-cell">Location</th>
               <th>Phone</th>
-              <th>Website</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              bedBreakfast.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
-                  <td class="name-cell">{item.name}</td>
-                  <td class="hidden sm:table-cell">{item.postcode}</td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="link-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit
-                    </a>
-                  </td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              bedBreakfast.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -546,6 +440,34 @@ const bedBreakfast = [
     font-family: var(--font-boston);
   }
 
+  .data-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .data-table th.sortable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sort-indicator {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.9em;
+    opacity: 0.6;
+    min-width: 1em;
+  }
+
+  .sort-indicator.asc::after {
+    content: "↑";
+  }
+
+  .sort-indicator.desc::after {
+    content: "↓";
+  }
+
   .data-table td {
     padding: 0.875rem 1rem;
     border-bottom: 1px solid #e5e7eb;
@@ -578,22 +500,38 @@ const bedBreakfast = [
     font-size: 0.9rem;
   }
 
-  .link-cell a {
+  .name-cell a {
     color: var(--color-wedding-burgundy);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.2s ease;
   }
 
-  .link-cell a:hover {
+  .name-cell a:hover {
     color: var(--color-crimson);
     text-decoration: underline;
+  }
+
+  .name-cell a .city {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .name-cell a .city {
+      display: inline;
+    }
   }
 
   .distance-cell {
     text-align: center;
     font-weight: 500;
     color: #666;
+  }
+
+  .cost-cell {
+    font-weight: 500;
+    color: var(--color-wedding-dark);
+    white-space: nowrap;
   }
 
   @media (max-width: 768px) {
@@ -608,3 +546,86 @@ const bedBreakfast = [
     }
   }
 </style>
+
+<script is:inline>
+  const tableState = {};
+
+  function initializeTableSorting() {
+    document.querySelectorAll(".data-table").forEach((table) => {
+      const tableId = table.dataset.table;
+      tableState[tableId] = { sortBy: "distance", sortDir: "asc" };
+
+      const sortableHeaders = table.querySelectorAll("th.sortable");
+      sortableHeaders.forEach((header) => {
+        header.addEventListener("click", () => handleSort(table, header));
+      });
+    });
+
+    // Apply initial sort (distance ascending) to all tables
+    document.querySelectorAll(".data-table").forEach((table) => {
+      sortTable(table, "distance", "asc");
+      updateSortIndicators(table, "distance", "asc");
+    });
+  }
+
+  function handleSort(table, header) {
+    const tableId = table.dataset.table;
+    const sortBy = header.dataset.sort;
+    const currentState = tableState[tableId];
+
+    let newDir = "asc";
+    if (currentState.sortBy === sortBy && currentState.sortDir === "asc") {
+      newDir = "desc";
+    }
+
+    tableState[tableId] = { sortBy, sortDir: newDir };
+    sortTable(table, sortBy, newDir);
+    updateSortIndicators(table, sortBy, newDir);
+  }
+
+  function sortTable(table, sortBy, direction) {
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    rows.sort((a, b) => {
+      let aValue, bValue;
+
+      if (sortBy === "distance") {
+        aValue = parseInt(a.dataset.distance);
+        bValue = parseInt(b.dataset.distance);
+      } else if (sortBy === "cost") {
+        aValue = parseInt(a.dataset.cost);
+        bValue = parseInt(b.dataset.cost);
+      }
+
+      const comparison = aValue - bValue;
+      return direction === "asc" ? comparison : -comparison;
+    });
+
+    // Re-append rows in sorted order
+    rows.forEach((row) => tbody.appendChild(row));
+
+    // Re-stripe rows
+    rows.forEach((row, index) => {
+      row.classList.toggle("even-row", index % 2 === 0);
+    });
+  }
+
+  function updateSortIndicators(table, activeSortBy, direction) {
+    const headers = table.querySelectorAll("th.sortable");
+    headers.forEach((header) => {
+      const indicator = header.querySelector(".sort-indicator");
+      indicator.classList.remove("asc", "desc");
+
+      if (header.dataset.sort === activeSortBy) {
+        indicator.classList.add(direction);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeTableSorting);
+  } else {
+    initializeTableSorting();
+  }
+</script>
