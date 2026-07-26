@@ -126,8 +126,8 @@ const hotelsAndInns = [
   {
     name: "Travelodge, Stonehouse",
     phone: "0871 984 6054",
-    website: "www.travelodge.co.uk/hotels/99/Stonehouse-hotel",
-    cost: "£29",
+    website: "https://www.travelodge.co.uk/hotels/99/Stonehouse-hotel",
+    cost: "£60",
     distance: 20,
   },
   {
@@ -208,6 +208,11 @@ const bedBreakfast = [
     distance: 10,
   },
 ];
+
+function parseCost(costStr: string): number {
+  if (costStr === "Contact for pricing") return Infinity;
+  return parseInt(costStr.replace("£", ""));
+}
 ---
 
 <Layout>
@@ -233,19 +238,31 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Hotels & Inns</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="hotels-inns">
           <thead>
             <tr>
               <th>Accommodation</th>
               <th>Phone</th>
-              <th>Approximate Cost for 1 Night</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              hotelsAndInns.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
+              hotelsAndInns.map((item) => (
+                <tr
+                  data-cost={parseCost(item.cost)}
+                  data-distance={item.distance}
+                >
                   <td class="name-cell">
                     <a
                       href={`https://${item.website.replace(/^https?:\/\//, "")}`}
@@ -270,19 +287,31 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Cottages, Apartments & Longer Lets</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="cottages-apartments">
           <thead>
             <tr>
               <th>Accommodation</th>
               <th>Phone</th>
-              <th>Approximate Cost for 1 Night</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              cottagesApartments.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
+              cottagesApartments.map((item) => (
+                <tr
+                  data-cost={parseCost(item.cost)}
+                  data-distance={item.distance}
+                >
                   <td class="name-cell">
                     <a
                       href={`https://${item.website.replace(/^https?:\/\//, "")}`}
@@ -307,19 +336,31 @@ const bedBreakfast = [
     <div class="w-full max-w-5xl">
       <h2 class="table-heading">Bed & Breakfast</h2>
       <div class="table-wrapper">
-        <table class="data-table">
+        <table class="data-table" data-table="bed-breakfast">
           <thead>
             <tr>
               <th>Accommodation</th>
               <th>Phone</th>
-              <th>Approximate Cost for 1 Night</th>
-              <th>Distance</th>
+              <th class="sortable" data-sort="cost">
+                <span class="hidden sm:inline-block"
+                  >Approximate Cost for 1 Night</span
+                >
+                <span class="sm:hidden">Cost</span>
+                <span class="sort-indicator"></span>
+              </th>
+              <th class="sortable" data-sort="distance">
+                Distance
+                <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {
-              bedBreakfast.map((item, index) => (
-                <tr class={index % 2 === 0 ? "even-row" : ""}>
+              bedBreakfast.map((item) => (
+                <tr
+                  data-cost={parseCost(item.cost)}
+                  data-distance={item.distance}
+                >
                   <td class="name-cell">
                     <a
                       href={`https://${item.website.replace(/^https?:\/\//, "")}`}
@@ -385,6 +426,33 @@ const bedBreakfast = [
     font-weight: lighter;
     font-size: 1.25rem;
     font-family: var(--font-boston);
+  }
+
+  .data-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+
+  .data-table th.sortable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sort-indicator {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.9em;
+    opacity: 0.6;
+    min-width: 1em;
+  }
+
+  .sort-indicator.asc::after {
+    content: "↑";
+  }
+
+  .sort-indicator.desc::after {
+    content: "↓";
   }
 
   .data-table td {
@@ -455,3 +523,86 @@ const bedBreakfast = [
     }
   }
 </style>
+
+<script is:inline>
+  const tableState = {};
+
+  function initializeTableSorting() {
+    document.querySelectorAll(".data-table").forEach((table) => {
+      const tableId = table.dataset.table;
+      tableState[tableId] = { sortBy: "distance", sortDir: "asc" };
+
+      const sortableHeaders = table.querySelectorAll("th.sortable");
+      sortableHeaders.forEach((header) => {
+        header.addEventListener("click", () => handleSort(table, header));
+      });
+    });
+
+    // Apply initial sort (distance ascending) to all tables
+    document.querySelectorAll(".data-table").forEach((table) => {
+      sortTable(table, "distance", "asc");
+      updateSortIndicators(table, "distance", "asc");
+    });
+  }
+
+  function handleSort(table, header) {
+    const tableId = table.dataset.table;
+    const sortBy = header.dataset.sort;
+    const currentState = tableState[tableId];
+
+    let newDir = "asc";
+    if (currentState.sortBy === sortBy && currentState.sortDir === "asc") {
+      newDir = "desc";
+    }
+
+    tableState[tableId] = { sortBy, sortDir: newDir };
+    sortTable(table, sortBy, newDir);
+    updateSortIndicators(table, sortBy, newDir);
+  }
+
+  function sortTable(table, sortBy, direction) {
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+    rows.sort((a, b) => {
+      let aValue, bValue;
+
+      if (sortBy === "distance") {
+        aValue = parseInt(a.dataset.distance);
+        bValue = parseInt(b.dataset.distance);
+      } else if (sortBy === "cost") {
+        aValue = parseInt(a.dataset.cost);
+        bValue = parseInt(b.dataset.cost);
+      }
+
+      const comparison = aValue - bValue;
+      return direction === "asc" ? comparison : -comparison;
+    });
+
+    // Re-append rows in sorted order
+    rows.forEach((row) => tbody.appendChild(row));
+
+    // Re-stripe rows
+    rows.forEach((row, index) => {
+      row.classList.toggle("even-row", index % 2 === 0);
+    });
+  }
+
+  function updateSortIndicators(table, activeSortBy, direction) {
+    const headers = table.querySelectorAll("th.sortable");
+    headers.forEach((header) => {
+      const indicator = header.querySelector(".sort-indicator");
+      indicator.classList.remove("asc", "desc");
+
+      if (header.dataset.sort === activeSortBy) {
+        indicator.classList.add(direction);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeTableSorting);
+  } else {
+    initializeTableSorting();
+  }
+</script>
