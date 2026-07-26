@@ -258,25 +258,29 @@ function parseCost(costStr: string): number {
           </thead>
           <tbody>
             {
-              hotelsAndInns.map((item) => (
-                <tr
-                  data-cost={parseCost(item.cost)}
-                  data-distance={item.distance}
-                >
-                  <td class="name-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.name}
-                    </a>
-                  </td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="cost-cell">{item.cost}</td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              hotelsAndInns.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -307,25 +311,29 @@ function parseCost(costStr: string): number {
           </thead>
           <tbody>
             {
-              cottagesApartments.map((item) => (
-                <tr
-                  data-cost={parseCost(item.cost)}
-                  data-distance={item.distance}
-                >
-                  <td class="name-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.name}
-                    </a>
-                  </td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="cost-cell">{item.cost}</td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              cottagesApartments.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -356,25 +364,29 @@ function parseCost(costStr: string): number {
           </thead>
           <tbody>
             {
-              bedBreakfast.map((item) => (
-                <tr
-                  data-cost={parseCost(item.cost)}
-                  data-distance={item.distance}
-                >
-                  <td class="name-cell">
-                    <a
-                      href={`https://${item.website.replace(/^https?:\/\//, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.name}
-                    </a>
-                  </td>
-                  <td class="phone-cell">{item.phone}</td>
-                  <td class="cost-cell">{item.cost}</td>
-                  <td class="distance-cell">{item.distance} mins</td>
-                </tr>
-              ))
+              bedBreakfast.map((item) => {
+                const [mainName, city] = item.name.split(', ');
+                return (
+                  <tr
+                    data-cost={parseCost(item.cost)}
+                    data-distance={item.distance}
+                  >
+                    <td class="name-cell">
+                      <a
+                        href={`https://${item.website.replace(/^https?:\/\//, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {mainName}
+                        {city && <span class="city">, {city}</span>}
+                      </a>
+                    </td>
+                    <td class="phone-cell">{item.phone}</td>
+                    <td class="cost-cell">{item.cost}</td>
+                    <td class="distance-cell">{item.distance} mins</td>
+                  </tr>
+                );
+              })
             }
           </tbody>
         </table>
@@ -498,6 +510,16 @@ function parseCost(costStr: string): number {
   .name-cell a:hover {
     color: var(--color-crimson);
     text-decoration: underline;
+  }
+
+  .name-cell a .city {
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .name-cell a .city {
+      display: inline;
+    }
   }
 
   .distance-cell {
