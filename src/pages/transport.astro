@@ -26,7 +26,6 @@ const taxis = [
   { name: "Lady Cars", phone: "07969 963351" },
   { name: "Baileys Cars", phone: "07500 416416" },
   { name: "Al's Taxis (4, 6 & 8 seaters)", phone: "01453 519354" },
-  { name: "Tetbury Private Hire (Wedding Day Service)", phone: "07858 450098" },
   { name: "Gee-Bee Travel (7 seater)", phone: "01453 521544 / 07759 595717" },
 ];
 ---
@@ -40,7 +39,7 @@ const taxis = [
   >
     <!-- Intro paragraph -->
     <div
-      class="flex flex-col items-start justify-start gap-4 max-w-5xl font-(family-name:--font-cormorant) text-wedding-dark"
+      class="flex flex-col items-start justify-start gap-4 max-w-5xl font-(family-name:--font-inter) text-mauve-950 font-light"
     >
       <p class="intro-para">
         Getting here is easy—we've mapped out all the details to help you plan
@@ -88,7 +87,7 @@ const taxis = [
     <div class="w-full max-w-5xl">
       <h2 class="section-heading">Driving Directions</h2>
       <div class="directions-section">
-        <div class="direction-box shadow-lg hover:shadow-lg">
+        <div class="direction-box shadow-lg hover:shadow-xl">
           <h3>From Junction 13, M5 (approx. 8 miles)</h3>
           <p>
             Exit M5 at J13 and take the A419 towards Stroud. At the next
@@ -103,7 +102,7 @@ const taxis = [
           </p>
         </div>
 
-        <div class="direction-box shadow-lg hover:shadow-lg">
+        <div class="direction-box shadow-lg hover:shadow-xl">
           <h3>From Junction 18, M4 (approx. 14 miles)</h3>
           <p>
             Exit north on A46 towards Stroud. Drive for approximately 11 miles
@@ -116,7 +115,7 @@ const taxis = [
           </p>
         </div>
 
-        <div class="direction-box shadow-lg hover:shadow-lg">
+        <div class="direction-box shadow-lg hover:shadow-xl">
           <h3>From Tetbury (approx. 15 minutes)</h3>
           <p>
             Take A4135 from Tetbury signed Beverston / Dursley. Through
@@ -188,7 +187,7 @@ const taxis = [
   }
 
   .intro-para {
-    font-weight: 600;
+    font-weight: 400;
     font-size: larger;
     text-wrap: pretty;
   }
@@ -241,9 +240,9 @@ const taxis = [
   .data-table th {
     padding: 1rem;
     text-align: left;
-    font-weight: lighter;
+    font-weight: 500;
     font-size: 1.25rem;
-    font-family: var(--font-boston);
+    font-family: var(--font-gentium);
   }
 
   .data-table td {
@@ -288,15 +287,12 @@ const taxis = [
     background-color: var(--color-ivory);
     padding: 1.5rem;
     border-radius: 0.5rem;
-    transition: box-shadow 0.2s ease;
-  }
-
-  .direction-box:hover {
-    box-shadow: var(--drop-shadow-wedding);
+    transition: all 0.2s ease;
   }
 
   .direction-box h3 {
-    font-family: var(--font-boston);
+    font-family: var(--font-gentium);
+    font-weight: 600;
     font-size: 1.25rem;
     color: var(--color-dusty-blue);
     margin-bottom: 0.75rem;
@@ -338,7 +334,8 @@ const taxis = [
   }
 
   .train-option h3 {
-    font-family: var(--font-boston);
+    font-family: var(--font-gentium);
+    font-weight: 600;
     font-size: 1.25rem;
     color: var(--color-dusty-blue);
     margin-bottom: 0.5rem;

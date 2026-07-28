@@ -38,12 +38,27 @@ export default defineConfig({
     name: 'Cormorant Garamond',
     cssVariable: '--font-cormorant',
   }, {
+  provider: fontProviders.google(),
+  name: 'Gentium Plus',
+  cssVariable: '--font-gentium',
+  }, {
     provider: fontProviders.local(),
     name: 'Boston Angel',
     cssVariable: '--font-boston',
     options: {
       variants: [{
         src: ['./src/assets/fonts/Boston-Angel-Regular.ttf'],
+        weight: 'normal',
+        style: 'normal',
+      }]
+    }
+  }, {
+    provider: fontProviders.local(),
+    name: 'Slight',
+    cssVariable: '--font-slight',
+    options: {
+      variants: [{
+        src: ['./src/assets/fonts/Slight-Regular.ttf'],
         weight: 'normal',
         style: 'normal',
       }]

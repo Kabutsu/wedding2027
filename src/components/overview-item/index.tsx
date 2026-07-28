@@ -93,12 +93,12 @@ export default function OverviewItemAnimation({ title, details, fontSize }: Prop
   return (
     <div
       id="overview-item"
-      class="w-52 sm:w-48 h-48 font-(family-name:--font-cormorant) uppercase bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-6 pb-10 text-ivory-light"
+      class="w-52 sm:w-48 h-48 uppercase bg-center bg-contain bg-no-repeat bg-origin-border flex flex-col items-center justify-center gap-0 px-6 pt-6 pb-10 text-ivory-light"
       style={{ backgroundImage: `url(${heartImg.src})` }}
       ref={containerRef}
     >
-      <h3 class="text-lg">{title}</h3>
-      <p class="text-xl font-bold whitespace-nowrap" style={{ fontSize }}>{details}</p>
+      <h3 class="text-lg font-(family-name:--font-caveat)">{title}</h3>
+      <p class="text-2xl font-(family-name:--font-gentium) font-semibold whitespace-nowrap" style={{ fontSize }}>{details}</p>
     </div>
   );
 }

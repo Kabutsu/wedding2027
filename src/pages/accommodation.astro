@@ -1,7 +1,13 @@
 ---
+import { PUBLIC_HOTEL_URL } from "astro:env/client";
+
 import Layout from "@/layouts/Layout.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import Footer from "@/components/Footer.astro";
+
+import venueImg from "@/assets/images/aerial.jpg";
+
+import DetailsCard from "@/components/details-card/index.astro";
 
 const hotelsAndInns = [
   {
@@ -224,7 +230,7 @@ function parseCost(costStr: string): number {
   >
     <!-- Intro paragraph -->
     <div
-      class="flex flex-col items-start justify-start gap-4 max-w-5xl font-(family-name:--font-cormorant) text-wedding-dark"
+      class="flex flex-col items-center justify-start gap-4 max-w-5xl font-(family-name:--font-inter) text-mauve-950"
     >
       <p class="intro-para">
         We've compiled a list of wonderful accommodation options nearby, ranging
@@ -232,6 +238,15 @@ function parseCost(costStr: string): number {
         breakfasts. Whether you'd like to be close to the barn or prefer a
         scenic drive, you'll find something that suits you.
       </p>
+
+      <DetailsCard
+        title="Stay on Site"
+        description="We have exclusive use of the barn and grounds for our wedding, and there are a few rooms available to book on site"
+        buttonText="Book a Room"
+        buttonLink={PUBLIC_HOTEL_URL}
+        img={venueImg}
+        newPage
+      />
     </div>
 
     <!-- Hotels & Inns Table -->
@@ -259,7 +274,7 @@ function parseCost(costStr: string): number {
           <tbody>
             {
               hotelsAndInns.map((item) => {
-                const [mainName, city] = item.name.split(', ');
+                const [mainName, city] = item.name.split(", ");
                 return (
                   <tr
                     data-cost={parseCost(item.cost)}
@@ -312,7 +327,7 @@ function parseCost(costStr: string): number {
           <tbody>
             {
               cottagesApartments.map((item) => {
-                const [mainName, city] = item.name.split(', ');
+                const [mainName, city] = item.name.split(", ");
                 return (
                   <tr
                     data-cost={parseCost(item.cost)}
@@ -365,7 +380,7 @@ function parseCost(costStr: string): number {
           <tbody>
             {
               bedBreakfast.map((item) => {
-                const [mainName, city] = item.name.split(', ');
+                const [mainName, city] = item.name.split(", ");
                 return (
                   <tr
                     data-cost={parseCost(item.cost)}
@@ -403,7 +418,7 @@ function parseCost(costStr: string): number {
   }
 
   .intro-para {
-    font-weight: 600;
+    font-weight: 300;
     font-size: larger;
     text-wrap: pretty;
   }
@@ -435,9 +450,9 @@ function parseCost(costStr: string): number {
   .data-table th {
     padding: 1rem;
     text-align: left;
-    font-weight: lighter;
+    font-weight: 500;
     font-size: 1.25rem;
-    font-family: var(--font-boston);
+    font-family: var(--font-gentium);
   }
 
   .data-table th.sortable {
