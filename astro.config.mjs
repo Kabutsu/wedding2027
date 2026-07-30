@@ -4,9 +4,12 @@ import { defineConfig, envField, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import preact from '@astrojs/preact';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://samandcaro2027.vercel.app/',
+  output: 'server',
 
   env: {
     schema: {
@@ -17,6 +20,7 @@ export default defineConfig({
   },
 
   integrations: [preact({ compat: true })],
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -65,6 +69,28 @@ export default defineConfig({
     }
   }, {
     provider: fontProviders.local(),
+    name: 'Providence Sans',
+    cssVariable: '--font-providence',
+    options: {
+      variants: [{
+        src: ['./src/assets/fonts/Providence-Sans.otf'],
+        weight: 'bold',
+        style: 'normal',
+      }]
+    }
+  }, {
+    provider: fontProviders.local(),
+    name: 'Roca',
+    cssVariable: '--font-roca',
+    options: {
+      variants: [{
+        src: ['./src/assets/fonts/Roca.otf'],
+        weight: 'normal',
+        style: 'normal',
+      }]
+    }
+  }, {
+    provider: fontProviders.local(),
     name: 'Dream Avenue',
     cssVariable: '--font-dream',
     options: {
@@ -75,4 +101,6 @@ export default defineConfig({
       }]
     }
   }],
+
+  adapter: vercel(),
 });

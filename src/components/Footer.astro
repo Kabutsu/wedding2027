@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { PUBLIC_RSVP_LINK } from "astro:env/client";
 
 import footerImg from "@/assets/images/wedding-logo-2.png";
 
@@ -21,17 +20,15 @@ const asPath = Astro.url.pathname;
   >
     <div
       id="footer-content"
-      class="w-full h-full px-4 pt-32 pb-10 bg-wedding-dark flex flex-col flex-1 items-center justify-start gap-2.5"
+      class="w-full h-full px-4 pt-32 pb-10 bg-crimson flex flex-col flex-1 items-center justify-start gap-2.5"
     >
       <h2
-        class="text-center text-white text-4xl font-(family-name:--font-gentium) font-bold pb-4"
+        class="text-center text-white text-4xl font-(family-name:--font-roca) font-bold pb-4"
       >
         Sam & Carolina
       </h2>
       {asPath === "/" ? null : <a href="/">Home</a>}
-      <a href={PUBLIC_RSVP_LINK} target="_blank" rel="noopener noreferrer">
-        RSVP
-      </a>
+      {asPath === "/rsvp" ? null : <a href="/rsvp">RSVP/Guestbook</a>}
       {asPath === "/dress-code" ? null : <a href="/dress-code">Dress Code</a>}
       {
         asPath === "/accommodation" ? null : (
@@ -53,6 +50,7 @@ const asPath = Astro.url.pathname;
     text-align: center;
     color: #fff;
     font-size: 1.125rem;
+    font-family: var(--font-providence);
     transition:
       color 0.3s ease,
       font-size 0.3s ease;

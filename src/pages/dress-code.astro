@@ -1,6 +1,11 @@
 ---
+import { PUBLIC_PINTEREST_LINK } from "astro:env/client";
+
+import suitImg from "@/assets/images/tuscany-suit.jpg";
+
 import Layout from "@/layouts/Layout.astro";
 import PageHeader from "@/components/PageHeader.astro";
+import DetailsCard from "@/components/details-card/index.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
@@ -12,7 +17,7 @@ import Footer from "@/components/Footer.astro";
     class="flex flex-col items-center justify-start gap-8 p-6 sm:gap-12 sm:p-12 sm:px-82"
   >
     <div
-      class="flex flex-col items-start justify-start gap-4 sm:gap-6 max-w-5xl font-(family-name:--font-inter) text-mauve-950 font-light"
+      class="flex flex-col items-start justify-start gap-4 sm:gap-6 max-w-5xl font-(family-name:--font-providence) text-mauve-950 font-light"
     >
       <p>We're planning a relaxed and joyful winter celebration.</p>
       <p>
@@ -24,7 +29,7 @@ import Footer from "@/components/Footer.astro";
       </p>
       <p>
         Most importantly, wear something that makes you feel wonderful and ready
-        to celebrate.
+        to celebrate!
       </p>
     </div>
 
@@ -37,33 +42,26 @@ import Footer from "@/components/Footer.astro";
 
     <div
       id="pinterest-container"
-      style="width: 100%; max-width: 800px; margin: 0 auto;"
+      style="width: 100%; max-width: 800px; margin: 0 auto; display: flex; justify-content: center;"
     >
       <a
         id="pinterest-embed"
         data-pin-do="embedBoard"
-        href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
+        href={PUBLIC_PINTEREST_LINK}
         data-pin-scale-width="400"
         data-pin-scale-height="600"
       >
       </a>
       <!-- Fallback for iOS/mobile devices where embed doesn't work -->
-      <div
-        id="pinterest-fallback"
-        style="display: none; text-align: center; padding: 2rem; background: #f5f1ed; border-radius: 8px; margin-top: 1rem;"
-        class="shadow-md"
-      >
-        <p style="margin: 0 0 1rem 0; font-weight: 600;">
-          View our inspiration board on Pinterest
-        </p>
-        <a
-          href="https://www.pinterest.com/carolinaj215/romantic-winter-cocktail/?invite_code=c9a2b98c7a6e4e63887226ac9a4b48f0&sender=224898712550285143"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--color-wedding-burgundy); color: white; text-decoration: none; border-radius: 4px; font-weight: 600; transition: background 0.2s ease;"
-        >
-          View Board →
-        </a>
+      <div id="pinterest-fallback" style="display: none;">
+        <DetailsCard
+          title="Inspiration"
+          description="View our inspiration board on Pinterest"
+          buttonText="Check it Out"
+          buttonLink={PUBLIC_PINTEREST_LINK}
+          img={suitImg}
+          newPage
+        />
       </div>
     </div>
 
@@ -166,7 +164,7 @@ import Footer from "@/components/Footer.astro";
 <style>
   #content p {
     text-wrap: pretty;
-    font-size: larger;
+    font-size: 1.3rem;
   }
 
   html.is-ios #pinterest-embed {

@@ -1,7 +1,5 @@
 ---
-import { PUBLIC_RSVP_LINK } from "astro:env/client";
-
-import stampImg from "@/assets/images/stamp.png";
+import discoImg from "@/assets/images/disco-ball.png";
 
 import barnImg from "@/assets/images/kingscote.jpg";
 import lodgingImg from "@/assets/images/accom.jpg";
@@ -12,25 +10,25 @@ import DetailsCard from "@/components/details-card/index.astro";
 
 <div id="details-section" class="relative w-full overflow-visible">
   <div class="relative w-full h-8">
-    <button
-      class="absolute z-10 -top-4 left-1/2 -translate-x-1/2 px-8 pt-16 pb-6 sm:px-10 sm:pt-18 sm:pb-6 w-34 h-34 sm:w-40 sm:h-40 cursor-pointer bg-center bg-contain bg-no-repeat bg-origin-border text-ivory-light font-(family-name:--font-cormorant) text-[1.6rem] sm:text-3xl font-semibold drop-shadow-mauve-900 drop-shadow-md hover:drop-shadow-mauve-950 hover:-translate-y-0.5 active:translate-y-0.5 transition-all duration-400"
-      style={{ backgroundImage: `url(${stampImg.src})` }}
-      onclick={`window.open("${PUBLIC_RSVP_LINK}", "_blank")`}
+    <a
+      href="/rsvp"
+      class="absolute z-10 -top-4 left-1/2 -translate-x-1/2 flex justify-center pt-16 pb-6 sm:pt-18 sm:pb-6 w-34 h-34 sm:w-40 sm:h-40 cursor-pointer bg-center bg-contain bg-no-repeat bg-origin-border text-ivory-light font-(family-name:--font-roca) text-shadow-lg text-shadow-mauve-950 text-3xl sm:text-[2.6rem] font-semibold drop-shadow-rose-900 drop-shadow-md hover:drop-shadow-rose-950 hover:-translate-y-0.5 active:translate-y-0.5 transition-all duration-400"
+      style={{ backgroundImage: `url(${discoImg.src})` }}
     >
       RSVP
-    </button>
+    </a>
   </div>
 
   <div id="details-content-container" class="relative w-full">
     <div
       id="details-content"
-      class="p-4 pt-28 sm:pt-36 pb-24 bg-crimson w-[900vw] sm:w-[300vw] translate-x-[-400svw] sm:translate-x-[-33.45%] flex flex-col items-center justify-start gap-2.5"
+      class="p-4 pt-28 sm:pt-36 pb-24 bg-red-pastel w-[900vw] sm:w-[300vw] translate-x-[-400svw] sm:translate-x-[-33.45%] flex flex-col items-center justify-start gap-2.5"
     >
-      <h1 class="text-6xl font-(family-name:--font-boston) text-ivory">
+      <h1 class="text-6xl font-(family-name:--font-roca) text-ivory">
         Details
       </h1>
       <p
-        class="text-center text-ivory px-8 sm:px-0 w-screen sm:w-120 text-pretty text-lg"
+        class="text-center text-ivory font-(family-name:--font-providence) font-light px-8 sm:px-0 sm:pt-4 sm:pb-2 w-screen sm:w-120 text-pretty text-xl"
       >
         We hope you're as excited as we are for our wedding! Below we've
         collated all the important details about the big day, to help you plan
@@ -74,7 +72,6 @@ import DetailsCard from "@/components/details-card/index.astro";
 
   #details-content {
     border-radius: 100%;
-    /* transform: translateX(-33%); */
   }
 
   button {

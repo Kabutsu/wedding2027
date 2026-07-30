@@ -97,8 +97,8 @@ export default function OverviewItemAnimation({ title, details, fontSize }: Prop
       style={{ backgroundImage: `url(${heartImg.src})` }}
       ref={containerRef}
     >
-      <h3 class="text-lg font-(family-name:--font-caveat)">{title}</h3>
-      <p class="text-2xl font-(family-name:--font-gentium) font-semibold whitespace-nowrap" style={{ fontSize }}>{details}</p>
+      <h3 class="text-lg font-(family-name:--font-providence)">{title}</h3>
+      <p class="text-2xl font-(family-name:--font-providence) font-semibold whitespace-nowrap" style={{ fontSize }}>{details}</p>
     </div>
   );
 }
