@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'preact/hooks';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTriggerPkg from 'gsap/ScrollTrigger';
 import bottleImg from '../../assets/images/bottle.png';
+
+const { ScrollTrigger } = ScrollTriggerPkg;
 
 gsap.registerPlugin(ScrollTrigger);
 
