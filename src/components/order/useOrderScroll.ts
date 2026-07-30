@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import gsap from 'gsap';
-import ScrollTriggerPkg from 'gsap/ScrollTrigger';
-
-const { ScrollTrigger } = ScrollTriggerPkg;
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
