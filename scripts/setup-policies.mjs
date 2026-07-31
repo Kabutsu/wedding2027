@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://xzpylrvwsrxihxvlrkkd.supabase.co";
-const serviceRoleKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6cHlscnZ3c3J4aWh4dmxya2tkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NjI4MDY3MywiZXhwIjoyMDkxODU2NjczfQ.ubZnsvVVwOF0yigFrWqyDOQ9U40bZdAecphUaRyxnGo";
+const supabaseUrl = process.env.SUPABASE_URL;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
 
