@@ -16,6 +16,8 @@ export default defineConfig({
       PUBLIC_RSVP_LINK: envField.string({ access: 'public', context: 'client' }),
       PUBLIC_HOTEL_URL: envField.string({ access: 'public', context: 'client' }),
       PUBLIC_PINTEREST_LINK: envField.string({ access: 'public', context: 'client' }),
+      PUBLIC_SUPABASE_URL: envField.string({ access: 'public', context: 'client' }),
+      PUBLIC_SUPABASE_ANON_KEY: envField.string({ access: 'public', context: 'client' }),
       SUPABASE_URL: envField.string({ access: 'secret', context: 'server' }),
       SUPABASE_ANON_KEY: envField.string({ access: 'secret', context: 'server' }),
       SUPABASE_SERVICE_ROLE_KEY: envField.string({ access: 'secret', context: 'server' }),

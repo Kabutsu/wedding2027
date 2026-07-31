@@ -7,6 +7,12 @@ const MAX_IMAGES = 5;
 
 export const prerender = false;
 
+type ImageMeta = {
+  name: string;
+  type: string;
+  size: number;
+};
+
 export const POST: APIRoute = async (context) => {
   try {
     if (!supabaseAdmin) {
@@ -16,10 +22,10 @@ export const POST: APIRoute = async (context) => {
       );
     }
 
-    const formData = await context.request.formData();
-    const name = formData.get("name") as string;
-    const recipeText = formData.get("recipe_text") as string;
-    const imageFiles = formData.getAll("images") as File[];
+    const body = await context.request.json();
+    const name = body.name as string;
+    const recipeText = body.recipe_text as string;
+    const images = (body.images ?? []) as ImageMeta[];
 
     // Validation
     if (!name) {
@@ -30,7 +36,7 @@ export const POST: APIRoute = async (context) => {
     }
 
     // Validate recipe (text OR images required)
-    if (!recipeText && imageFiles.length === 0) {
+    if (!recipeText && images.length === 0) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -41,7 +47,7 @@ export const POST: APIRoute = async (context) => {
     }
 
     // Validate images
-    if (imageFiles.length > MAX_IMAGES) {
+    if (images.length > MAX_IMAGES) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -51,29 +57,26 @@ export const POST: APIRoute = async (context) => {
       );
     }
 
-    const validImages: File[] = [];
-    for (const file of imageFiles) {
-      if (file.size > MAX_FILE_SIZE) {
+    for (const image of images) {
+      if (image.size > MAX_FILE_SIZE) {
         return new Response(
           JSON.stringify({
             success: false,
-            error: `Image "${file.name}" exceeds 10MB limit`,
+            error: `Image "${image.name}" exceeds 10MB limit`,
           }),
           { status: 400, headers: { "Content-Type": "application/json" } }
         );
       }
 
-      if (!ALLOWED_TYPES.includes(file.type)) {
+      if (!ALLOWED_TYPES.includes(image.type)) {
         return new Response(
           JSON.stringify({
             success: false,
-            error: `Invalid file type: ${file.type}. Only JPG, PNG, and WebP allowed`,
+            error: `Invalid file type: ${image.type}. Only JPG, PNG, and WebP allowed`,
           }),
           { status: 400, headers: { "Content-Type": "application/json" } }
         );
       }
-
-      validImages.push(file);
     }
 
     // Insert recipe to database
@@ -94,46 +97,33 @@ export const POST: APIRoute = async (context) => {
       );
     }
 
-    // Upload images
-    const uploadedImages: string[] = [];
-    for (const file of validImages) {
-      const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-      const filename = `${recipe.id}/${Date.now()}-${file.name}`;
+    // Mint signed upload URLs so the browser can upload image bytes
+    // directly to Supabase Storage, bypassing the function's body-size limit
+    const uploads: { path: string; token: string; signedUrl: string }[] = [];
+    for (const image of images) {
+      const path = `${recipe.id}/${Date.now()}-${image.name}`;
+      const { data: signedData, error: signedError } = await supabaseAdmin
+        .storage
+        .from("wedding-recipes")
+        .createSignedUploadUrl(path);
 
-      const { data: uploadData, error: uploadError } =
-        await supabaseAdmin.storage
-          .from("wedding-recipes")
-          .upload(filename, buffer, {
-            contentType: file.type,
-          });
-
-      if (uploadError) {
-        console.error("Image upload error:", uploadError);
-        // Continue with other images even if one fails
+      if (signedError || !signedData) {
+        console.error("Signed upload URL error:", signedError);
         continue;
       }
 
-      if (uploadData) {
-        // Record image reference in database
-        const { error: imageRecordError } = await supabaseAdmin
-          .from("recipe_images")
-          .insert({
-            recipe_id: recipe.id,
-            storage_path: uploadData.path,
-          });
-
-        if (!imageRecordError) {
-          uploadedImages.push(uploadData.path);
-        }
-      }
+      uploads.push({
+        path: signedData.path,
+        token: signedData.token,
+        signedUrl: signedData.signedUrl,
+      });
     }
 
     return new Response(
       JSON.stringify({
         success: true,
         recipeId: recipe.id,
-        imagesUploaded: uploadedImages.length,
+        uploads,
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );

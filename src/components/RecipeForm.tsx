@@ -4,6 +4,7 @@ import type { ComponentChildren } from "preact";
 import foodImage from "@/assets/images/crepe.jpg";
 import pizzaImg from "@/assets/images/sam-pizza.jpg";
 import DetailsCard from './details-card';
+import { supabaseBrowser } from "@/lib/supabase-browser";
 
 const MAX_IMAGES = 5;
 
@@ -60,14 +61,18 @@ export default function RecipeForm(): ComponentChildren {
     setStep("submitting");
 
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("recipe_text", recipeText);
-      images.forEach((img) => formData.append("images", img));
-
       const response = await fetch("/api/submit-recipe", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          recipe_text: recipeText,
+          images: images.map((img) => ({
+            name: img.name,
+            type: img.type,
+            size: img.size,
+          })),
+        }),
       });
 
       const data = await response.json();
@@ -76,6 +81,30 @@ export default function RecipeForm(): ComponentChildren {
         setError(data.error || "Failed to submit recipe");
         setStep("form");
         return;
+      }
+
+      // Upload image bytes directly to Supabase Storage so they never
+      // pass through the serverless function's request body limit
+      const uploadedPaths: string[] = [];
+      for (const upload of data.uploads ?? []) {
+        const file = images.find((img) => upload.path.endsWith(img.name));
+        if (!file) continue;
+
+        const { error: uploadError } = await supabaseBrowser.storage
+          .from("wedding-recipes")
+          .uploadToSignedUrl(upload.path, upload.token, file);
+
+        if (!uploadError) {
+          uploadedPaths.push(upload.path);
+        }
+      }
+
+      if (uploadedPaths.length > 0) {
+        await fetch("/api/confirm-recipe-images", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ recipeId: data.recipeId, paths: uploadedPaths }),
+        });
       }
 
       setStep("success");
