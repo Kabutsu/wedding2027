@@ -10,6 +10,17 @@
   --color-ivory-light: #fffdf5;
   --color-crimson: #831f3b;
   --color-dark-blue: #233550;
+
+  --color-red-pastel: #f7838d;
+  --color-red-pastel-dark: #c41725;
+  --color-red-pastel-bold: #ff3d3d;
+  --color-pink-pastel-dark: #b5434d;
+  --color-orange-pastel: #fae4d7;
+  --color-orange-pastel-dark: #f17830;
+  --color-orange-pastel-light: #f9f4f1;
+  --color-purple-pastel: #b4a0cd;
+  --color-purple-pastel-dark: #665280;
+  --color-white-pastel: #fffaeb;
   
   /* Custom drop shadow */
   --drop-shadow-wedding: 0 0 0.25rem #3f121b33;
