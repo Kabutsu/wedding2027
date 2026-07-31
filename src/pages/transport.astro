@@ -50,14 +50,6 @@ const taxis = [
       </p>
     </div>
 
-    <!-- Important Note -->
-    <!-- <div class="important-note max-w-5xl w-full">
-      <p class="note-heading">📌 Important: Pre-Book Your Taxi</p>
-      <p class="note-text">
-        Please arrange your taxi in advance. Taxis are in high demand on the evening and you will not be able to find one at the last minute. There is a payphone in the Waiting Room adjacent to the barn, and mobile service is limited—please turn on WiFi calling and connect to the free "KB Guest" network (no password required).
-      </p>
-    </div> -->
-
     <!-- Taxis Table -->
     <div class="w-full max-w-5xl">
       <h2 class="section-heading">Local Taxis</h2>
@@ -83,10 +75,43 @@ const taxis = [
       </div>
     </div>
 
+    <!-- Train Information -->
+    <div class="w-full max-w-5xl">
+      <h2 class="section-heading">Nearest Train Stations</h2>
+      <div class="train-section">
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Cam & Dursley Station</h3>
+          <p class="train-details text-pretty">
+            Box Road, near Cam, Gloucestershire, GL11 5DJ
+          </p>
+        </div>
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Stonehouse Station</h3>
+          <p class="train-details text-pretty">
+            Burdett Road, Stonehouse, Gloucestershire, GL10 2JW
+          </p>
+        </div>
+        <div class="train-option shadow-lg hover:shadow-lg">
+          <h3>Stroud Station</h3>
+          <p class="train-details">
+            Station Road, Stroud, Gloucestershire, GL5 3AP
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Driving Directions -->
     <div class="w-full max-w-5xl">
       <h2 class="section-heading">Driving Directions</h2>
       <div class="directions-section">
+        <div class="parking-note">
+          <p>
+            <strong>Parking:</strong> There is plenty of parking available at the
+            venue, so please don't worry about finding a spot. Just follow the signs
+            on arrival.
+          </p>
+        </div>
+
         <div class="direction-box shadow-lg hover:shadow-xl">
           <h3>From Junction 13, M5 (approx. 8 miles)</h3>
           <p>
@@ -128,53 +153,36 @@ const taxis = [
             right.
           </p>
         </div>
-
-        <div class="parking-note">
-          <p>
-            <strong>Parking:</strong> There is plenty of parking available at the
-            venue, so please don't worry about finding a spot. Just follow the signs
-            on arrival.
-          </p>
-        </div>
       </div>
     </div>
 
-    <!-- Train Information -->
-    <div class="w-full max-w-5xl">
-      <h2 class="section-heading">Nearest Train Stations</h2>
-      <div class="train-section">
-        <div class="train-option shadow-lg hover:shadow-lg">
-          <h3>Cam & Dursley Station</h3>
-          <p class="train-details text-pretty">
-            Box Road, near Cam, Gloucestershire, GL11 5DJ
-          </p>
-        </div>
-        <div class="train-option shadow-lg hover:shadow-lg">
-          <h3>Stonehouse Station</h3>
-          <p class="train-details text-pretty">
-            Burdett Road, Stonehouse, Gloucestershire, GL10 2JW
-          </p>
-        </div>
-        <div class="train-option shadow-lg hover:shadow-lg">
-          <h3>Stroud Station</h3>
-          <p class="train-details">
-            Station Road, Stroud, Gloucestershire, GL5 3AP
-          </p>
-        </div>
+    <div
+      class="w-full sm:w-[70%] flex flex-col items-center justify-start gap-4 sm:gap-6 max-w-5xl"
+    >
+      <!-- What 3 Words -->
+      <div class="what-three-words w-full">
+        <p>
+          <strong>What 3 Words:</strong>
+          <a
+            href="https://w3w.co/lifestyle.recline.classed"
+            class="underline text-purple-pastel-dark hover:text-purple-pastel active:text-purple-pastel"
+            target="_blank"
+            rel="noopener noreferrer">lifestyle.recline.classed</a
+          >
+        </p>
       </div>
-    </div>
 
-    <!-- What 3 Words -->
-    <div class="what-three-words max-w-5xl w-full">
-      <p>
-        <strong>What 3 Words:</strong>
-        <a
-          href="https://w3w.co/lifestyle.recline.classed"
-          class="underline text-crimson"
-          target="_blank"
-          rel="noopener noreferrer">lifestyle.recline.classed</a
-        >
-      </p>
+      <!-- Google Maps -->
+      <div class="w-full">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19794.692325775006!2d-2.260132607518911!3d51.67198169342577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48710b27f05dc32b%3A0xc3c5c40c92b6617d!2sThe%20Kingscote%20Barn!5e0!3m2!1sen!2sus!4v1785533452651!5m2!1sen!2sus"
+          width="100%"
+          height="350"
+          style="border: 0; border-radius: 0.5rem;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </section>
 
@@ -311,7 +319,6 @@ const taxis = [
     border-left: 4px solid var(--color-purple-pastel-dark);
     padding: 1.5rem;
     border-radius: 0.375rem;
-    margin-top: 1rem;
   }
 
   .parking-note p {
@@ -372,7 +379,8 @@ const taxis = [
     }
 
     .section-heading {
-      font-size: 1.35rem;
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
     }
 
     .train-section {
