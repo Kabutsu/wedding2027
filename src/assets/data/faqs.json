@@ -1,10 +1,62 @@
 [
   {
-    "id": "I may have missed it somewhere, but what is the attire for the celebration?",
-    "answer": "You sure did, but that's ok. Attire is \"Winter Cocktail\" - think cocktail dresses, dressy jumpsuits, and suits. Follow the \"Dress Code\" link at the bottom of the page for more info!"
+    "id": 1,
+    "question": "I may have missed it somewhere, but what is the attire for the celebration?",
+    "answer": "We're going for a \"Romantic Winter Cocktail\" vibe - think cocktail dresses, dressy jumpsuits, and suits. Follow the \"Dress Code\" link at the bottom of the page for more info!"
   },
   {
-    "id": "Can I bring my kid(s)?",
-    "answer": "Absolutely! We love kids and want them to be part of the celebration. If you plan on bringing your little ones, please let us know in the RSVP form so we can make the necessary arrangements. Just be aware that the festivities are planned to go on quite late, so please plan accordingly."
+    "id": 2,
+    "question": "Can I bring my kid(s)?",
+    "answer": "Absolutely! We love kids and want them to be part of the celebration - just let us know they'll be coming along in the RSVP form. Also be aware that the party's planned to go on until past midnight, so keep that in mind when making plans."
+  },
+  {
+    "id": 3,
+    "question": "What time should I arrive?",
+    "answer": "The ceremony will begin at 2pm, and we recommend arriving around 1pm-1:15pm to allow time for mingling, finding your seat, and getting settled. The reception will follow immediately after the ceremony, and if you've booked on-site accommodation, there will be time to check in between the ceremony and wedding breakfast."
+  },
+  {
+    "id": 4,
+    "question": "What is the parking situation?",
+    "answer": "There is plenty of free parking available on-site, including a couple of EV chargers for electric cars. Feel free to leave your car parked overnight, though remember that checkout is at 10am on Sunday morning."
+  },
+  {
+    "id": 5,
+    "question": "Will the ceremony be indoors or outdoors?",
+    "answer": "This is winter in the UK - we're planning for the weather and will be holding the ceremony, reception, breakfast and evening party all indoors (though there is a covered outdoor section if needed). In the event of nice weather, the grounds are spectacular and we will be making the most of them for photos and mingling!"
+  },
+  {
+    "id": 6,
+    "question": "Can I take photos/videos during the ceremony?",
+    "answer": "Feel free - we just ask that you be mindful of other guests, and of our wonderful photographer, and not block their view or shots."
+  },
+  {
+    "id": 7,
+    "question": "Where can I share photos?",
+    "answer": "All over social media! We'll also be setting up a shared album for guests to upload their photos and videos to, so keep an eye out for that closer to the time."
+  },
+  {
+    "id": 8,
+    "question": "Will Benji & Bella be at the wedding?",
+    "answer": "We love our little pups, but unfortunately they won't be able to attend the wedding. But they will be there in spirit through the decorations, our wedding favours, and some specialty cocktails during the reception!"
+  },
+  {
+    "id": 9,
+    "question": "Sometimes I get hungry. Will there be food?",
+    "answer": "Yes, and plenty of it! The canapés and wedding breakfast will be Latin inspired, and for those partying into the evening we will have a chip bar to keep you fueled. The whole wedding will be vegetarian, but any further dietary requirements can be specified in the RSVP form."
+  },
+  {
+    "id": 10,
+    "question": "Sometimes I get thirsty. Will there be drinks?",
+    "answer": "Yes, we will be providing a selection of alcoholic and non-alcoholic beverages throughout the day, including signature Benji & Bella cocktails. There is also a cash bar that will open after the wedding breakfast for those who want to keep the party going!"
+  },
+  {
+    "id": 11,
+    "question": "Sometimes I dance. Will there be music?",
+    "answer": "Yes, there will be a live band playing all night following the wedding breakfast! We want this to be a big party, and would love for you to join us on the dancefloor. If you have any song requests, please message us directly!"
+  },
+  {
+    "id": 12,
+    "question": "Can I bring a plus one?",
+    "answer": "We're keeping to our set guest list, so unfortunately we are unable to accommodate plus ones. We hope you understand!"
   }
 ]

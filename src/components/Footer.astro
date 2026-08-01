@@ -7,13 +7,13 @@ const asPath = Astro.url.pathname;
 ---
 
 <footer class="relative w-full overflow-visible">
-  <a href="/" class="relative block w-full h-8">
+  <div class="relative block w-full h-8">
     <Image
       src={footerImg}
       alt="Footer image"
       class="absolute top-8 left-1/2 -translate-x-1/2 -translate-y-1/4 w-32 h-32 object-cover object-top rounded-full z-10"
     />
-  </a>
+  </div>
   <div
     id="footer-content-container"
     class="w-full min-h-[50svh] sm:min-h-96 flex flex-col justify-stretch"

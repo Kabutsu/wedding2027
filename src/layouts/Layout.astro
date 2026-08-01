@@ -4,6 +4,15 @@ import background from "@/assets/background.svg";
 import Head from "@/components/Head.astro";
 
 import "@/styles/global.css";
+
+const pathToTitle: Record<string, string> = {
+	"/": "Sam & Carolina's Wedding",
+	"/rsvp": "RSVP | Sam & Carolina's Wedding",
+	"/dress-code": "Dress Code | Sam & Carolina's Wedding",
+	"/accommodation": "Accommodation | Sam & Carolina's Wedding",
+	"/transport": "Transport | Sam & Carolina's Wedding",
+	"/faqs": "FAQs | Sam & Carolina's Wedding",
+};
 ---
 
 <!doctype html>
@@ -14,7 +23,9 @@ import "@/styles/global.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Sam &amp; Carolina's Wedding</title>
+		<title>
+			{pathToTitle[Astro.url.pathname] ?? "Sam & Carolina's Wedding"}
+		</title>
 		<Head />
 	</head>
 	<body>

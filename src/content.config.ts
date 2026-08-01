@@ -5,7 +5,8 @@ import { z } from "astro/zod";
 const faqs = defineCollection({
   loader: file("./src/assets/data/faqs.json"),
   schema: z.object({
-    id: z.string(),
+    id: z.number(),
+    question: z.string(),
     answer: z.string(),
   }),
 });
