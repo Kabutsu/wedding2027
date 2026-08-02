@@ -128,8 +128,9 @@ optimizedImages.forEach((image, index) => {
         if (settled >= total) reveal();
       });
       // Safety net in case an image never fires load/error (e.g. a lazy
-      // row far below the fold that never enters the viewport).
-      setTimeout(reveal, 8000);
+      // row far below the fold that never enters the viewport). Long
+      // enough to not fire during a normal cold-cache full-gallery load.
+      setTimeout(reveal, 30000);
     }
   }
 </script>
