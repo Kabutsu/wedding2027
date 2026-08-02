@@ -31,7 +31,11 @@ const optimizedImages = await Promise.all(
       sizes: "(max-width: 640px) 600px, (max-width: 1280px) 1200px, 1920px",
     }).then((optimized) => ({
       ...optimized,
-      loading: (index === 0 ? "eager" : "lazy") as "eager" | "lazy",
+      // All images are gated behind the loading spinner until every one has
+      // loaded (see the script below), so none can be `lazy` — a lazy image
+      // never becomes eligible to fetch while its ancestor is display:none,
+      // since the browser can't compute intersection for an unrendered subtree.
+      loading: "eager" as "eager" | "lazy",
     })),
   ),
 );
