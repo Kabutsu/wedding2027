@@ -1,7 +1,7 @@
 ---
 import { PUBLIC_PINTEREST_LINK } from "astro:env/client";
 
-import suitImg from "@/assets/images/tuscany-suit.jpg";
+import suitImg from "@/assets/images/au-ball-2.jpg";
 
 import Layout from "@/layouts/Layout.astro";
 import PageHeader from "@/components/PageHeader.astro";
@@ -40,10 +40,7 @@ import Footer from "@/components/Footer.astro";
       }
     </script>
 
-    <div
-      id="pinterest-container"
-      style="width: 100%; max-width: 800px; margin: 0 auto; display: flex; justify-content: center;"
-    >
+    <div id="pinterest-container" class="desktop">
       <a
         id="pinterest-embed"
         data-pin-do="embedBoard"
@@ -52,11 +49,13 @@ import Footer from "@/components/Footer.astro";
         data-pin-scale-height="600"
       >
       </a>
+    </div>
+    <div id="pinterest-container" class="mobile">
       <!-- Fallback for iOS/mobile devices where embed doesn't work -->
       <div id="pinterest-fallback" style="display: none;">
         <DetailsCard
           title="Inspiration"
-          description="View our inspiration board on Pinterest"
+          description={`View our "Romantic Winter Cocktail" board on Pinterest`}
           buttonText="Check it Out"
           buttonLink={PUBLIC_PINTEREST_LINK}
           img={suitImg}
@@ -162,16 +161,36 @@ import Footer from "@/components/Footer.astro";
 </Layout>
 
 <style>
+  #pinterest-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 640px) {
+    #pinterest-container.desktop {
+      display: none !important;
+    }
+
+    #pinterest-container.mobile {
+      display: flex !important;
+    }
+  }
+
+  @media screen and (min-width: 641px) {
+    #pinterest-container.desktop {
+      display: flex !important;
+    }
+
+    #pinterest-container.mobile {
+      display: none !important;
+    }
+  }
+
   #content p {
     text-wrap: pretty;
     font-size: 1.3rem;
-  }
-
-  html.is-ios #pinterest-embed {
-    display: none !important;
-  }
-
-  html.is-ios #pinterest-fallback {
-    display: block !important;
   }
 </style>
