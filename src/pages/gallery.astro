@@ -63,8 +63,19 @@ optimizedImages.forEach((image, index) => {
     class="w-full min-h-[50svh] sm:min-h-96 flex flex-col justify-stretch"
   >
     <div
+      id="gallery-loading"
+      class="w-full flex-1 flex items-center justify-center py-24"
+    >
+      <div
+        class="w-12 h-12 border-4 border-mauve-200 border-t-red-pastel rounded-full animate-spin"
+      >
+      </div>
+    </div>
+    <div
       id="gallery-content"
-      class="w-full h-full pt-8 pb-10 sm:pb-22 flex flex-col flex-1 items-center justify-start gap-2.5"
+      class="w-full h-full pt-8 pb-10 sm:pb-22 flex-col flex-1 items-center justify-start gap-2.5 opacity-0 transition-opacity duration-2000"
+      style="display: none"
+      data-total-images={optimizedImages.length}
     >
       <p
         class="text-xl sm:text-2xl font-(family-name:--font-providence) text-mauve-950 text-center px-4 sm:px-0 sm:max-w-5xl pb-8"
@@ -89,3 +100,36 @@ optimizedImages.forEach((image, index) => {
   </section>
   <Footer />
 </Layout>
+
+<script>
+  const loadingEl = document.getElementById("gallery-loading");
+  const contentEl = document.getElementById("gallery-content");
+
+  if (loadingEl && contentEl) {
+    const total = Number(contentEl.dataset.totalImages ?? 0);
+    let settled = 0;
+    let revealed = false;
+
+    const reveal = () => {
+      if (revealed) return;
+      revealed = true;
+      loadingEl.style.display = "none";
+      contentEl.style.display = "flex";
+      requestAnimationFrame(() => {
+        contentEl.classList.add("opacity-100");
+      });
+    };
+
+    if (total === 0) {
+      reveal();
+    } else {
+      window.addEventListener("gallery:image-settled", () => {
+        settled += 1;
+        if (settled >= total) reveal();
+      });
+      // Safety net in case an image never fires load/error (e.g. a lazy
+      // row far below the fold that never enters the viewport).
+      setTimeout(reveal, 8000);
+    }
+  }
+</script>

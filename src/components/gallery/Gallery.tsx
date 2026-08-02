@@ -52,6 +52,12 @@ export default function Gallery({ images, align }: Props) {
               loading={image.loading}
               class="w-full h-full object-cover"
               style={{ objectPosition: "center center", display: "block" }}
+              onLoad={() =>
+                window.dispatchEvent(new CustomEvent("gallery:image-settled"))
+              }
+              onError={() =>
+                window.dispatchEvent(new CustomEvent("gallery:image-settled"))
+              }
             />
           </div>
         ))}
