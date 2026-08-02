@@ -64,13 +64,27 @@ optimizedImages.forEach((image, index) => {
   >
     <div
       id="gallery-content"
-      class="w-full h-full pt-32 pb-10 sm:pb-22 flex flex-col flex-1 items-center justify-start gap-2.5"
+      class="w-full h-full pt-8 pb-10 sm:pb-22 flex flex-col flex-1 items-center justify-start gap-2.5"
     >
+      <p
+        class="text-xl sm:text-2xl font-(family-name:--font-providence) text-mauve-950 text-center px-4 sm:px-0 sm:max-w-5xl pb-8"
+      >
+        Scroll through our delightfully adorable pre-wedding photos!
+      </p>
       {
-        rows.map((row) => (
-          <Gallery client:only="preact" images={row} direction="ltr" />
+        rows.map((row, idx) => (
+          <Gallery
+            client:only="preact"
+            images={row}
+            align={idx % 2 ? "start" : "center"}
+          />
         ))
       }
+      <p
+        class="text-xl sm:text-3xl font-(family-name:--font-providence) text-mauve-950 text-center px-4 sm:px-0 sm:max-w-5xl pt-8 sm:pt-12"
+      >
+        ...what, you thought it was going to be photos of us?
+      </p>
     </div>
   </section>
   <Footer />

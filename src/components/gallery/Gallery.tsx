@@ -1,10 +1,5 @@
 import { useEffect, useRef } from "preact/hooks";
 import EmblaCarousel from "embla-carousel";
-// import WheelGestures from "embla-carousel-wheel-gestures";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface OptimizedImage {
   src: string;
@@ -17,10 +12,10 @@ interface OptimizedImage {
 
 interface Props {
   images: OptimizedImage[];
-  direction: "ltr" | "rtl";
+  align: "start" | "center" | "end";
 }
 
-export default function Gallery({ images, direction }: Props) {
+export default function Gallery({ images, align }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const emblaRef = useRef<ReturnType<typeof EmblaCarousel> | null>(null);
 
@@ -29,25 +24,17 @@ export default function Gallery({ images, direction }: Props) {
 
     emblaRef.current = EmblaCarousel(containerRef.current,
       {
-        align: "center",
-        direction,
+        align,
         dragFree: true,
         loop: true,
         skipSnaps: true,
-        // watchDrag: false,
       },
-      // [
-      //   WheelGestures({
-      //     forceWheelAxis: "y",
-      //     target: document.querySelector('#body') as HTMLElement,
-      //   }),
-      // ]
     );
 
     return () => {
       emblaRef.current?.destroy();
     };
-  }, [direction]);
+  }, [align]);
 
   return (
     <div ref={containerRef} class="embla overflow-hidden h-full">
@@ -55,7 +42,7 @@ export default function Gallery({ images, direction }: Props) {
         {images.map((image, index) => (
           <div
             key={index}
-            class="embla__slide shrink-0 h-full max-w-[30vw] max-h-[20vh] aspect-square sm:aspect-5/4 cursor-pointer first:ml-2"
+            class="embla__slide shrink-0 h-full max-w-[40vw] max-h-[20vh] sm:max-w-[30vw] sm:max-h-[30vh] aspect-square sm:aspect-5/4 cursor-pointer first:ml-2"
             tabindex={0}
           >
             <img
