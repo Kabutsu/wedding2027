@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import RegistryItemCard from "@/components/registry/RegistryItemCard";
+import { registryImages } from "@/assets/data/registry-images";
+
+export const prerender = false;
+
+const items = await getCollection("registryItems");
+const showSuccess = Astro.url.searchParams.get("success") === "1";
+---
+
+<Layout>
+  <header
+    id="header"
+    class="w-full py-8 sm:pt-24 flex flex-col items-center justify-start bg-red-pastel text-shadow-red-pastel-dark"
+  >
+    <h1
+      class="text-5xl sm:text-6xl font-(family-name:--font-roca) text-ivory text-center"
+    >
+      Wedding Registry
+    </h1>
+  </header>
+
+  <section
+    class="w-full h-full min-h-screen -mb-14 pt-8 sm:pt-12 pb-24 sm:pb-36 px-6 sm:px-12 flex flex-col items-center justify-start gap-8 sm:gap-12 bg-red-pastel text-ivory"
+  >
+    <div
+      class="flex flex-col items-center justify-start gap-4 sm:gap-6 max-w-3xl pb-2 font-(family-name:--font-providence) text-lg sm:text-2xl text-center text-pretty"
+    >
+      <p>
+        We're lucky enough to already have a home full of everything we need, so
+        instead of a traditional gift registry, we're saving up for our
+        honeymoon: a week of skiing & snowboarding in the Alps!
+      </p>
+      <p>
+        Below are a few things we'd love your help with. They're a bit of fun
+        rather than the literal cost of the item, but every contribution goes
+        straight towards the trip. Choose whatever feels right, and give however
+        much you'd like.
+      </p>
+    </div>
+
+    {
+      showSuccess && (
+        <div class="w-full max-w-2xl bg-ivory-light border-4 border-purple-pastel text-purple-pastel-dark px-6 py-4 rounded-2xl font-(family-name:--font-inter) text-center font-semibold">
+          Thank you so much for your contribution! We're so grateful. 💜
+        </div>
+      )
+    }
+
+    <div
+      class="flex flex-wrap items-stretch justify-center gap-8 w-full max-w-6xl"
+    >
+      {
+        items.map(({ data: item }) => (
+          <RegistryItemCard
+            client:load
+            itemId={item.id}
+            title={item.title}
+            description={item.description}
+            suggestedPrice={item.suggestedPrice}
+            image={registryImages[item.image]?.src ?? ""}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
