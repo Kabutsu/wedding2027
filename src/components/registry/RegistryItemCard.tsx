@@ -94,7 +94,7 @@ export default function RegistryItemCard({
           <img src={image} alt={title} class="w-full h-full object-cover" />
         </div>
         <div class="flex flex-col items-center gap-2 p-5 flex-1">
-          <h3 class="h-12 mb-1 text-xl font-bold font-(family-name:--font-roca) text-purple-pastel text-center text-pretty">
+          <h3 class="sm:h-12 sm:mb-1 text-xl font-bold font-(family-name:--font-roca) text-purple-pastel text-center text-pretty">
             {title}
           </h3>
           <p class="text-center text-sm text-mauve-950 text-pretty flex-1">{description}</p>
