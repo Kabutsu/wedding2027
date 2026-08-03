@@ -21,6 +21,10 @@ export default defineConfig({
       SUPABASE_URL: envField.string({ access: 'secret', context: 'server' }),
       SUPABASE_ANON_KEY: envField.string({ access: 'secret', context: 'server' }),
       SUPABASE_SERVICE_ROLE_KEY: envField.string({ access: 'secret', context: 'server' }),
+      PUBLIC_STRIPE_PUBLISHABLE_KEY: envField.string({ access: 'public', context: 'client' }),
+      PUBLIC_MONZO_ME_LINK: envField.string({ access: 'public', context: 'client' }),
+      STRIPE_SECRET_KEY: envField.string({ access: 'secret', context: 'server' }),
+      STRIPE_WEBHOOK_SECRET: envField.string({ access: 'secret', context: 'server' }),
     }
   },
 

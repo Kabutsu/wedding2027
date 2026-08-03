@@ -1,0 +1,126 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "@/layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import RegistryItemCard from "@/components/registry/RegistryItemCard";
+import { registryImages } from "@/assets/data/registry-images";
+
+export const prerender = false;
+
+const items = await getCollection("registryItems");
+---
+
+<Layout>
+  <header
+    id="header"
+    class="w-full py-8 px-4 sm:pt-24 flex flex-col items-center justify-start bg-red-pastel text-shadow-red-pastel-dark"
+  >
+    <h1
+      class="text-5xl sm:text-6xl font-(family-name:--font-roca) text-ivory text-center"
+    >
+      Wedding Registry
+    </h1>
+  </header>
+
+  <section
+    class="w-full h-full min-h-screen -mb-14 pt-4 sm:pt-6 pb-24 sm:pb-36 px-6 sm:px-12 flex flex-col items-center justify-start gap-8 sm:gap-12 bg-red-pastel text-ivory"
+  >
+    <div
+      class="flex flex-col items-center justify-start gap-4 sm:gap-6 max-w-3xl font-(family-name:--font-providence) text-lg sm:text-2xl text-center text-pretty"
+    >
+      <p>
+        We're lucky enough to already have a home full of everything we need, so
+        instead of a traditional gift registry, we're saving up for our
+        honeymoon: a week of skiing & snowboarding in the Alps!
+      </p>
+      <p>
+        Below are a few of the things we'd love to get up to while we're away.
+        They're a bit of fun rather than the literal cost of the item, but every
+        contribution goes straight towards the trip. Choose whatever feels
+        right, and give however much you'd like.
+      </p>
+    </div>
+
+    <div
+      id="success-banner"
+      class="box-border w-full max-w-2xl bg-orange-pastel-light border-4 border-purple-pastel shadow-lg rounded-2xl font-(family-name:--font-inter) text-center overflow-hidden animate-slide-down hidden"
+    >
+      <div
+        class="bg-linear-to-r from-purple-pastel to-purple-pastel/80 px-6 py-4 text-white"
+      >
+        <div class="flex items-center justify-center gap-3 mb-2">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <h3
+            class="text-xl sm:text-2xl font-bold font-(family-name:--font-roca) mt-1"
+          >
+            Thank you!
+          </h3>
+        </div>
+      </div>
+      <div class="px-6 py-5 text-purple-pastel-dark">
+        <p class="text-base font-(family-name:--font-providence)">
+          We're so grateful for your generosity! Your contribution will help us
+          create amazing memories on our honeymoon.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-wrap items-stretch justify-center gap-8 w-full max-w-6xl pt-4 sm:pt-6"
+    >
+      {
+        items
+          .sort((a, b) => {
+            if (a.data.id === "something-else") return 1;
+            return a.data.suggestedPrice - b.data.suggestedPrice;
+          })
+          .map(({ data: item }) => (
+            <RegistryItemCard
+              client:load
+              itemId={item.id}
+              title={item.title}
+              description={item.description}
+              suggestedPrice={item.suggestedPrice}
+              image={registryImages[item.image]?.src ?? ""}
+            />
+          ))
+      }
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :global(.animate-slide-down) {
+    animation: slide-down 0.5s ease-out forwards;
+  }
+</style>
+
+<script>
+  window.addEventListener("contributionSuccess", () => {
+    const banner = document.getElementById("success-banner");
+    if (banner) {
+      banner.classList.remove("hidden");
+      banner.classList.add("animate-slide-down");
+      banner.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+</script>

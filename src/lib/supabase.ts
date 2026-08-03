@@ -24,3 +24,17 @@ export type RecipeImage = {
   storage_path: string;
   created_at: string;
 };
+
+export type Contribution = {
+  id: string;
+  item_id: string;
+  item_title: string;
+  name: string | null;
+  message: string | null;
+  amount: number;
+  currency: string;
+  source: "stripe" | "monzo";
+  status: "pending" | "confirmed" | "self_reported";
+  stripe_session_id: string | null;
+  created_at: string;
+};

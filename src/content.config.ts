@@ -11,4 +11,15 @@ const faqs = defineCollection({
   }),
 });
 
-export const collections = { faqs };
+const registryItems = defineCollection({
+  loader: file("./src/assets/data/registry-items.json"),
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    description: z.string(),
+    suggestedPrice: z.number(),
+    image: z.string(),
+  }),
+});
+
+export const collections = { faqs, registryItems };

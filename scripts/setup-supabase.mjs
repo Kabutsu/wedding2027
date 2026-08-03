@@ -68,6 +68,52 @@ async function setupTables() {
   }
 }
 
+async function setupContributionsTable() {
+  console.log("\n🎁 Checking contributions table...\n");
+
+  const { error: contributionsError } = await supabaseAdmin
+    .from("contributions")
+    .select("*")
+    .limit(1);
+
+  if (!contributionsError) {
+    console.log("✓ contributions table already exists");
+    return;
+  }
+
+  if (contributionsError.code !== "PGRST116") {
+    console.log("✗ Error checking contributions table:", contributionsError.message);
+    return;
+  }
+
+  console.log("✗ contributions table does not exist");
+  console.log("\nPlease create it manually:");
+  console.log("\n1. Go to: https://app.supabase.com/project/xzpylrvwsrxihxvlrkkd/sql/new");
+  console.log("2. Paste and execute this SQL:\n");
+  console.log(`
+    CREATE TABLE contributions (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      item_id TEXT NOT NULL,
+      item_title TEXT NOT NULL,
+      name TEXT,
+      message TEXT,
+      amount NUMERIC NOT NULL,
+      currency TEXT NOT NULL DEFAULT 'gbp',
+      source TEXT NOT NULL CHECK (source IN ('stripe', 'monzo')),
+      status TEXT NOT NULL CHECK (status IN ('pending', 'confirmed', 'self_reported')),
+      stripe_session_id TEXT,
+      created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
+    );
+
+    CREATE INDEX contributions_stripe_session_id_idx ON contributions(stripe_session_id);
+
+    ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
+  `);
+  console.log(
+    "\nNo insert/select policies are needed - this table is only ever written to or read from via the service role key in API routes, never directly from the browser.\n"
+  );
+}
+
 async function setupBucket() {
   console.log("\n🏺 Setting up storage bucket...\n");
 
@@ -112,6 +158,7 @@ async function setupBucket() {
 async function main() {
   try {
     await setupTables();
+    await setupContributionsTable();
     await setupBucket();
     console.log("\n✅ Setup complete!\n");
   } catch (error) {
