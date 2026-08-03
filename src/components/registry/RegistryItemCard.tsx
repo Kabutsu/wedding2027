@@ -137,7 +137,7 @@ export default function RegistryItemCard({
   return (
     <>
       <div class="relative w-full max-w-80 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden flex flex-col transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl">
-        <div class="w-full h-44 overflow-hidden">
+        <div class="w-full h-44 overflow-hidden rounded-lg">
           <img src={image} alt={title} class="w-full h-full object-cover" />
         </div>
         <div class="flex flex-col items-center gap-2 p-5 flex-1">
@@ -240,7 +240,7 @@ export default function RegistryItemCard({
                       onClick={handlePayByMonzo}
                       class="px-3 py-1 sm:px-6 sm:py-3 cursor-pointer bg-mauve-200 text-mauve-950 rounded-full text-lg hover:bg-mauve-300 transition-colors duration-300 font-semibold"
                     >
-                      Pay by Monzo
+                      Pay by <span className="inline sm:hidden">Monzo</span><span className="hidden sm:inline">Bank (Monzo)</span>
                     </button>
                   </div>
                   <button
@@ -258,7 +258,7 @@ export default function RegistryItemCard({
               <div class="flex flex-col items-center justify-center gap-6 py-8">
                 <div class="w-12 h-12 border-4 border-mauve-200 border-t-purple-pastel rounded-full animate-spin"></div>
                 <p class="text-center text-lg font-(family-name:--font-roca) text-purple-pastel font-semibold">
-                  Taking you to secure checkout...
+                  Taking you to pay by card...
                 </p>
               </div>
             )}
