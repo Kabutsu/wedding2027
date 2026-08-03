@@ -4,55 +4,83 @@
     "title": "A Day on the Slopes",
     "description": "Cover a day's lift pass so we can ski the Alps together.",
     "suggestedPrice": 60,
-    "image": "aerial.jpg"
+    "image": "ski-pass.jpg"
   },
   {
     "id": "mountain-dinner",
-    "title": "Dinner in a Cosy Chalet",
-    "description": "Treat us to a delicious meal in a mountain chalet after a day on the slopes.",
-    "suggestedPrice": 40,
-    "image": "food.jpg"
+    "title": "Gourmet Wine & Tapas Evening",
+    "description": "Treat us to a curated tasting of Savoie wines and tapas at a mountaintop restaurant.",
+    "suggestedPrice": 75,
+    "image": "wine.jpg"
   },
   {
-    "id": "fondue-night",
-    "title": "Fondue for Two",
-    "description": "A classic Alpine fondue night, cheese (and maybe a fondue-related injury) included.",
-    "suggestedPrice": 30,
+    "id": "cosy-dinner",
+    "title": "Cosy Dinner for Two",
+    "description": "A cozy evening for two at a local restaurant, complete with a crepe dessert.",
+    "suggestedPrice": 50,
     "image": "crepe.jpg"
   },
   {
-    "id": "cable-car",
-    "title": "Cable Car to the Summit",
-    "description": "Send us up the mountain for a breathtaking view.",
-    "suggestedPrice": 35,
-    "image": "accom.jpg"
+    "id": "night-sledding",
+    "title": "Night-Time Snake Gliss Tobogganing",
+    "description": "Send us on a thrilling night-time sledge train down the mountainside.",
+    "suggestedPrice": 40,
+    "image": "night-sled.jpg"
   },
   {
     "id": "ski-gear",
     "title": "Ski Gear Rental",
-    "description": "Help us kit out with skis, boots, and poles for the week.",
-    "suggestedPrice": 50,
-    "image": "venue-aerial.jpg"
+    "description": "Keep us sliding all week long with skis, snowboards, boots and poles.",
+    "suggestedPrice": 100,
+    "image": "ski-gear.jpg"
   },
   {
     "id": "apres-ski",
-    "title": "Après-Ski Champagne",
-    "description": "A bottle of something bubbly to toast the honeymoon after a day on the mountain.",
-    "suggestedPrice": 25,
-    "image": "wine.png"
+    "title": "Après-Ski Drinks",
+    "description": "Send us out for a night of après-ski drinks and dancing in the local bars.",
+    "suggestedPrice": 35,
+    "image": "party.jpg"
   },
   {
     "id": "spa-session",
     "title": "Spa & Sauna Session",
-    "description": "A relaxing spa afternoon to soothe those ski legs.",
+    "description": "Treat Carolina to a relaxing day at the spa after days of carving up the piste.",
     "suggestedPrice": 45,
-    "image": "party.jpg"
+    "image": "spa.jpg"
   },
   {
     "id": "something-else",
-    "title": "Something Else",
-    "description": "Got a better idea for spoiling us on our honeymoon? Tell us what you have in mind and give whatever feels right.",
+    "title": "Surprise Us!",
+    "description": "Got a better idea for spoiling us on our honeymoon? Tell us what you have in mind and give whatever feels right!",
     "suggestedPrice": 25,
-    "image": "disco-ball.png"
+    "image": "surprise.jpg"
+  },
+  {
+    "id": "hot-chocolate",
+    "title": "Mid-Mountain Hot Chocolate",
+    "description": "A warm cup of hot chocolate to keep us going on a chilly day on the slopes.",
+    "suggestedPrice": 10,
+    "image": "hot-chocolate.jpg"
+  },
+  {
+    "id": "day-sledding",
+    "title": "Colorado Luge Toboggan Run",
+    "description": "A high-speed, 1.5km toboggan run down the dedicated Colorado luge track, racing under the shadow of the mountains!",
+    "suggestedPrice": 20,
+    "image": "day-sledding.jpg"
+  },
+  {
+    "id": "mountain-genepi",
+    "title": "A Round of Mountain Génépi",
+    "description": "A bottle of Savoie's famous herbal liqueur to toast the honeymoon after a day on the mountain.",
+    "suggestedPrice": 25,
+    "image": "genepi.png"
+  },
+  {
+    "id": "bob-sleigh",
+    "title": "Olympic Bobsleigh Run",
+    "description": "Chuck Sam down a high-adrenaline ride down the real 1992 Albertville Olympic bobsleigh track!",
+    "suggestedPrice": 65,
+    "image": "bob-sleigh.jpg"
   }
 ]

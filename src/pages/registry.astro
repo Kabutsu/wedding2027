@@ -54,16 +54,21 @@ const items = await getCollection("registryItems");
       class="flex flex-wrap items-stretch justify-center gap-8 w-full max-w-6xl"
     >
       {
-        items.map(({ data: item }) => (
-          <RegistryItemCard
-            client:load
-            itemId={item.id}
-            title={item.title}
-            description={item.description}
-            suggestedPrice={item.suggestedPrice}
-            image={registryImages[item.image]?.src ?? ""}
-          />
-        ))
+        items
+          .sort((a, b) => {
+            if (a.data.id === "something-else") return 1;
+            return a.data.suggestedPrice - b.data.suggestedPrice;
+          })
+          .map(({ data: item }) => (
+            <RegistryItemCard
+              client:load
+              itemId={item.id}
+              title={item.title}
+              description={item.description}
+              suggestedPrice={item.suggestedPrice}
+              image={registryImages[item.image]?.src ?? ""}
+            />
+          ))
       }
     </div>
   </section>
@@ -76,7 +81,7 @@ const items = await getCollection("registryItems");
     const banner = document.getElementById("success-banner");
     if (banner) {
       banner.classList.remove("hidden");
-      banner.scrollIntoView({ behavior: "smooth", block: "end" });
+      banner.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   });
 </script>

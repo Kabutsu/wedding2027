@@ -76,11 +76,11 @@ export default function RegistryItemCard({
         return;
       }
 
+      window.dispatchEvent(new CustomEvent("contributionSuccess"));
+      
       const monzoUrl = `${monzoBaseLink}/${parsedAmount}?d=${encodeURIComponent(title)}`;
       window.open(monzoUrl, "_blank", "noopener,noreferrer");
       reset();
-
-      window.dispatchEvent(new CustomEvent("contributionSuccess"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred. Please try again.");
       setStep("open");
@@ -90,14 +90,14 @@ export default function RegistryItemCard({
   return (
     <>
       <div class="relative w-full max-w-80 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden flex flex-col transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl">
-        <div class="w-full h-44 overflow-hidden rounded-lg">
+        <div class="w-full h-auto aspect-4/3 overflow-hidden rounded-lg">
           <img src={image} alt={title} class="w-full h-full object-cover" />
         </div>
         <div class="flex flex-col items-center gap-2 p-5 flex-1">
-          <h3 class="text-xl font-bold font-(family-name:--font-roca) text-purple-pastel text-center">
+          <h3 class="h-12 mb-1 text-xl font-bold font-(family-name:--font-roca) text-purple-pastel text-center text-pretty">
             {title}
           </h3>
-          <p class="text-center text-sm text-mauve-950 flex-1">{description}</p>
+          <p class="text-center text-sm text-mauve-950 text-pretty flex-1">{description}</p>
           <p class="font-semibold text-purple-pastel-dark">
             From £{suggestedPrice}
           </p>
