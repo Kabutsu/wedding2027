@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import type { ComponentChildren } from "preact";
 
-type Step = "closed" | "open" | "submittingStripe" | "monzoConfirm" | "submittingMonzo" | "success";
+type Step = "closed" | "open" | "submittingMonzo" ;
 
 type Props = {
   itemId: string;
@@ -34,51 +34,7 @@ export default function RegistryItemCard({
     setError("");
   };
 
-  const handlePayByCard = async () => {
-    setError("");
-    const parsedAmount = Number(amount);
-
-    if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
-      setError("Please enter a valid amount");
-      return;
-    }
-
-    if (!name.trim()) {
-      setError("Please enter your name");
-      return;
-    }
-
-    setStep("submittingStripe");
-
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          itemId,
-          itemTitle: title,
-          amount: parsedAmount,
-          name,
-          message,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || !data.url) {
-        setError(data.error || "Failed to start checkout");
-        setStep("open");
-        return;
-      }
-
-      window.location.href = data.url;
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred. Please try again.");
-      setStep("open");
-    }
-  };
-
-  const handlePayByMonzo = () => {
+  const handlePayByMonzo = async () => {
     setError("");
     const parsedAmount = Number(amount);
 
@@ -97,13 +53,6 @@ export default function RegistryItemCard({
       return;
     }
 
-    const monzoUrl = `${monzoBaseLink}/${parsedAmount}?d=${encodeURIComponent(title)}`;
-    window.open(monzoUrl, "_blank", "noopener,noreferrer");
-    setStep("monzoConfirm");
-  };
-
-  const handleConfirmMonzo = async () => {
-    setError("");
     setStep("submittingMonzo");
 
     try {
@@ -113,7 +62,7 @@ export default function RegistryItemCard({
         body: JSON.stringify({
           itemId,
           itemTitle: title,
-          amount: Number(amount),
+          amount: parsedAmount,
           name,
           message,
         }),
@@ -123,14 +72,18 @@ export default function RegistryItemCard({
 
       if (!response.ok) {
         setError(data.error || "Failed to save contribution");
-        setStep("monzoConfirm");
+        setStep("open");
         return;
       }
 
-      setStep("success");
+      const monzoUrl = `${monzoBaseLink}/${parsedAmount}?d=${encodeURIComponent(title)}`;
+      window.open(monzoUrl, "_blank", "noopener,noreferrer");
+      reset();
+
+      window.dispatchEvent(new CustomEvent("contributionSuccess"));
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred. Please try again.");
-      setStep("monzoConfirm");
+      setStep("open");
     }
   };
 
@@ -227,22 +180,13 @@ export default function RegistryItemCard({
                 )}
 
                 <div class="flex flex-col gap-3 font-(family-name:--font-providence)">
-                  <div class="flex flex-row justify-center gap-2 sm:flex-col sm:gap-3">
-                    <button
-                      type="button"
-                      onClick={handlePayByCard}
-                      class="px-3 py-1 sm:px-6 sm:py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
-                    >
-                      Pay by Card
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handlePayByMonzo}
-                      class="px-3 py-1 sm:px-6 sm:py-3 cursor-pointer bg-mauve-200 text-mauve-950 rounded-full text-lg hover:bg-mauve-300 transition-colors duration-300 font-semibold"
-                    >
-                      Pay by <span className="inline sm:hidden">Monzo</span><span className="hidden sm:inline">Bank (Monzo)</span>
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={handlePayByMonzo}
+                    class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
+                  >
+                    Pay with Monzo
+                  </button>
                   <button
                     type="button"
                     onClick={reset}
@@ -254,74 +198,14 @@ export default function RegistryItemCard({
               </>
             )}
 
-            {step === "submittingStripe" && (
-              <div class="flex flex-col items-center justify-center gap-6 py-8">
-                <div class="w-12 h-12 border-4 border-mauve-200 border-t-purple-pastel rounded-full animate-spin"></div>
-                <p class="text-center text-lg font-(family-name:--font-roca) text-purple-pastel font-semibold">
-                  Taking you to pay by card...
-                </p>
-              </div>
-            )}
-
-            {step === "monzoConfirm" && (
-              <>
-                <h3 class="text-2xl font-bold font-(family-name:--font-roca) text-purple-pastel">
-                  Sent it on Monzo?
-                </h3>
-                <p class="text-mauve-950 text-sm">
-                  Once you've sent your contribution, let us know so we can say thank you!
-                </p>
-
-                {error && (
-                  <div class="bg-purple-pastel/30 border border-purple-pastel text-purple-pastel-dark px-4 py-3 rounded-lg text-sm">
-                    {error}
-                  </div>
-                )}
-
-                <div class="flex flex-col gap-3 font-(family-name:--font-providence)">
-                  <button
-                    type="button"
-                    onClick={handleConfirmMonzo}
-                    class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
-                  >
-                    I've Sent It
-                  </button>
-                  <button
-                    type="button"
-                    onClick={reset}
-                    class="px-6 py-2 cursor-pointer text-mauve-700 text-base hover:text-mauve-950 transition-colors duration-300"
-                  >
-                    I'll Do This Later
-                  </button>
-                </div>
-              </>
-            )}
 
             {step === "submittingMonzo" && (
               <div class="flex flex-col items-center justify-center gap-6 py-8">
                 <div class="w-12 h-12 border-4 border-mauve-200 border-t-purple-pastel rounded-full animate-spin"></div>
                 <p class="text-center text-lg font-(family-name:--font-roca) text-purple-pastel font-semibold">
-                  Saving your contribution...
+                  Opening Monzo...
                 </p>
               </div>
-            )}
-
-            {step === "success" && (
-              <>
-                <h3 class="text-2xl font-bold font-(family-name:--font-roca) text-purple-pastel">
-                  ✓ Thank You!
-                </h3>
-                <p class="text-mauve-950 text-sm">
-                  We can't wait to enjoy this on our honeymoon thanks to you!
-                </p>
-                <button
-                  type="button"
-                  onClick={reset}
-                  class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold font-(family-name:--font-providence)"
-                >
-                  Close
-                </button>
-              </>
             )}
           </div>
         </div>

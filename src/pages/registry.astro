@@ -9,13 +9,12 @@ import { registryImages } from "@/assets/data/registry-images";
 export const prerender = false;
 
 const items = await getCollection("registryItems");
-const showSuccess = Astro.url.searchParams.get("success") === "1";
 ---
 
 <Layout>
   <header
     id="header"
-    class="w-full py-8 sm:pt-24 flex flex-col items-center justify-start bg-red-pastel text-shadow-red-pastel-dark"
+    class="w-full py-8 px-4 sm:pt-24 flex flex-col items-center justify-start bg-red-pastel text-shadow-red-pastel-dark"
   >
     <h1
       class="text-5xl sm:text-6xl font-(family-name:--font-roca) text-ivory text-center"
@@ -43,13 +42,13 @@ const showSuccess = Astro.url.searchParams.get("success") === "1";
       </p>
     </div>
 
-    {
-      showSuccess && (
-        <div class="w-full max-w-2xl bg-ivory-light border-4 border-purple-pastel text-purple-pastel-dark px-6 py-4 rounded-2xl font-(family-name:--font-inter) text-center font-semibold">
-          Thank you so much for your contribution! We're so grateful. 💜
-        </div>
-      )
-    }
+    <div
+      id="success-banner"
+      class="w-full max-w-2xl bg-ivory-light border-4 border-purple-pastel text-purple-pastel-dark px-6 py-4 rounded-2xl font-(family-name:--font-inter) text-center font-semibold hidden"
+    >
+      Thank you so much for your contribution! We can't wait to enjoy this on
+      our honeymoon thanks to you. 💜
+    </div>
 
     <div
       class="flex flex-wrap items-stretch justify-center gap-8 w-full max-w-6xl"
@@ -71,3 +70,13 @@ const showSuccess = Astro.url.searchParams.get("success") === "1";
 
   <Footer />
 </Layout>
+
+<script>
+  window.addEventListener("contributionSuccess", () => {
+    const banner = document.getElementById("success-banner");
+    if (banner) {
+      banner.classList.remove("hidden");
+      banner.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  });
+</script>
