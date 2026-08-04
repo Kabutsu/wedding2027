@@ -52,7 +52,7 @@
     "id": "something-else",
     "title": "Surprise Us!",
     "description": "Got a better idea for spoiling us on our honeymoon? Tell us what you have in mind and give whatever feels right!",
-    "suggestedPrice": 25,
+    "suggestedPrice": 1,
     "image": "surprise.jpg"
   },
   {
@@ -66,7 +66,7 @@
     "id": "day-sledding",
     "title": "Colorado Luge Toboggan Run",
     "description": "A high-speed, 1.5km toboggan run down the dedicated Colorado luge track!",
-    "suggestedPrice": 15,
+    "suggestedPrice": 12,
     "image": "day-sledding.jpg"
   },
   {
