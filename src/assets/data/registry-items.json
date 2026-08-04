@@ -16,7 +16,7 @@
   {
     "id": "cosy-dinner",
     "title": "Cosy Dinner for Two",
-    "description": "A cozy evening for two at a local restaurant, complete with a crepe dessert.",
+    "description": "A cosy evening for two at a local restaurant, complete with a crepe dessert.",
     "suggestedPrice": 50,
     "image": "crepe.jpg"
   },
@@ -24,7 +24,7 @@
     "id": "night-sledding",
     "title": "Night-Time Snake Gliss Tobogganing",
     "description": "Have us slide down the mountainside in a thrilling night-time sledge train.",
-    "suggestedPrice": 40,
+    "suggestedPrice": 30,
     "image": "night-sled.jpg"
   },
   {
@@ -59,14 +59,14 @@
     "id": "hot-chocolate",
     "title": "Mid-Mountain Hot Chocolate",
     "description": "A warm cup of hot chocolate to keep us going on a chilly day on the slopes.",
-    "suggestedPrice": 10,
+    "suggestedPrice": 5,
     "image": "hot-chocolate.jpg"
   },
   {
     "id": "day-sledding",
     "title": "Colorado Luge Toboggan Run",
-    "description": "A high-speed, 1.5km toboggan run down the dedicated Colorado luge track, racing under the shadow of the mountains!",
-    "suggestedPrice": 20,
+    "description": "A high-speed, 1.5km toboggan run down the dedicated Colorado luge track!",
+    "suggestedPrice": 15,
     "image": "day-sledding.jpg"
   },
   {
