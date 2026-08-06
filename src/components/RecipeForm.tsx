@@ -288,7 +288,7 @@ export default function RecipeForm(): ComponentChildren {
           type="submit"
           class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg sm:text-xl hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
         >
-          Submit & Go to RSVP
+          Submit Recipe
         </button>
       </div>
     </form>
