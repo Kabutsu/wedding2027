@@ -33,13 +33,6 @@ import Footer from "@/components/Footer.astro";
       </p>
     </div>
 
-    <script is:inline type="text/javascript">
-      // Detect iOS immediately and set a class before anything renders
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        document.documentElement.classList.add("is-ios");
-      }
-    </script>
-
     <div id="pinterest-container" class="desktop">
       <a
         id="pinterest-embed"
@@ -51,92 +44,31 @@ import Footer from "@/components/Footer.astro";
       </a>
     </div>
     <div id="pinterest-container" class="mobile">
-      <!-- Fallback for iOS/mobile devices where embed doesn't work -->
-      <div id="pinterest-fallback" style="display: none;">
-        <DetailsCard
-          title="Inspiration"
-          description={`View our "Romantic Winter Cocktail" board on Pinterest`}
-          buttonText="Check it Out"
-          buttonLink={PUBLIC_PINTEREST_LINK}
-          img={suitImg}
-          newPage
-        />
-      </div>
+      <DetailsCard
+        title="Inspiration"
+        description={`View our "Romantic Winter Cocktail" board on Pinterest`}
+        buttonText="Check it Out"
+        buttonLink={PUBLIC_PINTEREST_LINK}
+        img={suitImg}
+        newPage
+      />
     </div>
 
     <script is:inline type="text/javascript">
-      async function requestStorageAccessAndRetry() {
-        try {
-          if (document.requestStorageAccess) {
-            await document.requestStorageAccess();
-            // Access granted, reload to activate with cookies
-            window.location.reload();
-          }
-        } catch (e) {
-          console.log("Storage access denied or unavailable");
-        }
-      }
-
       function initPinterestEmbed() {
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
         if (window.PinUtils && window.PinUtils.build) {
-          if (isIOS) {
-            // On iOS, show fallback by default (ITP blocks the embed)
-            const embed = document.getElementById("pinterest-embed");
-            const fallback = document.getElementById("pinterest-fallback");
-            if (embed && fallback) {
-              embed.style.display = "none";
-              fallback.style.display = "block";
-              // Update fallback button to try requesting storage access
-              const btn = fallback.querySelector("a");
-              if (btn && document.requestStorageAccess) {
-                btn.textContent = "Enable & View Board →";
-                btn.onclick = (e) => {
-                  e.preventDefault();
-                  requestStorageAccessAndRetry();
-                };
-              }
-            }
-          } else {
-            window.PinUtils.build();
-          }
+          window.PinUtils.build();
           return;
         }
 
-        // Load Pinterest embed script
         const script = document.createElement("script");
         script.src = "https://assets.pinterest.com/js/pinit.js";
         script.async = true;
         script.onload = function () {
-          if (isIOS) {
-            // Still show fallback on iOS due to ITP
-            const embed = document.getElementById("pinterest-embed");
-            const fallback = document.getElementById("pinterest-fallback");
-            if (embed && fallback) {
-              embed.style.display = "none";
-              fallback.style.display = "block";
-              const btn = fallback.querySelector("a");
-              if (btn && document.requestStorageAccess) {
-                btn.textContent = "Enable & View Board →";
-                btn.onclick = (e) => {
-                  e.preventDefault();
-                  requestStorageAccessAndRetry();
-                };
-              }
-            }
-          } else if (window.PinUtils && window.PinUtils.build) {
+          if (window.PinUtils && window.PinUtils.build) {
             setTimeout(() => {
               window.PinUtils.build();
             }, 100);
-          }
-        };
-        script.onerror = function () {
-          const embed = document.getElementById("pinterest-embed");
-          const fallback = document.getElementById("pinterest-fallback");
-          if (embed && fallback) {
-            embed.style.display = "none";
-            fallback.style.display = "block";
           }
         };
         document.body.appendChild(script);
@@ -149,8 +81,7 @@ import Footer from "@/components/Footer.astro";
       }
 
       window.addEventListener("load", function () {
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (!isIOS && window.PinUtils && window.PinUtils.build) {
+        if (window.PinUtils && window.PinUtils.build) {
           window.PinUtils.build();
         }
       });

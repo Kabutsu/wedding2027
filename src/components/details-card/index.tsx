@@ -15,6 +15,7 @@ type Button = {
 } & OnClick;
 
 type Props = {
+  id?: string;
   title: string;
   details: string;
   button: Button;
@@ -22,9 +23,10 @@ type Props = {
   img: string;
 };
 
-const DetailsCard = ({ title, details, button, secondaryButton, img }: Props) => {
+const DetailsCard = ({ id, title, details, button, secondaryButton, img }: Props) => {
   return (
     <div
+      id={id}
       class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-240 sm:h-100 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-4 mt-6 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl"
     >
       <div

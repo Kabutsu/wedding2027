@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState, useLayoutEffect } from "preact/hooks";
 import type { ComponentChildren } from "preact";
 
 import foodImage from "@/assets/images/crepe.jpg";
@@ -116,6 +116,12 @@ export default function RecipeForm(): ComponentChildren {
     }
   };
 
+  useLayoutEffect(() => {
+    if (step === "success") {
+      document.querySelector("#success-card")?.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }, [step]);
+
   if (step === "choice") {
     return (
       <DetailsCard
@@ -155,6 +161,7 @@ export default function RecipeForm(): ComponentChildren {
   if (step === "success") {
     return (
       <DetailsCard
+        id="success-card"
         title="✓ Thank You!"
         details="Your recipe has been added to our guestbook. We can't wait to share these memories together! If you haven't already, please proceed to RSVP for our wedding."
         button={{
@@ -199,7 +206,7 @@ export default function RecipeForm(): ComponentChildren {
           value={recipeText}
           onInput={(e) => setRecipeText((e.target as HTMLTextAreaElement).value)}
           placeholder="Share your recipe, ingredients, instructions, family history, or food memories... 📝"
-          class="px-4 py-3 border-2 border-mauve-300 rounded-lg focus:outline-none focus:border-purple-pastel transition-colors bg-white text-mauve-950 h-32 resize-none"
+          class="px-4 py-3 border-2 border-mauve-300 rounded-lg focus:outline-none focus:border-purple-pastel transition-colors bg-white text-mauve-950 h-32 resize-y"
         />
       </div>
 
@@ -246,12 +253,12 @@ export default function RecipeForm(): ComponentChildren {
                 <img
                   src={URL.createObjectURL(img)}
                   alt={`Preview ${idx + 1}`}
-                  class="w-full h-24 object-cover"
+                  class="w-full h-24 sm:h-36 object-cover"
                 />
                 <button
                   type="button"
                   onClick={() => removeImage(idx)}
-                  class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                  class="absolute inset-0 bg-black/15 sm:bg-black/50 sm:opacity-0 group-hover:opacity-100 transition-opacity flex items-start justify-end sm:items-center sm:justify-center px-1.5 py-1 sm:p-0 cursor-pointer"
                 >
                   <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg">
                     ×
