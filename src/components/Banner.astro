@@ -94,6 +94,15 @@ const fullImageUrl = bannerImg.src;
     }
   }
 
+  @keyframes parallax-scroll-tablet {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(200svh);
+    }
+  }
+
   @keyframes parallax-scroll-desktop {
     from {
       transform: translateY(0);
@@ -104,6 +113,12 @@ const fullImageUrl = bannerImg.src;
   }
 
   @media (min-width: 768px) {
+    #banner {
+      animation-name: parallax-scroll-tablet;
+    }
+  }
+
+  @media (min-width: 1025px) {
     #banner-container {
       clip-path: url(#wave-clip);
     }

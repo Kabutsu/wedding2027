@@ -179,18 +179,18 @@ export default function RegistryItemCard({
                   </div>
                 )}
 
-                <div class="flex flex-col gap-3 font-(family-name:--font-providence)">
+                <div class="flex flex-col items-center gap-3 font-(family-name:--font-providence)">
                   <button
                     type="button"
                     onClick={handlePayByMonzo}
-                    class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
+                    class="px-6 py-3 w-full lg:max-w-64 cursor-pointer bg-purple-pastel text-white rounded-full text-lg hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
                   >
                     Pay with Monzo
                   </button>
                   <button
                     type="button"
                     onClick={reset}
-                    class="px-6 py-2 cursor-pointer text-mauve-700 text-base hover:text-mauve-950 transition-colors duration-300"
+                    class="px-6 py-2 w-full lg:max-w-64 cursor-pointer text-mauve-700 text-base hover:text-mauve-950 transition-colors duration-300"
                   >
                     Cancel
                   </button>

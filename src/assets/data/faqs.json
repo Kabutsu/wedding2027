@@ -2,7 +2,6 @@
   {
     "id": 0,
     "question": "I may have missed it somewhere, but when do I have to RSVP by?",
-    // "answer": "The deadline for RSVPing has now passed. If you didn't manage to RSVP but would still like to attend, please reach out to us directly and we'll see what we can do."
     "answer": "The cutoff for RSVPs is October 1st 2026. This is so we can tell suppliers how many guests to expect, so if you miss this date we can't guarantee we'll be able to accommodate you, sorry! You can confirm your attendance by following the \"RSVP/Guestbook\" link at the bottom of the page."
   },
   {
@@ -28,7 +27,7 @@
   {
     "id": 5,
     "question": "Will the ceremony be indoors or outdoors?",
-    "answer": "This is winter in the UK - we're planning for the weather and will be holding the ceremony, reception, breakfast and evening party all indoors (though there is a covered outdoor section if needed). In the event of nice weather, the grounds are spectacular and we will be making the most of them for photos and mingling!"
+    "answer": "This is winter in the UK - we're planning for the weather and will be holding the ceremony, reception, breakfast and evening party all indoors (though there is a covered outdoor section, where the evening food will be served). In the event of nice weather, the grounds are spectacular and we will be making the most of them for photos and mingling!"
   },
   {
     "id": 6,
