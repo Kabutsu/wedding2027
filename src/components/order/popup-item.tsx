@@ -25,7 +25,7 @@ const PopupItem = () => {
             containerRef.current,
             { opacity: 0, y: isMobile ? 25 : 50 },
             {
-              opacity: 1,
+              opacity: 0.7,
               y: 0,
               duration: isMobile ? 0.6 : 0.5,
               ease: isMobile ? 'sine.inOut' : 'power2.out',
