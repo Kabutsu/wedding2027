@@ -27,7 +27,7 @@ export default function OrderContainer() {
       <h1 class="px-4 text-6xl font-(family-name:--font-roca) text-crimson text-center text-pretty mt-8">
         Order of the Day
       </h1>
-      <div class="w-full sm:w-1/2 h-full flex-1 pb-12 pt-56 sm:pt-96 sm:px-12 flex flex-col items-center-safe justify-start relative">
+      <div class="w-full xl:w-1/2 h-full flex-1 pb-12 pt-56 sm:pt-96 md:px-12 flex flex-col items-center-safe justify-start relative">
         <Bottle />
         <Wine containerRef={containerRef} />
         {orderItems.map((item, index) => (
