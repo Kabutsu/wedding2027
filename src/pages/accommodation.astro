@@ -15,7 +15,7 @@ const hotelsAndInns = [
     phone: "01453 860393",
     website: "www.greenekinginns.co.uk/hotels/gloucestershire/hunters-hall-inn",
     cost: "£69",
-    distance: 3,
+    distance: 5,
   },
   {
     name: "The Close Hotel, Tetbury",
@@ -155,6 +155,22 @@ const hotelsAndInns = [
 
 const cottagesApartments = [
   {
+    name: "South Lodge",
+    phone: "01453 861 161",
+    website:
+      "https://app.mews.com/distributor/e779076d-1a13-45ba-b436-af4000cb446c?mewsStart=2027-01-23&mewsEnd=2027-01-24",
+    cost: "£235",
+    distance: 2,
+  },
+  {
+    name: "Tuppence Barn",
+    phone: "01453 861 161",
+    website:
+      "https://app.mews.com/distributor/e779076d-1a13-45ba-b436-af4000cb446c?mewsStart=2027-01-23&mewsEnd=2027-01-24",
+    cost: "£475",
+    distance: 3,
+  },
+  {
     name: "Tickmorend Farm",
     phone: "07792 549747",
     website: "www.manorcottages.co.uk",
@@ -236,8 +252,8 @@ function parseCost(costStr: string): number {
         We've compiled a list of wonderful accommodation options nearby*,
         ranging from boutique hotels and charming inns to cosy cottages and bed
         & breakfasts. There's also a great selection of rooms available at the
-        barn itself, though they are limited and will be allocated on a
-        first-come, first-served basis.
+        barn itself, though they will be allocated on a first-come, first-served
+        basis so we'd advise booking early to avoid disappointment!
       </p>
 
       <p
@@ -248,7 +264,7 @@ function parseCost(costStr: string): number {
 
       <DetailsCard
         title="Stay on Site"
-        description="We have exclusive use of the barn and grounds for our wedding, and there are a few rooms available to book on site"
+        description="We have exclusive use of the barn and grounds for our wedding, and there's a variety of rooms available to book on site"
         buttonText="Book a Room"
         buttonLink={PUBLIC_HOTEL_URL}
         img={venueImg}

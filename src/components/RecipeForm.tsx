@@ -126,7 +126,7 @@ export default function RecipeForm(): ComponentChildren {
     return (
       <DetailsCard
         title="Share Your Recipe"
-        details="Would you like to upload a recipe for our wedding guestbook? Share a family classic, something special, or a dish with a meaningful memory."
+        details="Would you like to upload a recipe for our wedding guestbook? Share a family classic, something special, or a dish with a meaningful memory. Once uploaded, you can also proceed to RSVP for our wedding."
         button={{
           text: "Yes, Upload Recipe",
           onClick: () => setStep("form"),

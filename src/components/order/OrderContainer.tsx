@@ -11,7 +11,7 @@ const orderItems: OrderItem[] = [
   { time: '2:30 PM', title: 'Drinks reception' },
   { time: '5:00 PM', title: 'Dinner*' },
   { time: '7:30 PM', title: 'Cake cutting*' },
-  { time: '8:00 PM', title: 'Band starts' },
+  { time: '8:00 PM', title: 'Band starts*' },
   { time: '12:30 AM', title: 'Carriages' },
 ];
 
