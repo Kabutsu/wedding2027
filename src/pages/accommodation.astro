@@ -226,7 +226,7 @@ function parseCost(costStr: string): number {
 
   <section
     id="content"
-    class="flex flex-col items-center justify-start gap-12 p-6 sm:gap-16 sm:p-12 sm:px-82 w-full"
+    class="flex flex-col items-center justify-start gap-12 p-6 sm:gap-16 w-full sm:p-12 sm:w-4xl lg:w-5xl"
   >
     <!-- Intro paragraph -->
     <div
@@ -293,8 +293,8 @@ function parseCost(costStr: string): number {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {mainName}
-                        {city && <span class="city">, {city}</span>}
+                        <span class="hidden sm:inline">{`${mainName}${city ? `, ${city}` : ""}`}</span>
+                        <span class="inline sm:hidden">{mainName}</span>
                       </a>
                     </td>
                     <td class="phone-cell">{item.phone}</td>
@@ -346,8 +346,8 @@ function parseCost(costStr: string): number {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {mainName}
-                        {city && <span class="city">, {city}</span>}
+                        <span class="hidden sm:inline">{`${mainName}${city ? `, ${city}` : ""}`}</span>
+                        <span class="inline sm:hidden">{mainName}</span>
                       </a>
                     </td>
                     <td class="phone-cell">{item.phone}</td>
@@ -399,8 +399,8 @@ function parseCost(costStr: string): number {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {mainName}
-                        {city && <span class="city">, {city}</span>}
+                        <span class="hidden sm:inline">{`${mainName}${city ? `, ${city}` : ""}`}</span>
+                        <span class="inline sm:hidden">{mainName}</span>
                       </a>
                     </td>
                     <td class="phone-cell">{item.phone}</td>
@@ -536,16 +536,6 @@ function parseCost(costStr: string): number {
     text-decoration: underline;
   }
 
-  .name-cell a .city {
-    display: none;
-  }
-
-  @media (min-width: 769px) {
-    .name-cell a .city {
-      display: inline;
-    }
-  }
-
   .distance-cell {
     text-align: center;
     font-weight: 500;
@@ -567,6 +557,18 @@ function parseCost(costStr: string): number {
 
     .table-heading {
       font-size: 1.35rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .data-table th,
+    .data-table td {
+      padding: 0.9rem 0.75rem;
+      font-size: 1rem;
+    }
+
+    .table-heading {
+      font-size: 1.7rem;
     }
   }
 </style>

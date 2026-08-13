@@ -18,10 +18,10 @@ const faqs = await getCollection("faqs");
     </h1>
   </header>
   <section
-    class="w-full h-full min-h-screen -mb-14 pt-8 sm:pt-12 pb-24 sm:pb-36 px-6 sm:px-12 flex flex-col items-center justify-start gap-8 sm:gap-12 bg-red-pastel text-ivory"
+    class="w-full h-full min-h-screen -mb-14 pt-8 sm:pt-12 pb-24 sm:pb-36 px-6 sm:px-12 flex flex-col items-center justify-start gap-8 sm:gap-10 md:gap-12 bg-red-pastel text-ivory"
   >
     <div
-      class="flex flex-col items-start justify-start gap-4 sm:gap-6 max-w-5xl pb-6 sm:pb-8 font-(family-name:--font-providence) text-2xl"
+      class="flex flex-col items-start justify-start gap-4 md:gap-6 max-w-5xl pb-6 md:pb-8 font-(family-name:--font-providence) text-2xl"
     >
       <p>
         We know that planning for a wedding can be stressful, so we&apos;ve put
@@ -35,17 +35,17 @@ const faqs = await getCollection("faqs");
     </div>
 
     <div
-      class="flex flex-col items-start justify-start text-left gap-12 sm:gap-18 w-full max-w-5xl"
+      class="flex flex-col items-start justify-start text-left gap-12 md:gap-18 w-full max-w-5xl"
     >
       {
         faqs
           .sort((a, b) => a.data.id - b.data.id)
           .map(({ data: faq }) => (
-            <div class="flex flex-col items-start justify-start gap-4 sm:gap-6 w-full px-2 sm:px-28">
-              <h2 class="text-2xl sm:text-4xl font-(family-name:--font-roca) text-shadow-md text-shadow-pink-pastel-dark italic">
+            <div class="flex flex-col items-start justify-start gap-4 md:gap-6 w-full px-2 sm:px-14 lg:px-28">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-(family-name:--font-roca) text-shadow-md text-shadow-pink-pastel-dark italic">
                 &quot;{faq.question}&quot;
               </h2>
-              <p class="text-lg sm:text-2xl font-(family-name:--font-inter)">
+              <p class="text-lg sm:text-xl lg:text-2xl font-(family-name:--font-inter)">
                 {faq.answer}
               </p>
             </div>

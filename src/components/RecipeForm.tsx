@@ -142,7 +142,7 @@ export default function RecipeForm(): ComponentChildren {
 
   if (step === "submitting") {
     return (
-      <div class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-240 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden p-8 sm:p-12">
+      <div class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-lg md:w-3xl lg:w-4xl xl:w-240 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden p-8 sm:p-12">
         <div class="flex flex-col items-center justify-center gap-6">
           <div class="w-12 h-12 border-4 border-mauve-200 border-t-purple-pastel rounded-full animate-spin"></div>
           <div class="flex flex-col items-center gap-2">
@@ -175,7 +175,7 @@ export default function RecipeForm(): ComponentChildren {
   }
 
   return (
-    <form onSubmit={handleSubmit} class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-240 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden p-6 sm:p-8 flex flex-col gap-6">
+    <form onSubmit={handleSubmit} class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-lg md:w-3xl lg:w-4xl xl:w-240 max-w-full bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden p-6 sm:p-8 flex flex-col gap-6">
       <div>
         <h3 class="text-2xl sm:text-3xl font-bold font-(family-name:--font-roca) text-purple-pastel mb-6">
           Your Recipe
@@ -276,17 +276,17 @@ export default function RecipeForm(): ComponentChildren {
         </div>
       )}
 
-      <div class="flex flex-col-reverse gap-3 pt-4 sm:flex-row sm:justify-end-safe font-(family-name:--font-providence)">
+      <div class="flex flex-col-reverse gap-3 pt-4 sm:flex-row sm:justify-end-safe font-(family-name:--font-providence) text-lg lg:text-xl">
         <button
           type="button"
           onClick={() => setStep("choice")}
-          class="px-6 py-3 cursor-pointer bg-mauve-200 text-mauve-950 rounded-full text-lg sm:text-xl hover:bg-mauve-300 transition-colors duration-300 font-semibold"
+          class="px-6 py-3 cursor-pointer bg-mauve-200 text-mauve-950 rounded-full hover:bg-mauve-300 transition-colors duration-300 font-semibold"
         >
           Back
         </button>
         <button
           type="submit"
-          class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full text-lg sm:text-xl hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
+          class="px-6 py-3 cursor-pointer bg-purple-pastel text-white rounded-full hover:bg-purple-pastel-dark/90 transition-colors duration-300 font-semibold"
         >
           Submit Recipe
         </button>

@@ -50,10 +50,19 @@ const InfoItem = ({ time, title }: OrderItem) => {
     };
   }, []);
 
+  const isAsterisk = title.slice(-1) === '*';
+
   return (
     <div ref={containerRef} class="font-(family-name:--font-providence) text-crimson mb-4 sm:mb-12 flex flex-col items-end justify-center gap-1 w-[42.5%] mr-auto ml-0 text-right even:ml-auto even:mr-0 even:text-left even:items-start">
       <span class="text-xl sm:text-3xl">{time}</span>
-      <span class="text-xl sm:text-3xl">{title}</span>
+      <span class="text-xl sm:text-3xl">
+        {isAsterisk ? title.slice(0, -1) : title}
+        {isAsterisk && (
+          <span class="inline opacity-50">
+            {'*'}
+          </span>
+        )}
+      </span>
     </div>
   );
 }
