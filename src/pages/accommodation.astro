@@ -195,7 +195,7 @@ const cottagesApartments = [
     name: "Orchard Cottage, Uley",
     phone: "07933 120585",
     website: "www.twyningash.co.uk/orchard-cottage",
-    cost: "Contact for pricing",
+    cost: "-",
     distance: 8,
   },
   {
@@ -256,12 +256,6 @@ function parseCost(costStr: string): number {
         basis so we'd advise booking early to avoid disappointment!
       </p>
 
-      <p
-        class="w-full text-base sm:text-lg text-left italic font-lighter text-mauve-950"
-      >
-        * The prices in our list are approximate for 2 people and could change.
-      </p>
-
       <DetailsCard
         title="Stay on Site"
         description="We have exclusive use of the barn and grounds for our wedding, and there's a variety of rooms available to book on site"
@@ -270,6 +264,19 @@ function parseCost(costStr: string): number {
         img={venueImg}
         newPage
       />
+
+      <p
+        class="w-full text-base sm:text-lg pt-8 text-left italic font-lighter text-mauve-950"
+      >
+        * The prices in our list are approximate for 2 people and could change.
+        <br />
+        <br class="block sm:hidden" />
+        * Kingscote also offer the <a
+          href="https://kingscotebarn.co.uk/stay-with-us/#southlodge"
+          target="_blank"
+          class="text-crimson underline">South Lodge and Tuppence Barn</a
+        >, which are the closest off-site options.
+      </p>
     </div>
 
     <!-- Hotels & Inns Table -->
@@ -327,7 +334,7 @@ function parseCost(costStr: string): number {
 
     <!-- Cottages, Apartments & Longer Lets Table -->
     <div class="w-full max-w-5xl">
-      <h2 class="table-heading">Cottages, Apartments & Longer Lets</h2>
+      <h2 class="table-heading">Cottages & Apartments</h2>
       <div class="table-wrapper">
         <table class="data-table" data-table="cottages-apartments">
           <thead>
@@ -445,7 +452,6 @@ function parseCost(costStr: string): number {
     font-size: 1.3rem;
     text-wrap: pretty;
     font-family: var(--font-providence);
-    padding-bottom: 1rem;
   }
 
   .table-heading {
