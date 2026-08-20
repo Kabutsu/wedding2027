@@ -99,13 +99,10 @@ async function setupContributionsTable() {
       message TEXT,
       amount NUMERIC NOT NULL,
       currency TEXT NOT NULL DEFAULT 'gbp',
-      source TEXT NOT NULL CHECK (source IN ('stripe', 'monzo')),
+      source TEXT NOT NULL CHECK (source IN ('monzo')),
       status TEXT NOT NULL CHECK (status IN ('pending', 'confirmed', 'self_reported')),
-      stripe_session_id TEXT,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
     );
-
-    CREATE INDEX contributions_stripe_session_id_idx ON contributions(stripe_session_id);
 
     ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
   `);
