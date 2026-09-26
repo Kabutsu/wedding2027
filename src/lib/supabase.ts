@@ -33,8 +33,7 @@ export type Contribution = {
   message: string | null;
   amount: number;
   currency: string;
-  source: "stripe" | "monzo";
+  source: "monzo";
   status: "pending" | "confirmed" | "self_reported";
-  stripe_session_id: string | null;
   created_at: string;
 };

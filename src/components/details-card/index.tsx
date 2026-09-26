@@ -30,15 +30,16 @@ const DetailsCard = ({ id, title, details, button, secondaryButton, img }: Props
       class="relative font-(family-name:--font-inter) w-[90svw] h-auto sm:w-lg md:w-3xl lg:w-4xl xl:w-240 max-w-full sm:h-100 bg-orange-pastel-light rounded-2xl border-orange-pastel-light border-4 shadow-lg overflow-hidden grid grid-cols-1 sm:grid-cols-[2fr_1fr] gap-4 mt-6 transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl"
     >
       <div
-        class="flex flex-col items-center sm:items-start justify-start gap-2 p-2 sm:p-8 pt-4 sm:pt-12 pr-2"
+        id="data-col"
+        class="flex flex-col items-center sm:items-start justify-start gap-2 p-2 sm:p-8 pt-4 pr-2"
       >
         <h3
-          class="text-3xl sm:text-4xl lg:text-[3.25rem] font-bold font-(family-name:--font-roca) text-purple-pastel"
+          class="text-3xl sm:text-4xl lg:text-[3.1rem] font-bold font-(family-name:--font-roca) text-purple-pastel"
         >
           {title}
         </h3>
         <p
-          class="text-center sm:text-left text-pretty text-base sm:text-lg lg:text-xl lg:pb-12 w-full lg:w-96"
+          class="text-center sm:text-left text-pretty text-base sm:text-lg lg:text-xl lg:pb-10 w-full lg:w-96"
         >
           {details}
         </p>
@@ -82,6 +83,7 @@ const DetailsCard = ({ id, title, details, button, secondaryButton, img }: Props
       </div>
 
       <div
+        id="image-col"
         class="w-full h-80 sm:w-auto sm:h-full sm:max-h-98 sm:ml-auto rounded-lg overflow-hidden"
         style={{ cornerShape: 'squircle' }}
       >
