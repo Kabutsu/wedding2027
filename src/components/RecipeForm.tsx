@@ -17,11 +17,6 @@ export default function RecipeForm(): ComponentChildren {
   const [images, setImages] = useState<File[]>([]);
   const [error, setError] = useState("");
 
-  const handleSkip = () => {
-    const rsvpLink = import.meta.env.PUBLIC_RSVP_LINK;
-    window.open(rsvpLink, "_blank");
-  };
-
   const handleFileSelect = (e: Event) => {
     const input = e.target as HTMLInputElement;
     if (!input.files) return;
@@ -127,14 +122,10 @@ export default function RecipeForm(): ComponentChildren {
       <DetailsCard
         id="choice-card"
         title="Share Your Recipe"
-        details="Would you like to upload a recipe for our wedding guestbook? Once uploaded, you can also proceed to RSVP for our wedding - or you can skip to RSVP now and come back to upload your recipe anytime."
+        details="Please use the form to upload a recipe for our wedding guestbook"
         button={{
-          text: "Yes, Upload Recipe",
+          text: "Upload Recipe",
           onClick: () => setStep("form"),
-        }}
-        secondaryButton={{
-          text: "Skip to RSVP",
-          onClick: handleSkip,
         }}
         img={foodImage.src}
       />
@@ -164,12 +155,7 @@ export default function RecipeForm(): ComponentChildren {
       <DetailsCard
         id="success-card"
         title="✓ Thank You!"
-        details="Your recipe has been added to our guestbook. We can't wait to share these memories together! If you haven't already, please proceed to RSVP for our wedding."
-        button={{
-          text: "Go to RSVP",
-          href: import.meta.env.PUBLIC_RSVP_LINK,
-          newPage: true,
-        }}
+        details="Your recipe has been added to our guestbook. We can't wait to share these memories together!"
         img={pizzaImg.src}
       />
     );

@@ -11,6 +11,10 @@ export default defineConfig({
   site: 'https://samandcaro2027.vercel.app/',
   output: 'server',
 
+  redirects: {
+    '/rsvp': '/guestbook',
+  },
+
   env: {
     schema: {
       PUBLIC_RSVP_LINK: envField.string({ access: 'public', context: 'client' }),

@@ -18,7 +18,7 @@ type Props = {
   id?: string;
   title: string;
   details: string;
-  button: Button;
+  button?: Button;
   secondaryButton?: Button;
   img: string;
 };
@@ -44,7 +44,7 @@ const DetailsCard = ({ id, title, details, button, secondaryButton, img }: Props
           {details}
         </p>
         <div class="flex flex-col gap-3 sm:mt-auto lg:mt-0 md:flex-row-reverse mt-2 font-(family-name:--font-providence) text-base md:text-lg lg:text-xl">
-          {button.onClick ? (
+          {button?.onClick ? (
             <button
               onClick={button.onClick}
               class="px-6 py-2 cursor-pointer bg-purple-pastel text-white rounded-full hover:bg-purple-pastel-dark/90 transition-colors duration-300"
@@ -52,7 +52,7 @@ const DetailsCard = ({ id, title, details, button, secondaryButton, img }: Props
               {button.text}
             </button>
           ) : null}
-          {button.href ? (
+          {button?.href ? (
             <a
               href={button.href}
               target={button.newPage ? '_blank' : '_self'}
